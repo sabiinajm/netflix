@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        'xs': '475px',
+        'xs': '475px'
       },
       brightness: {
         40: '0.4'
