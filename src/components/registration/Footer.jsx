@@ -1,10 +1,9 @@
-import { HiLanguage } from "react-icons/hi2"
 import { TfiWorld } from "react-icons/tfi"
 
 function Footer() {
     return (
         <footer className="bg-[#f3f3f3]">
-            <div className="max-w-[1100px] px-4 mx-auto">
+            <div className="max-w-[1100px] px-6 mx-auto">
                 <p className="hover:underline py-8 cursor-pointer text-[#747474]">Questions? Contact us.</p>
                 <div className="grid gap-3 grid-cols-2 xs:grid-cols-3 md:grid-cols-4">
                     <div className="flex text-[#747474] text-[.9rem]"><p className="hover:underline cursor-pointer ">FAQ</p></div>

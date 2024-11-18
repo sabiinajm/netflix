@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function Step1() {
     return (
         <main className="px-4 max-w-[1100px] mx-auto">
@@ -26,7 +28,7 @@ function Step1() {
                 </div>
                 <p className="text-blue-500 mb-3 cursor-pointer hover:underline">Forgot your password? </p>
                 <button className="relative w-[90%] mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
-                    Next
+                    <Link to={'/signup'} >Next</Link>
                 </button>
             </div>
         </main>
