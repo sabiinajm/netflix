@@ -29,7 +29,7 @@ function Planform() {
                         className={`border-[1px] p-3 border-[#9e9e9e] ${activeDiv === 2
                             ? "bg-gradient-to-br from-[#1f509d] to-[#a239d5] text-white"
                             : "bg-white text-[#333]"
-                            }min-w-[120px] w-[160px] h-[110px] rounded-xl cursor-pointer relative`}
+                            } min-w-[120px] w-[160px] h-[110px] rounded-xl cursor-pointer relative`}
                         onClick={() => handleClick(2)}
                     >
                         <h2 className="font-bold ">Standart</h2>
@@ -80,9 +80,11 @@ function Planform() {
                 <div className="text-xs w-full xs:max-w-[500px] mx-auto text-[#787878] font-semibold pt-3 pb-6">
                     <p className="pt-5">HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our <span className="text-blue-600 cursor-pointer">Terms of Use</span> for more details.</p>
                     <p className="py-3">Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard and 1 with Basic.</p>
-                <button className="relative w-full mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
-                    <Link to={'/signup/paymentPicker'} >Next</Link>
-                </button>
+                    <Link to={'/signup/paymentPicker'} >
+                        <button className="relative w-full mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
+                            Next
+                        </button>
+                    </Link>
                 </div>
             </div>
         </main >
