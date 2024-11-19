@@ -10,7 +10,6 @@ import { BsPlusLg } from 'react-icons/bs';
 import { RiCloseLargeFill } from 'react-icons/ri';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import StepsLayout from '../../layouts/StepsLayout';
 
 function Main() {
   const [openIndex, setOpenIndex] = useState(null)
@@ -56,12 +55,12 @@ function Main() {
         <img src={homeBg} alt="background" className='w-full h-full object-cover brightness-40' />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70"></div>
       </div>
-      <div className=' min-h-[450px] lg:min-h-[450px] flex flex-col px-4 max-w-[500px] lg:max-w-[900px] mx-auto justify-center items-center text-center'>
+      <div className='min-h-[480px] lg:min-h-[600px] flex flex-col px-4 max-w-[500px] lg:max-w-[900px] mx-auto justify-center items-center text-center'>
         <div className='max-w-[400px] md:max-w-[600px] font-bold'>
           <h1 className='text-white text-3xl lg:text-4xl xl:text-6xl'>Unlimited movies, TV shows, and more</h1>
         </div>
         <h3 className='text-[#fffc] lg:text-white  p-2 md:text-xl md:p-5 md:font-semibold'>Starts at EUR 7.99. Cancel anytime.</h3>
-        <p className='text-[#fffc] lg:text-white  p-2'>Ready to watch? Enter your email to create or restart your membership.</p>
+        <p className='text-[#fffc] text-white  p-2'>Ready to watch? Enter your email to create or restart your membership.</p>
         <div className='flex flex-col items-center w-full xs:flex-row xs:justify-evenly xs:max-w-[600px]'>
           <div className="relative w-[90%] xs:w-[60%] my-2">
             <input
@@ -69,20 +68,20 @@ function Main() {
               ref={inputRef}
               type="text"
               placeholder="Email address"
-              className={` ${error && 'border-red-700'} peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
-                placeholder:text-transparent focus:pt-6 focus:pb-6 py-2 `}
+              className={` ${error && 'border-red-700'} peer focus:outline-2 outline-offset-2 h-[60px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
+                placeholder:text-transparent focus:pt-8 focus:pb-6 py-2`}
             />
             <label
-              className="absolute top-1 left-0 p-3 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
-        origin-[0_0] peer-focus:scale-90 peer-focus:-translate-x-1 peer-focus:-translate-y-4 peer-focus:text-gray-400
+              className=" absolute top-1 left-0 p-3 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
+        origin-[0_0] peer-focus:scale-90 peer-focus:-translate-x-1 peer-focus:-translate-y-4 peer-focus:text-gray-400 
         peer-[:not(:placeholder-shown)]:scale-90  peer-[:not(:placeholder-shown)]:-translate-x-1  peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
             >
               Email address
             </label>
           </div>
-          <Link to={'/signup/password'}
+          <Link to={'/signup/registration'}
             onClick={handleGetStartedClick}
-            className='bg-[#ff0f0f] rounded-[.3rem] w-[120px] h-[55px] lg:w-[220px] lg:text-2xl lg:font-semibold md:w-[140px] my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center'
+            className='flex bg-[#ff0f0f] rounded-[.3rem] w-[160px] h-[55px] lg:w-[220px] lg:text-2xl lg:font-semibold md:w-[140px] my-2 text-white hover:bg-[#c11119] transition-all duration-300 justify-center items-center'
           >
             Get Started <GoChevronRight className='text-xl md:ml-4 md:text-3xl' />
           </Link>
@@ -167,12 +166,12 @@ function Main() {
               </SwiperSlide>
             </Swiper>
             <div>
-              <div className='bg-black w-[30px] h-[180px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 left-0 z-20 '>
+              <div className='bg-black h-[180px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 left-0 z-20 '>
                 <div className="custom-prev flex items-center justify-center h-[120px] w-[28px]  bg-[#1f1f1f] text-white rounded-lg  hover:bg-[#2b2b2b] cursor-pointer transition-all duration-150">
                   <GoChevronLeft />
                 </div>
               </div>
-              <div className='bg-black w-[30px] h-[180px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-5 z-20 '>
+              <div className='bg-black h-[180px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 right-0 z-20 '>
                 <div className="custom-next flex items-center  justify-center  h-[120px] w-[28px]   bg-[#1f1f1f] text-white rounded-lg hover:bg-[#2b2b2b] cursor-pointer transition-all duration-150">
                   <GoChevronRight />
                 </div>
@@ -436,7 +435,7 @@ function Main() {
                     type="text"
                     placeholder="Email address"
                     className="peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
-        placeholder:text-transparent focus:pt-6 focus:pb-6 py-2  "
+        placeholder:text-transparent focus:pt-8 focus:pb-6 py-2  "
                   />
                   <label
                     className="absolute top-1 left-0 p-3 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100

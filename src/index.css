@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 .curve-container {
-    box-sizing: border-box;
     padding-top: 100px;
     border-top-left-radius:  100%;
     border-top-right-radius: 100%;
@@ -15,24 +14,14 @@
     text-shadow: 2px 2px 0px white, -2px 2px 0px white, 2px -2px 0px white, -2px -2px 0px white;
   }
 .gradient-devider{
-    box-sizing: border-box;
     position: absolute;
     height: 100px;
     width: 100%;
     top: 4px;
     margin: auto;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    border-style: solid;
     border-top-left-radius:  100%;
     border-top-right-radius: 100%;
     background: radial-gradient(50% 500% at 50% -420%, rgba(64, 97, 231, 0.4) 80%, rgba(0, 0, 0, 0.1) 100%), black;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
 }

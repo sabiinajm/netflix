@@ -1,12 +1,15 @@
 import { HiLanguage } from "react-icons/hi2"
 import logo from '../../assets/imgs/logo.png'
+import { Link } from "react-router-dom"
 
 function Header() {
     return (
         <header>
             <nav className='max-w-[1150px] mx-auto py-2 px-6 flex flex-wrap  justify-between items-center'>
                 <div className='w-[130px] lg:w-[180px]'>
-                    <img src={logo} alt="Netflix logo" />
+                    <Link to={'/'}>
+                        <img src={logo} alt="Netflix logo" />
+                    </Link>
                 </div>
                 <div className='w-[130px] sm:w-[240px] flex justify-between'>
                     <div className='flex relative'>
@@ -17,7 +20,9 @@ function Header() {
                             <option value="aze">Azerbaijani</option>
                         </select>
                     </div>
-                    <button className='bg-[#ff0f0f] text-white w-[80px] h-[32px] rounded-[.3rem] hover:bg-[#c11119] transition-all duration-300'>Sign In</button>
+                    <Link to={"/login"}>
+                        <button className='bg-[#ff0f0f] text-white w-[80px] h-[32px] rounded-[.3rem] hover:bg-[#c11119] transition-all duration-300'>Sign In</button>
+                    </Link>
                 </div>
             </nav>
         </header>

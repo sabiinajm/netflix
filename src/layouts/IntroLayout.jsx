@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import Header from "../components/intoductionPage/Header"
-import Footer from "../components/intoductionPage/Footer"
+import Header from "../components/header/IntroHeader"
+import Footer from "../components/footer/IntroFooter"
 
 function IntroLayout() {
     return (
