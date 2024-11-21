@@ -2,26 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-.curve-container {
-    padding-top: 100px;
-    border-top-left-radius:  100%;
-    border-top-right-radius: 100%;
-    position: relative;
-    z-index: 100;
-    background: linear-gradient(to right, transparent 0%, rgba(255, 0, 0, 0.58) 40%, red 50%, rgba(255, 0, 0, 0.603) 60%, transparent 100%);
-}
-.shadow-text-white {
-    text-shadow: 2px 2px 0px white, -2px 2px 0px white, 2px -2px 0px white, -2px -2px 0px white;
+.custom-prev.swiper-button-disabled {
+    transform: translateX(-5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
-.gradient-devider{
+  
+  
+  .custom-next.swiper-button-disabled {
+    transform: translateX(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+.main-prev.swiper-button-disabled {
+    transform: translateX(-5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .main-next.swiper-button-disabled {
+    transform: translateX(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .swiper-fade {
     position: absolute;
-    height: 100px;
-    width: 100%;
-    top: 4px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    border-top-left-radius:  100%;
-    border-top-right-radius: 100%;
-    background: radial-gradient(50% 500% at 50% -420%, rgba(64, 97, 231, 0.4) 80%, rgba(0, 0, 0, 0.1) 100%), black;
+    mask-image: linear-gradient(to right, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .swiper-slide-trend {
+    width: 140px !important; 
+  }
+
+.mySwiper .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  height: 20px;
 }
+
+.mySwiper .swiper-pagination-bullet {
+  min-width: 80px;
+  width: 120px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 0;
+  margin: 0 6px;
+  transition: background-color 0.3s;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: #fff;
+}
+
+.mySwiper .swiper-pagination-bullets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+  @media screen and (min-width: 768px) {
+    .swiper-slide-trend {
+        width: 170px !important; 
+      }
+  }
+  @media screen and (min-width: 1024px) {
+    .swiper-slide-trend {
+        width: 200px !important; 
+      }
+  }
+  

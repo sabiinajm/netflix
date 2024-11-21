@@ -2,7 +2,7 @@ import { HiLanguage } from "react-icons/hi2"
 
 function Footer() {
   return (
-    <footer className="bg-black">
+    <footer className="bg-[#0f0f0f]">
       <div className="text-[#ffffffb3] max-w-[1100px] mx-auto px-6">
         <div className="py-10 ">
           <p className="underline cursor-pointer">Questions? Contact us.</p>
@@ -28,7 +28,7 @@ function Footer() {
         </div>
         <div className='relative py-10'>
           <HiLanguage className='text-white absolute top-[50px] left-2' />
-          <select className='h-[35px] w-[140px] rounded-[.3rem] pl-6 bg-[#191919b2] text-white outline-none border-[#dddddd4c] border-[1px]'>
+          <select className='rounded-full h-[35px] w-[140px] pl-6 bg-[#191919b2] text-white outline-none border-[#dddddd4c] border-[1px]'>
             <option value="eng">English</option>
             <option value="ru">Russian</option>
             <option value="aze">Azerbaijani</option>

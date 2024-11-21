@@ -1,14 +1,25 @@
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import homeBg from '../../assets/imgs/home-bg.jpg'
 import movie1 from '../../assets/imgs/movie1.webp'
+import show1 from '../../assets/imgs/show1.webp'
+
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation, Mousewheel, Keyboard } from 'swiper/modules';
+import "swiper/css/effect-fade";
+import 'swiper/css/pagination';
+
+import { Navigation, Pagination, Keyboard, EffectFade } from 'swiper/modules';
+
+
 import { useEffect, useRef, useState } from 'react';
+
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { BsPlusLg } from 'react-icons/bs';
-import { RiCloseLargeFill } from 'react-icons/ri';
+import { RiCloseLargeFill, RiPlayLargeFill } from 'react-icons/ri';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+
 import { Link } from 'react-router-dom';
 
 function Main() {
@@ -28,16 +39,6 @@ function Main() {
 
   const inputRef = useRef(null)
 
-  const handleInputChange = (e) => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (e.target.value === '' || emailPattern.test(e.target.value)) {
-      setEmail(e.target.value);
-      setError("");
-    } else {
-      setEmail(null);
-      setError("");
-    }
-  };
 
   function handleGetStartedClick() {
     if (!inputRef.current.value) {
@@ -48,131 +49,169 @@ function Main() {
     }
   }
 
+  const [bgImage, setBgImage] = useState(show1);
+
+  function handleSlideChange(swiper) {
+    const currentSlide = swiper.slides[swiper.activeIndex];
+    const imgElement = currentSlide.querySelector("img");
+    setBgImage(imgElement.src);
+  };
+
+
   return (
-    <main>
+    <main className='bg-[#0f0f0f] '>
       {/* Hero */}
-      <div className='fixed top-0 -z-10 w-full h-full'>
-        <img src={homeBg} alt="background" className='w-full h-full object-cover brightness-40' />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70"></div>
-      </div>
-      <div className='min-h-[480px] lg:min-h-[600px] flex flex-col px-4 max-w-[500px] lg:max-w-[900px] mx-auto justify-center items-center text-center'>
-        <div className='max-w-[400px] md:max-w-[600px] font-bold'>
-          <h1 className='text-white text-3xl lg:text-4xl xl:text-6xl'>Unlimited movies, TV shows, and more</h1>
+      <div className='h-full w-full relative'>
+        <div className='w-[96%] !h-[440px] mx-auto rounded-2xl pt-6 relative'>
+          <Swiper
+            spaceBetween={20}
+            effect={'fade'}
+            navigation={{
+              nextEl: '.main-next',
+              prevEl: '.main-prev',
+            }}
+            pagination={{
+              clickable: true,
+              type: "bullets",
+            }}
+            keyboard={true}
+            onSlideChange={handleSlideChange}
+            modules={[Keyboard, EffectFade, Navigation, Pagination]}
+            className="mySwiper !h-[450px]"
+          >
+            <SwiperSlide>
+              <div className='relative'>
+                <img src={show1} alt="" className='object-cover object-top mx-auto w-[95%] h-[360px] lg:h-[450px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <div className='h-full w-[95%] absolute top-0 left-[2.5%] bg-gradient-to-b from-transparent to-[#000000ca] rounded-2xl'></div>
+                <div className='text-xs absolute bottom-0  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
+                  <img className='w-[90px] h-[20px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABbckRek5GWN0qQdhLaxG6diy5-ukGQt4JnzaE_TWBbLm3m6Jdi_0FkI98D2-70dXtSXyrpZ3zOvSDVUA0vZcvIgZQjj478FZ.webp?r=9d7" alt="" />
+                  <img className='w-[170px] h-[25px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABaCuXIY1JChR69J3kc2j9zSl-pt8C1bF4B8-Hx1nJrYtCBtlqQgxFWspu87aSyDTd20c8tpmLZF1LY7o0g4aH_B8x5PwGRVUIA.webp?r=ea7" alt="" />
+                  <ul className='flex gap-6 list-disc'>
+                    <li>2024</li>
+                    <li>16+</li>
+                    <li>Show</li>
+                    <li>Sports</li>
+                  </ul>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className='relative'>
+                <img src={homeBg} alt="" className='object-cover object-top mx-auto w-[95%] h-[360px] lg:h-[450px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <div className='h-full w-[95%] absolute top-0 left-[2.5%] bg-gradient-to-b from-transparent to-[#000000ca] rounded-2xl'></div>
+                <div className=' flex flex-col px-4 mx-auto justify-center items-center text-center absolute bottom-6 w-full'>
+                  <div className=' font-bold'>
+                    <h1 className='text-white text-3xl lg:text-4xl xl:text-5xl lg:w-[500px] '>Unlimited movies, TV shows, and more</h1>
+                  </div>
+                  <h3 className='text-[#fffc] lg:text-white  p-2 md:text-lg md:p-5'>Starts at EUR 7.99. Cancel anytime.</h3>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+          <div>
+            <div className=" w-[40px] flex justify-center items-center transform -translate-y-1/2 lg:translate-y-4 lg:w-[180px] absolute top-1/2 left-1 lg:-left-4 z-20">
+              <div className="main-prev flex items-center justify-center h-[90px] w-[30px]  bg-[#444] text-white rounded-full hover:bg-[#2a2a2a] border-[1px] cursor-pointer transition-all duration-150">
+                <GoChevronLeft />
+              </div>
+            </div>
+            <div className=" w-[40px] flex justify-center items-center transform -translate-y-1/2 lg:translate-y-4 lg:w-[180px] absolute top-1/2 right-1 lg:-right-4 z-20">
+              <div className="main-next flex items-center justify-center h-[90px] w-[30px] bg-[#444] text-white rounded-full hover:bg-[#2a2a2a] border-[1px]  cursor-pointer transition-all duration-150">
+                <GoChevronRight />
+              </div>
+            </div>
+          </div>
         </div>
-        <h3 className='text-[#fffc] lg:text-white  p-2 md:text-xl md:p-5 md:font-semibold'>Starts at EUR 7.99. Cancel anytime.</h3>
+        <img src={bgImage} alt="bgBlur" className='blur-xl w-full absolute -top-4 opacity-25 transition-all duration-200 object-cover h-[1100px]' />
+      </div>
+      <div alt="bg" className='bg-[#0f0f0f] -z-10  w-full absolute top-0 h-[1100px]' />
+      <div className='flex flex-col h-[300px] px-4 max-w-[500px] lg:max-w-[900px] mx-auto justify-center items-center text-center'>
         <p className='text-[#fffc] text-white  p-2'>Ready to watch? Enter your email to create or restart your membership.</p>
         <div className='flex flex-col items-center w-full xs:flex-row xs:justify-evenly xs:max-w-[600px]'>
           <div className="relative w-[90%] xs:w-[60%] my-2">
             <input
-              onInput={handleInputChange}
-              ref={inputRef}
               type="text"
               placeholder="Email address"
-              className={` ${error && 'border-red-700'} peer focus:outline-2 outline-offset-2 h-[60px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
-                placeholder:text-transparent focus:pt-8 focus:pb-6 py-2`}
+              className={` border-red-700 rounded-full peer focus:outline-2 outline-offset-2 h-[50px] md:h-[60px] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
+                placeholder:text-transparent focus:pt-8 focus:pb-6 pl-4 py-2`}
             />
             <label
-              className=" absolute top-1 left-0 p-3 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
-        origin-[0_0] peer-focus:scale-90 peer-focus:-translate-x-1 peer-focus:-translate-y-4 peer-focus:text-gray-400 
-        peer-[:not(:placeholder-shown)]:scale-90  peer-[:not(:placeholder-shown)]:-translate-x-1  peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
+              className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
+        origin-[0_0] peer-focus:scale-90  peer-focus:-translate-y-4 peer-focus:text-gray-400 
+        peer-[:not(:placeholder-shown)]:scale-90   peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
             >
               Email address
             </label>
           </div>
           <Link to={'/signup/registration'}
             onClick={handleGetStartedClick}
-            className='flex bg-[#ff0f0f] rounded-[.3rem] w-[160px] h-[55px] lg:w-[220px] lg:text-2xl lg:font-semibold md:w-[140px] my-2 text-white hover:bg-[#c11119] transition-all duration-300 justify-center items-center'
+            className='flex bg-[#ff0f0f] rounded-full z-30 w-[160px] h-[50px] md:h-[55px] lg:w-[220px] lg:text-2xl lg:font-semibold md:w-[140px] my-2 text-white hover:bg-[#c11119] transition-all duration-300 justify-center items-center'
           >
             Get Started <GoChevronRight className='text-xl md:ml-4 md:text-3xl' />
           </Link>
         </div>
-        {error && (
-          <h3 className='text-red-500 z-50 flex items-center gap-2'><AiOutlineCloseCircle /> {error}</h3>
-        )}
-
       </div>
-      <div className="curve-container">
-        <div className="gradient-devider"></div>
-      </div>
-
-      {/* Trending Now */}
-      <div className='bg-black text-[#0000ff0c]'>
-        <div className='max-w-[1100px] mx-auto px-6'>
-          <h1 className='text-lg md:text-2xl text-white font-semibold pb-3'>Trending Now</h1>
-          <select className='w-full md:w-[320px] h-[40px] rounded-[.3rem] pl-2 bg-[#191919b2] text-white outline-none border-[#dddddd4c] border-[1px]'>
-            <option value="eng">Movies - English</option>
-            <option value="ru">Movies - Other languages</option>
-            <option value="aze">Tv Shows - English</option>
-            <option value="ru">Tv Shows - Other languages</option>
-          </select>
-          <div className="relative px-9 min-h-[250px] lg:min-h-[400px] flex items-center justify-center">
-            <Swiper
+      <div className='bg-[#0f0f0f] text-[#0000ff0c]'>
+        <div className='max-w-[1100px] mx-auto px-6 '>
+          <h1 className='text-lg md:text-3xl text-[#ffffff99] font-bold pb-3'>Trending Now</h1>
+          <div className="relative min-h-[200px] lg:min-h-[320px] flex items-center">
+            <Swiper className='swiper-fade'
               cssMode={true}
               navigation={{
                 nextEl: '.custom-next',
                 prevEl: '.custom-prev',
               }}
-              mousewheel={true}
               keyboard={true}
-              slidesPerView={1}
-              breakpoints={{
-                400: { slidesPerView: 2 },
-                540: { slidesPerView: 3 },
-                660: { slidesPerView: 4 },
-                900: { slidesPerView: 5 },
-                1023: { slidesPerView: 4 },
-              }}
-              modules={[Navigation, Mousewheel, Keyboard]}
+              modules={[Navigation, Keyboard]}
             >
-              <SwiperSlide>
-                <div onClick={() => setOpenModel(true)} className='w-[140px] lg:h-[340px] lg:w-[240px] flex items-center justify-center scale-[.9] hover:scale-[1] overflow-visible transition-all duration-500'>
-                  <div className='h-[180px] w-[140px] lg:h-[340px] lg:w-[280px] relative  flex justify-center items-center'>
-                    <img src={movie1} alt="movie" className='rounded-lg w-[110px] lg:w-[190px] h-full lg:h-[290px] object-cover' />
-                    <h1 className='text-6xl text-black font-bold shadow-text-white absolute bottom-11 left-1 lg:text-8xl '>1</h1>
-                  </div>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div onClick={() => setOpenModel(true)} className='w-[140px] lg:h-[340px] lg:w-[240px] flex items-center justify-center scale-[.9] hover:scale-[1] overflow-visible transition-all duration-500'>
-                  <div className='h-[180px] w-[140px] lg:h-[340px] lg:w-[280px] relative  flex justify-center items-center'>
-                    <img src={movie1} alt="movie" className='rounded-lg w-[110px] lg:w-[190px] h-full lg:h-[290px] object-cover' />
-                    <h1 className='text-6xl text-black font-bold shadow-text-white absolute bottom-11 left-1 lg:text-8xl '>1</h1>
-                  </div>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div onClick={() => setOpenModel(true)} className='w-[140px] lg:h-[340px] lg:w-[240px] flex items-center justify-center scale-[.9] hover:scale-[1] overflow-visible transition-all duration-500'>
-                  <div className='h-[180px] w-[140px] lg:h-[340px] lg:w-[280px] relative  flex justify-center items-center'>
-                    <img src={movie1} alt="movie" className='rounded-lg w-[110px] lg:w-[190px] h-full lg:h-[290px] object-cover' />
-                    <h1 className='text-6xl text-black font-bold shadow-text-white absolute bottom-11 left-1 lg:text-8xl '>1</h1>
-                  </div>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div onClick={() => setOpenModel(true)} className='w-[140px] lg:h-[340px] lg:w-[240px] flex items-center justify-center scale-[.9] hover:scale-[1] overflow-visible transition-all duration-500'>
-                  <div className='h-[180px] w-[140px] lg:h-[340px] lg:w-[280px] relative  flex justify-center items-center'>
-                    <img src={movie1} alt="movie" className='rounded-lg w-[110px] lg:w-[190px] h-full lg:h-[290px] object-cover' />
-                    <h1 className='text-6xl text-black font-bold shadow-text-white absolute bottom-11 left-1 lg:text-8xl '>1</h1>
-                  </div>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div onClick={() => setOpenModel(true)} className='w-[140px] lg:h-[340px] lg:w-[240px] flex items-center justify-center scale-[.9] hover:scale-[1] overflow-visible transition-all duration-500'>
-                  <div className='h-[180px] w-[140px] lg:h-[340px] lg:w-[280px] relative  flex justify-center items-center'>
-                    <img src={movie1} alt="movie" className='rounded-lg w-[110px] lg:w-[190px] h-full lg:h-[290px] object-cover' />
-                    <h1 className='text-6xl text-black font-bold shadow-text-white absolute bottom-11 left-1 lg:text-8xl '>1</h1>
-                  </div>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
+                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                 </div>
               </SwiperSlide>
             </Swiper>
             <div>
-              <div className='bg-black h-[180px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 left-0 z-20 '>
-                <div className="custom-prev flex items-center justify-center h-[120px] w-[28px]  bg-[#1f1f1f] text-white rounded-lg  hover:bg-[#2b2b2b] cursor-pointer transition-all duration-150">
+              <div className="h-[180px] w-[40px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
+                <div className="custom-prev flex items-center justify-center h-[60px] w-[20px]  bg-[#c1c1c188] text-white rounded-full hover:bg-[#c1c1c136] cursor-pointer transition-all duration-150">
                   <GoChevronLeft />
                 </div>
               </div>
-              <div className='bg-black h-[180px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 right-0 z-20 '>
-                <div className="custom-next flex items-center  justify-center  h-[120px] w-[28px]   bg-[#1f1f1f] text-white rounded-lg hover:bg-[#2b2b2b] cursor-pointer transition-all duration-150">
+              <div className="h-[180px] w-[40px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
+                <div className="custom-next flex items-center justify-center h-[60px] w-[20px] bg-[#c1c1c188] text-white rounded-full hover:bg-[#c1c1c136] cursor-pointer transition-all duration-150">
                   <GoChevronRight />
                 </div>
               </div>
@@ -217,9 +256,9 @@ function Main() {
                       concert.
                     </p>
                     <div className="w-[90%] mx-auto">
-                      <button className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
+                      <Link to={'/signup/registration'} className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
                         Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -228,8 +267,8 @@ function Main() {
           )}
 
           {/* More Reasons To Join */}
-          <div>
-            <h1 className='text-lg md:text-2xl text-white font-semibold pb-3'>More Reasons to Join</h1>
+          <div className='pt-8'>
+            <h1 className='text-lg md:text-2xl text-white font-semibold py-5'>More Reasons to Join</h1>
             <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-4'>
               <div className='text-white relative p-4 pb-24 lg:min-h-[250px] rounded-2xl  bg-gradient-to-br from-[#192145] to-[#200e19]'>
                 <h1 className='text-xl font-semibold py-3'>Enjoy on your TV</h1>
@@ -262,7 +301,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#2d2d2d] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex rounded-2xl items-center justify-between bg-[#2d2d2d] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 0}
                     aria-controls="accordion-collapse-body-1"
                     onClick={() => toggleAccordion(0)}
@@ -277,7 +316,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 0 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 mt-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.</p>
                     <p>You can watch as much as you want, whenever you want without a single commercial – all for one low monthly price. There's always something new to discover and new TV shows and movies are added every week!</p>
                   </div>
@@ -288,7 +327,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex rounded-2xl items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 1}
                     aria-controls="accordion-collapse-body-2"
                     onClick={() => toggleAccordion(1)}
@@ -302,7 +341,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 1 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 mt-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from EUR 7.99 to EUR 11.99 a month (pre-tax). No extra costs, no contracts.</p>
                   </div>
                 </div>
@@ -311,7 +350,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex items-center rounded-2xl justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 2}
                     aria-controls="accordion-collapse-body-3"
                     onClick={() => toggleAccordion(2)}
@@ -325,7 +364,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 2 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 mt-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.</p>
                     <p className="mb-2">You can also download your favorite shows with the iOS or Android app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere.</p>
                   </div>
@@ -335,7 +374,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex items-center rounded-2xl justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 3}
                     aria-controls="accordion-collapse-body-4  <BsPlusLg className={`${openIndex === 1 ? 'rotate-45' : ''} text-3xl`} />"
                     onClick={() => toggleAccordion(3)}
@@ -349,7 +388,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 3 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 mt-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">Netflix is flexible. There are no pesky contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime.</p>
                   </div>
                 </div>
@@ -358,7 +397,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex items-center rounded-2xl justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 4}
                     aria-controls="accordion-collapse-body-5"
                     onClick={() => toggleAccordion(4)}
@@ -372,7 +411,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 4 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 mt-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want.</p>
                   </div>
                 </div>
@@ -381,7 +420,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex items-center rounded-2xl justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 5}
                     aria-controls="accordion-collapse-body-6"
                     onClick={() => toggleAccordion(5)}
@@ -395,7 +434,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 5 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 mt-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and movies in their own space.</p>
                     <p className="mb-2">Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see.</p>
                   </div>
@@ -405,7 +444,7 @@ function Main() {
                 <h2 id="accordion-collapse-heading-1">
                   <button
                     type="button"
-                    className="flex items-center justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
+                    className="flex items-center rounded-2xl justify-between bg-[#252525] transition duration-300 w-full p-5 font-medium text-white hover:bg-[#414141]"
                     aria-expanded={openIndex === 6}
                     aria-controls="accordion-collapse-body-7"
                     onClick={() => toggleAccordion(6)}
@@ -419,7 +458,7 @@ function Main() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === 6 ? 'max-h-[1000px]' : 'max-h-0'}`}
                   aria-labelledby="accordion-collapse-heading-1"
                 >
-                  <div className="p-5 bg-[#2d2d2d] border-t-[1px] border-black text-white">
+                  <div className="p-5 my-2 rounded-2xl bg-[#2d2d2d] border-t-[1px] border-black text-white">
                     <p className="mb-2">Your browser preferences determine the language shown here.</p>
                   </div>
                 </div>
@@ -428,32 +467,11 @@ function Main() {
 
             {/* Ready to watch? */}
             <div className='pt-8'>
-              <p className='py-2 text-white  sm:text-center'>Ready to watch? Enter your email to create or restart your membership.</p>
-              <div className='flex flex-col sm:items-center  min-w-full sm:flex-row sm:justify-center sm:gap-4 lg:max-w-[650px] lg:mx-auto'>
-                <div className="relative w-[70%] my-2">
-                  <input
-                    type="text"
-                    placeholder="Email address"
-                    className="peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
-        placeholder:text-transparent focus:pt-8 focus:pb-6 py-2  "
-                  />
-                  <label
-                    className="absolute top-1 left-0 p-3 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
-        origin-[0_0] peer-focus:scale-90 peer-focus:-translate-x-1 peer-focus:-translate-y-4 peer-focus:text-gray-400
-        peer-[:not(:placeholder-shown)]:scale-90  peer-[:not(:placeholder-shown)]:-translate-x-1  peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
-                  >
-                    Email address
-                  </label>
-                </div>
-                <button
-                  className='bg-[#ff0f0f] rounded-[.3rem] w-[30%] h-[55px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center'>Get Started <GoChevronRight className='text-xl md:ml-4 md:text-3xl' /></button>
-              </div>
-              {error && (
-                <h3 className='text-red-500 z-50 flex items-center gap-2'><AiOutlineCloseCircle /> {error}</h3>
-              )}
+              <Link to={'/signup/registration'} >
+                <button className='bg-red-600 hover:bg-red-800 transition-all duration-300 text-white w-[140px] h-[40px] rounded-full mx-auto block'>Get started</button>
+              </Link>
+              <p className='py-2 text-white  sm:text-center'>Create or restart your membership</p>
             </div>
-
-            {/* ... */}
           </div>
         </div>
       </div>
