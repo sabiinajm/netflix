@@ -74,7 +74,7 @@ function Main() {
     <main className='bg-[#0f0f0f] '>
       {/* Hero */}
       <div className='h-full w-full relative'>
-        <div className='w-[96%] !h-[440px] mx-auto rounded-2xl pt-6 relative'>
+        <div className='w-[96%] xl:max-w-[1400px] !h-[440px] mx-auto rounded-2xl pt-6 relative'>
           <Swiper
             spaceBetween={20}
             effect={'fade'}
@@ -198,7 +198,7 @@ function Main() {
         <div className='max-w-[1100px] mx-auto px-6 '>
           <h1 className='text-lg md:text-3xl text-[#ffffff99] font-bold pb-3'>Trending Now</h1>
           <div className="relative min-h-[200px] lg:min-h-[320px] flex items-center">
-            <Swiper className='swiper-fade'
+            <Swiper className='swiper-fade-trend'
               cssMode={true}
               navigation={{
                 nextEl: '.custom-next',

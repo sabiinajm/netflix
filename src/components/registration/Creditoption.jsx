@@ -55,10 +55,10 @@ function Creditoption() {
                         onChange={handleCheckboxChange} />I agree.</label>
                 </div>
                 {isChecked ?
-                    <Link to={''} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
+                    <Link to={'/browse'} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
                         Start Membership
                     </Link>
-                    : <span to={''} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
+                    : <span className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
                         Start Membership
                     </span>
                 }
