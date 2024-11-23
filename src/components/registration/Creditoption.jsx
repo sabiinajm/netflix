@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsCreditCard } from 'react-icons/bs'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 function Creditoption() {
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+    };
     return (
         <main className="px-4 flex flex-col max-w-[1100px] mx-auto py-11">
             <div className="max-w-[600px] mx-auto py-8 text-start ">
@@ -45,13 +50,18 @@ function Creditoption() {
                 </div>
                 <p className='text-sm text-[#666]'>By checking the checkbox below, you agree to our <span className='text-blue-600 hover:underline'> Terms of Use</span>, <span className='text-blue-600 hover:underline'> Privacy Statement</span>, and that you are over 18. Netflix will automatically continue your membership and charge the membership fee (currently EUR 9.99/month (pre-tax)) to your payment method until you cancel. You may cancel at any time to avoid future charges.</p>
                 <div>
-                    <label><input type="checkbox" className='mr-2 my-4' />I agree.</label>
+                    <label><input type="checkbox" className='mr-2 my-4'
+                        checked={isChecked}
+                        onChange={handleCheckboxChange} />I agree.</label>
                 </div>
-                <Link>
-                    <button className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
+                {isChecked ?
+                    <Link to={''} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
                         Start Membership
-                    </button>
-                </Link>
+                    </Link>
+                    : <span to={''} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
+                        Start Membership
+                    </span>
+                }
             </div>
         </main>
     )

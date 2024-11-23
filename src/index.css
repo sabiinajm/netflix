@@ -36,9 +36,12 @@
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
   .swiper-slide-trend {
-    width: 140px !important; 
+    width: 140px !important;
   }
 
+  .mySwiper{
+    height: 420px;
+  }
 .mySwiper .swiper-pagination {
   display: flex;
   justify-content: center;
@@ -77,6 +80,9 @@
   @media screen and (min-width: 1024px) {
     .swiper-slide-trend {
         width: 200px !important; 
+      }
+      .mySwiper{
+        height: 510px;
       }
   }
   

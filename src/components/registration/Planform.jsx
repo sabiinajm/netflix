@@ -171,10 +171,8 @@ function Planform() {
                 <div className="text-xs w-full mx-auto text-[#787878] font-semibold pt-3 pb-6 lg:px-8">
                     <p className="pt-5">HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our <span className="text-blue-600 cursor-pointer">Terms of Use</span> for more details.</p>
                     <p className="py-3">Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard and 1 with Basic.</p>
-                    <Link to={'/signup/paymentPicker'} className="flex justify-center" >
-                        <button className="relative w-full lg:w-[320px] text-center mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
-                            Next
-                        </button>
+                    <Link to={'/signup/paymentPicker'} className="w-full lg:w-[320px] text-center mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] flex justify-center items-center text-white text-2xl rounded-sm" >
+                        Next
                     </Link>
                 </div>
             </div>

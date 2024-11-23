@@ -1,5 +1,31 @@
+import { useState } from 'react';
 import homeBg from '../../assets/imgs/home-bg.jpg'
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email && !password) {
+      setErrorMessage('Both fields are required.');
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters.');
+      return;
+    }
+    setErrorMessage('');
+  };
+
   return (
     <main>
       <div className='fixed top-0 -z-10 w-full h-full'>
@@ -9,39 +35,46 @@ function Login() {
       <div className="bg-[#0000009c] h-[580px] max-w-[450px] mx-auto p-12 mt-8">
         <h1 className='text-white text-3xl font-semibold pb-6'>Sign In</h1>
         <div className='flex flex-col gap-4'>
-          <div className='relative'>
-            <input
-              type="text"
-              placeholder="Email address"
-              className={`peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
+          <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+            <div className='relative'>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address"
+                className={`peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
                 placeholder:text-transparent focus:pt-6 focus:pb-6 py-2 `}
-            />
-            <label
-              className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
+              />
+              <label
+                className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
         origin-[0_0] peer-focus:scale-90  peer-focus:-translate-y-4 peer-focus:text-gray-400 
         peer-[:not(:placeholder-shown)]:scale-90   peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
-            >
-              Email address
-            </label>
-          </div>
-          <div className='relative'>
-            <input
-              type="password"
-              placeholder="Password"
-              className={`peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
+              >
+                Email address
+              </label>
+            </div>
+            <div className='relative'>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className={`peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
                 placeholder:text-transparent focus:pt-6 focus:pb-6 py-2 `}
-            />
-            <label
-              className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
+              />
+              <label
+                className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
         origin-[0_0] peer-focus:scale-90  peer-focus:-translate-y-4 peer-focus:text-gray-400 
         peer-[:not(:placeholder-shown)]:scale-90   peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
-            >
-              Password
-            </label>
-          </div>
-          <button className='bg-red-600 h-[42px] font-semibold text-white rounded-md'>
-            Sign in
-          </button>
+              >
+                Password
+              </label>
+            </div>
+            {errorMessage && <p className="text-red-600 text-sm mt-2">{errorMessage}</p>}
+            <button type="submit" className='bg-red-600 h-[42px] font-semibold text-white rounded-md'>
+              Sign in
+            </button>
+          </form>
           <p className='text-white text-center'>OR</p>
           <button className='bg-[#a8a8a846] h-[42px] font-semibold text-white rounded-md'>
             Use a Sign-In Code

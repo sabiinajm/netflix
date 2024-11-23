@@ -23,10 +23,8 @@ function Step2() {
                         <h3 className="text-xl text-left">Unlimited viewing on all your devices.</h3>
                     </div>
                 </div>
-                <Link to={'/signup/planform'}>
-                    <button className="relative w-full mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
+                <Link to={'/signup/planform'} className="relative w-full mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm flex justify-center items-center">
                         Next
-                    </button>
                 </Link>
             </div>
         </main>
