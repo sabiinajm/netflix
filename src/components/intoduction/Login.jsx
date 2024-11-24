@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import homeBg from '../../assets/imgs/home-bg.jpg'
+import { Link } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,9 +72,9 @@ function Login() {
               </label>
             </div>
             {errorMessage && <p className="text-red-600 text-sm mt-2">{errorMessage}</p>}
-            <button type="submit" className='bg-red-600 h-[42px] font-semibold text-white rounded-md'>
+            <Link to={'/account'} type="submit" className='bg-red-600 flex justify-center items-center h-[42px] font-semibold text-white rounded-md'>
               Sign in
-            </button>
+            </Link>
           </form>
           <p className='text-white text-center'>OR</p>
           <button className='bg-[#a8a8a846] h-[42px] font-semibold text-white rounded-md'>

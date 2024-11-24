@@ -13,6 +13,7 @@ import { useEffect } from "react"
 import Profiles from "./components/account/Profiles"
 import ProfileLayout from "./layouts/AccLayout"
 import Manage from "./components/account/Manage"
+import Home from "./components/account/Home"
 
 function App() {
   const { pathname } = useLocation()
@@ -34,8 +35,9 @@ function App() {
         <Route path="/signup/creditoption" element={<Creditoption />} />
       </Route>
       <Route path="/" element={<ProfileLayout />}>
-        <Route path="/browse" element={<Profiles />} />
+        <Route path="/account" element={<Profiles />} />
         <Route path="/ManageProfiles" element={<Manage />} />
+        <Route path="/browse" element={<Home />} />
       </Route>
     </Routes>
   )

@@ -36,7 +36,7 @@ function Main() {
   }, [openModel])
 
 
-  const [bgImage, setBgImage] = useState(show1);
+  const [bgImage, setBgImage] = useState(homeBg);
 
   function handleSlideChange(swiper) {
     const currentSlide = swiper.slides[swiper.activeIndex];
