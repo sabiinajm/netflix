@@ -1,6 +1,6 @@
 import { HiLanguage } from "react-icons/hi2"
 
-function Footer() {
+function IntroFooter() {
   return (
     <footer className="bg-[#0f0f0f]">
       <div className="text-[#ffffffb3] max-w-[1100px] mx-auto px-6">
@@ -39,4 +39,4 @@ function Footer() {
     </footer>
   )
 }
-export default Footer
+export default IntroFooter

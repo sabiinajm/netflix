@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom"
-import Header from "../components/header/regHeader"
-import Footer from "../components/footer/regFooter"
+import RegHeader from "../components/header/RegHeader"
+import RegFooter from "../components/footer/RegFooter"
 
 function StepsLayout() {
     return (
         <>
-            <Header />
+            <RegHeader />
             <Outlet />
-            <Footer />
+            <RegFooter />
         </>
     )
 }

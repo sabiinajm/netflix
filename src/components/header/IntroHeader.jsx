@@ -2,7 +2,7 @@ import { HiLanguage } from "react-icons/hi2"
 import logo from '../../assets/imgs/logo.png'
 import { Link } from "react-router-dom"
 
-function Header() {
+function IntroHeader() {
     return (
         <header>
             <nav className='w-[96%] xl:max-w-[1400px] mx-auto pt-6 md:pt-2 px-6 flex flex-wrap gap-4  justify-between items-center'>
@@ -31,4 +31,4 @@ function Header() {
         </header >
     )
 }
-export default Header
+export default IntroHeader

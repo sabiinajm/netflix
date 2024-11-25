@@ -1,6 +1,6 @@
 import { TfiWorld } from "react-icons/tfi"
 
-function Footer() {
+function RegFooter() {
     return (
         <footer className="bg-[#f3f3f3]">
             <div className="max-w-[1100px] px-6 mx-auto">
@@ -25,4 +25,4 @@ function Footer() {
         </footer>
     )
 }
-export default Footer
+export default RegFooter
