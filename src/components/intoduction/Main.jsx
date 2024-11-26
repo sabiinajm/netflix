@@ -15,15 +15,18 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay, Keyboard, EffectFade } from 'swiper/modules';
 
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { BsPlusLg } from 'react-icons/bs';
 import { RiCloseLargeFill } from 'react-icons/ri';
 
 import { Link } from 'react-router-dom';
+import { DATA } from '../../context/DataContext'
+
 
 function Main() {
+  const { data } = useContext(DATA)
   const [openIndex, setOpenIndex] = useState(null)
   const [openModel, setOpenModel] = useState(false)
 
@@ -70,11 +73,13 @@ function Main() {
 
   const isValid = !error && emailRegex.test(email);
 
+  const [selectedItem, setSelectedItem] = useState(null);
+
   return (
     <main className='bg-[#0f0f0f] '>
       {/* Hero */}
       <div className='h-full w-full relative'>
-        <div className='w-[96%] xl:max-w-[1400px] !h-[440px] mx-auto rounded-2xl pt-6 relative'>
+        <div className='w-[96%] xl:max-w-[1400px] mx-auto rounded-2xl pt-6 relative'>
           <Swiper
             spaceBetween={20}
             effect={'fade'}
@@ -97,10 +102,11 @@ function Main() {
           >
             <SwiperSlide>
               <div className='relative'>
-                <img src={homeBg} alt="" className='object-cover object-top mx-auto w-[95%] h-[360px] lg:h-[470px] rounded-2xl border-l-2 border-t-2 border-white' />
-                <div className='h-full w-[95%] absolute top-0 left-[2.5%] bg-gradient-to-b from-transparent to-[#000000ca] rounded-2xl'></div>
+                <img src={homeBg} alt="bg" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[590px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <div className='gradientSwiper'></div>
+                <div className='gradientSwiper2'></div>
                 <div className='w-full flex justify-center items-center'>
-                  <div className='min-h-[150px] min-w-[180px]  xs:w-[350px] lg:w-[400px]  flex flex-col px-4 mx-auto text-center absolute bottom-6'>
+                  <div className='min-h-[240px] z-10 min-w-[180px]  xs:w-[350px] lg:w-[400px]  flex flex-col px-4 mx-auto text-center absolute bottom-6'>
                     <div className='font-bold'>
                       <h1 className='text-white text-xl xs:text-4xl xl:text-5xl lg:w-[500px] '>Unlimited movies, TV shows, and more</h1>
                     </div>
@@ -111,9 +117,9 @@ function Main() {
             </SwiperSlide>
             <SwiperSlide>
               <div className='relative'>
-                <img src={show1} alt="" className='object-cover object-top mx-auto w-[95%] h-[360px] lg:h-[470px] rounded-2xl border-l-2 border-t-2 border-white' />
-                <div className='h-full w-[95%] absolute top-0 left-[2.5%] bg-gradient-to-b from-transparent to-[#000000ca] rounded-2xl'></div>
-                <div className='text-xs absolute bottom-0  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
+                <img src={show1} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[590px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <div className='gradientSwiper'></div>
+                <div className='text-xs absolute bottom-0 z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
                   <img className='w-[90px] h-[20px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABbckRek5GWN0qQdhLaxG6diy5-ukGQt4JnzaE_TWBbLm3m6Jdi_0FkI98D2-70dXtSXyrpZ3zOvSDVUA0vZcvIgZQjj478FZ.webp?r=9d7" alt="" />
                   <img className='w-[170px] h-[25px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABaCuXIY1JChR69J3kc2j9zSl-pt8C1bF4B8-Hx1nJrYtCBtlqQgxFWspu87aSyDTd20c8tpmLZF1LY7o0g4aH_B8x5PwGRVUIA.webp?r=ea7" alt="" />
                   <ul className='flex gap-6 list-disc'>
@@ -127,9 +133,9 @@ function Main() {
             </SwiperSlide>
             <SwiperSlide>
               <div className='relative'>
-                <img src={show2} alt="" className='object-cover object-top mx-auto w-[95%] h-[360px] lg:h-[470px] rounded-2xl border-l-2 border-t-2 border-white' />
-                <div className='h-full w-[95%] absolute top-0 left-[2.5%] bg-gradient-to-b from-transparent to-[#000000ca] rounded-2xl'></div>
-                <div className='text-xs absolute bottom-0  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
+                <img src={show2} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[590px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <div className='gradientSwiper'></div>
+                <div className='text-xs absolute bottom-0 z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
                   <img className='w-[190px] h-[55px]' src={Mname} alt="" />
                   <ul className='flex gap-6 list-disc'>
                     <li>2024</li>
@@ -141,7 +147,7 @@ function Main() {
               </div>
             </SwiperSlide>
           </Swiper>
-          <div>
+          {/* <div>
             <div className=" w-[40px] flex justify-center items-center transform -translate-y-1/2 lg:translate-y-4 lg:w-[180px] absolute top-1/2 left-1 lg:-left-4 z-20">
               <div className="main-prev flex items-center justify-center h-[90px] w-[30px]  bg-[#444] text-white rounded-full hover:bg-[#2a2a2a] border-[1px] cursor-pointer transition-all duration-150">
                 <GoChevronLeft />
@@ -152,12 +158,12 @@ function Main() {
                 <GoChevronRight />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <img src={bgImage} alt="bgBlur" className='blur-xl w-full absolute -top-4 opacity-25 transition-all duration-200 object-cover h-[1100px]' />
       </div>
       <div alt="bg" className='bg-[#0f0f0f] -z-10  w-full absolute top-0 h-[1100px]' />
-      <div className='flex flex-col min-h-[200px] pb-6 lg:min-h-[240px] px-4 max-w-[500px] lg:max-w-[900px] mx-auto justify-end items-center text-center'>
+      <div className='flex flex-col min-h-[180px] pb-6  px-4 max-w-[500px] lg:max-w-[900px] mx-auto justify-end items-center text-center'>
         <p className='text-[#fffc] text-white  p-2'>Ready to watch? Enter your email to create or restart your membership.</p>
         <form onSubmit={handleSubmit} className='flex flex-col items-center w-full xs:flex-row xs:justify-evenly xs:max-w-[600px]'>
           <div className="relative w-[90%] xs:w-[60%] my-2">
@@ -179,7 +185,7 @@ function Main() {
           </div>
           {error && <p className='text-red-600 xs:hidden mb-1'>{error}</p>}
           <button
-          onClick={handleSubmit}
+            onClick={handleSubmit}
             className='bg-[#ff0f0f] my-2 rounded-full z-30 w-[160px] h-[50px] md:h-[55px] lg:w-[220px] lg:text-2xl lg:font-semibold md:w-[140px] text-white hover:bg-[#c11119] transition-all duration-300'>
             {isValid ? (
               <Link to="/signup/registration" className="flex h-full justify-center items-center">
@@ -196,7 +202,7 @@ function Main() {
       </div>
       <div className='bg-[#0f0f0f] text-[#0000ff0c]'>
         <div className='max-w-[1100px] mx-auto px-6 '>
-          <h1 className='text-lg md:text-3xl text-[#ffffff99] font-bold pb-3'>Trending Now</h1>
+          <h1 className='text-lg md:text-3xl text-[#fff] font-bold pb-3'>Trending Now</h1>
           <div className="relative min-h-[200px] lg:min-h-[320px] flex items-center">
             <Swiper className='swiper-fade-trend'
               cssMode={true}
@@ -207,46 +213,20 @@ function Main() {
               keyboard={true}
               modules={[Navigation, Keyboard]}
             >
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className='swiper-slide-trend cursor-pointer'>
-                <div onClick={() => setOpenModel(true)} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                  <img src={movie1} alt="movie" className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                </div>
-              </SwiperSlide>
+              {data && data.map((item, index) => {
+                return (
+                  <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                    <div onClick={() => {
+                      setSelectedItem(item)
+                      setOpenModel(true)
+                    }
+                    } className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                      <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                    </div>
+                  </SwiperSlide>
+                )
+              })
+              }
             </Swiper>
             <div>
               <div className="h-[180px] w-[40px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
@@ -262,56 +242,55 @@ function Main() {
             </div>
 
           </div>
-          {openModel && (
-            <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
-              onClick={() => setOpenModel(false)}>
-              <div className="w-full h-full relative flex justify-center items-center">
-                <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[650px] w-full flex justify-center items-center">
-                  <div className="relative w-full rounded-lg">
-                    <img
-                      className="object-cover rounded-t-lg min-h-[160px] max-h-[350px] w-full"
-                      src="https://occ-0-7292-2774.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABUyQYz-ajhCi9HrswnnTR5STcMfrExUeihXlWxaqfmxhr7MoVX2loFarI7JXZjR_FHLy4wfUnDTfokCeVvf4iGnR7wg2QM5B4ESB.webp?r=985"
-                      alt=""
-                    />
-                    <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#161616]"></div>
-                    <img
-                      className="min-w-[170px] w-[50%] absolute bottom-0 z-20 p-2"
-                      src="https://occ-0-7292-2774.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYKpip_lfUOhGieAWfBmXrNhJLdgEGbksbqTehyeyiFAvEhto4MtOiWMgf_cqU1rde4rLr6JTKft2qvZ_Ukwy9atvKjcsEQRjg.webp?r=7c6"
-                      alt=""
-                    />
-                    <div
-                      className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"
-                      onClick={() => setOpenModel(false)}
-                    >
-                      <RiCloseLargeFill className="text-white text-2xl" />
-                    </div>
-                  </div>
-                  <div className="bg-[#141414] w-full rounded-b-lg">
-                    <div className="text-[#ffffffb3] text-[.6rem] xs:text-[.8rem] w-[90%] mx-auto pt-2 flex gap-2 flex-wrap">
-                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">2024</p>
-                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">16+</p>
-                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Movie</p>
-                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Comedies</p>
-                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Romance</p>
-                    </div>
-                    <p className="text-white text-[.8rem] pt-8 pb-4 w-[90%] mx-auto">
-                      On a quest to reconnect with the man of her dreams, Layla races across
-                      New York City to find a ticket to a sold-out Pentatonix Christmas Eve
-                      concert.
-                    </p>
-                    <div className="w-[90%] mx-auto">
-                      <Link to={'/signup/registration'} className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
-                        Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
-                      </Link>
+          {openModel && selectedItem && (
+                <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+                  onClick={() => setOpenModel(false)}>
+                  <div className="w-full h-full relative flex justify-center items-center">
+                    <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[650px] w-full flex justify-center items-center">
+                      <div className="relative w-full rounded-lg">
+                        <img
+                          className="object-cover rounded-t-lg min-h-[160px] max-h-[350px] w-full"
+                          src={`https://image.tmdb.org/t/p/w500/${selectedItem.poster_path}`}
+                          alt=""
+                        />
+                        <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#161616]"></div>
+                        <img
+                          className="min-w-[170px] w-[50%] absolute bottom-0 z-20 p-2"
+                          src="https://occ-0-7292-2774.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYKpip_lfUOhGieAWfBmXrNhJLdgEGbksbqTehyeyiFAvEhto4MtOiWMgf_cqU1rde4rLr6JTKft2qvZ_Ukwy9atvKjcsEQRjg.webp?r=7c6"
+                          alt=""
+                        />
+                        <div
+                          className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"
+                          onClick={() => setOpenModel(false)}
+                        >
+                          <RiCloseLargeFill className="text-white text-2xl" />
+                        </div>
+                      </div>
+                      <div className="bg-[#141414] w-full rounded-b-lg">
+                        <div className="text-[#ffffffb3] text-[.6rem] xs:text-[.8rem] w-[90%] mx-auto pt-2 flex gap-2 flex-wrap">
+                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">{selectedItem.release_date.slice(0,4)}</p>
+                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">16+</p>
+                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Movie</p>
+                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Comedies</p>
+                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Romance</p>
+                        </div>
+                        <p className="text-white text-[.8rem] pt-8 pb-4 w-[90%] mx-auto">
+                         {selectedItem.overview}
+                        </p>
+                        <div className="w-[90%] mx-auto">
+                          <Link to={'/signup/registration'} className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
+                            Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          )}
+              )
+       }
 
           {/* More Reasons To Join */}
-          <div className='pt-8'>
+          < div className='pt-8' >
             <h1 className='text-lg md:text-2xl text-white font-semibold py-5'>More Reasons to Join</h1>
             <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-4'>
               <div className='text-white hover:scale-95 hover:rotate-2 transition-all duration-300 relative p-4 pb-24 lg:min-h-[250px] rounded-2xl  bg-gradient-to-br from-[#192145] to-[#200e19]'>
