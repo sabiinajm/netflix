@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import breakingB from '../../assets/imgs/breakingb.webp'
@@ -7,7 +7,11 @@ import moneyH from '../../assets/imgs/moneyH.jpg'
 import { Keyboard, Navigation } from 'swiper/modules'
 import ColorThief from 'colorthief';
 
+import { DATA } from '../../context/DataContext'
+
+
 function Home() {
+  const { data } = useContext(DATA)
   const [dominantColor, setDominantColor] = useState('');
   const imgRef = useRef();
 
@@ -222,15 +226,50 @@ function Home() {
             <img ref={imgRef} className='object-cover min-h-[440px] w-full h-[490px] rounded-xl' src={moneyH} alt="" />
           </div>
         </div>
-        <div className='w-full relative'>
+        <div className='block xs:hidden w-full relative'>
           <div
-            className="h-[190px] absolute -z-10 inset-0 pointer-events-none "
+            className="h-[240px] absolute -z-10 inset-0 pointer-events-none "
             style={{
               background: `linear-gradient(to top, black, ${dominantColor})`,
             }}
           ></div>
-          <div className='w-[90%] text-white pt-4 px-2'>
+          <div className='w-[90%] mx-auto text-white pt-4 px-2'>
             <p className='text-lg font-semibold'>New on Netflix</p>
+            <Swiper
+              cssMode={true}
+              modules={[Navigation, Keyboard]}
+            >
+              {data && data.map((item, index) => {
+                return (
+                  <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                    <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                      <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                    </div>
+                  </SwiperSlide>
+                )
+              })
+              }
+            </Swiper>
+          </div>
+          <div className='bg-black pb-12'>
+            <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+              <p className='text-lg font-semibold'>New on Netflix</p>
+              <Swiper
+                cssMode={true}
+                modules={[Navigation, Keyboard]}
+              >
+                {data && data.map((item, index) => {
+                  return (
+                    <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                      <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                      </div>
+                    </SwiperSlide>
+                  )
+                })
+                }
+              </Swiper>
+            </div>
           </div>
         </div>
       </main >

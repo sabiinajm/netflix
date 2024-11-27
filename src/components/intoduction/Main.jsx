@@ -1,5 +1,4 @@
 import homeBg from '../../assets/imgs/home-bg.jpg'
-import movie1 from '../../assets/imgs/movie1.webp'
 import show1 from '../../assets/imgs/show1.webp'
 import show2 from '../../assets/imgs/show2.jpg'
 import Mname from '../../assets/imgs/movieName.png'
