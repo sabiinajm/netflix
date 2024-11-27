@@ -78,8 +78,8 @@ function Main() {
   return (
     <main className='bg-[#0f0f0f] '>
       {/* Hero */}
-      <div className='h-full w-full relative'>
-        <div className='w-[96%] xl:max-w-[1400px] mx-auto rounded-2xl pt-6 relative'>
+      <div className='h-full w-full relative swiper-shadow'>
+        <div className=' w-[96%] xl:max-w-[1400px] mx-auto rounded-2xl pt-6 relative'>
           <Swiper
             spaceBetween={20}
             effect={'fade'}
@@ -102,13 +102,13 @@ function Main() {
           >
             <SwiperSlide>
               <div className='relative'>
-                <img src={homeBg} alt="bg" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[590px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <img src={homeBg} alt="bg" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
                 <div className='gradientSwiper'></div>
                 <div className='gradientSwiper2'></div>
                 <div className='w-full flex justify-center items-center'>
-                  <div className='min-h-[240px] z-10 min-w-[180px]  xs:w-[350px] lg:w-[400px]  flex flex-col px-4 mx-auto text-center absolute bottom-6'>
+                  <div className='min-h-[200px] xs:min-h-[240px] z-10 min-w-[180px]  xs:w-[350px] lg:w-[650px]  flex flex-col px-4 mx-auto text-center absolute bottom-6'>
                     <div className='font-bold'>
-                      <h1 className='text-white text-xl xs:text-4xl xl:text-5xl lg:w-[500px] '>Unlimited movies, TV shows, and more</h1>
+                      <h1 className='text-white text-xl xs:text-4xl xl:text-6xl lg:w-[650px] mx-auto '>Unlimited movies, TV shows, and more</h1>
                     </div>
                     <h3 className='text-[#fffc] lg:text-white  p-2 md:text-lg md:p-5'>Starts at EUR 7.99. Cancel anytime.</h3>
                   </div>
@@ -117,11 +117,12 @@ function Main() {
             </SwiperSlide>
             <SwiperSlide>
               <div className='relative'>
-                <img src={show1} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[590px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <img src={show1} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
                 <div className='gradientSwiper'></div>
-                <div className='text-xs absolute bottom-0 z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
+                <div className='gradientSwiper2'></div>
+                <div className='text-xs absolute bottom-[40px] z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
                   <img className='w-[90px] h-[20px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABbckRek5GWN0qQdhLaxG6diy5-ukGQt4JnzaE_TWBbLm3m6Jdi_0FkI98D2-70dXtSXyrpZ3zOvSDVUA0vZcvIgZQjj478FZ.webp?r=9d7" alt="" />
-                  <img className='w-[170px] h-[25px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABaCuXIY1JChR69J3kc2j9zSl-pt8C1bF4B8-Hx1nJrYtCBtlqQgxFWspu87aSyDTd20c8tpmLZF1LY7o0g4aH_B8x5PwGRVUIA.webp?r=ea7" alt="" />
+                  <img className='w-[170px] h-[25px] md:w-[300px] md:h-[50px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABaCuXIY1JChR69J3kc2j9zSl-pt8C1bF4B8-Hx1nJrYtCBtlqQgxFWspu87aSyDTd20c8tpmLZF1LY7o0g4aH_B8x5PwGRVUIA.webp?r=ea7" alt="" />
                   <ul className='flex gap-6 list-disc'>
                     <li>2024</li>
                     <li>16+</li>
@@ -133,16 +134,11 @@ function Main() {
             </SwiperSlide>
             <SwiperSlide>
               <div className='relative'>
-                <img src={show2} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[590px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <img src={show2} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
                 <div className='gradientSwiper'></div>
-                <div className='text-xs absolute bottom-0 z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
-                  <img className='w-[190px] h-[55px]' src={Mname} alt="" />
-                  <ul className='flex gap-6 list-disc'>
-                    <li>2024</li>
-                    <li>16+</li>
-                    <li>Show</li>
-                    <li>Sports</li>
-                  </ul>
+                <div className='gradientSwiper2'></div>
+                <div className='text-xs absolute bottom-[40px] z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
+                  <img className='w-[190px] h-[55px] md:w-[240px] md-[65px]' src={Mname} alt="" />
                 </div>
               </div>
             </SwiperSlide>
@@ -243,51 +239,51 @@ function Main() {
 
           </div>
           {openModel && selectedItem && (
-                <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
-                  onClick={() => setOpenModel(false)}>
-                  <div className="w-full h-full relative flex justify-center items-center">
-                    <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[650px] w-full flex justify-center items-center">
-                      <div className="relative w-full rounded-lg">
-                        <img
-                          className="object-cover rounded-t-lg min-h-[160px] max-h-[350px] w-full"
-                          src={`https://image.tmdb.org/t/p/w500/${selectedItem.poster_path}`}
-                          alt=""
-                        />
-                        <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#161616]"></div>
-                        <img
-                          className="min-w-[170px] w-[50%] absolute bottom-0 z-20 p-2"
-                          src="https://occ-0-7292-2774.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYKpip_lfUOhGieAWfBmXrNhJLdgEGbksbqTehyeyiFAvEhto4MtOiWMgf_cqU1rde4rLr6JTKft2qvZ_Ukwy9atvKjcsEQRjg.webp?r=7c6"
-                          alt=""
-                        />
-                        <div
-                          className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"
-                          onClick={() => setOpenModel(false)}
-                        >
-                          <RiCloseLargeFill className="text-white text-2xl" />
-                        </div>
-                      </div>
-                      <div className="bg-[#141414] w-full rounded-b-lg">
-                        <div className="text-[#ffffffb3] text-[.6rem] xs:text-[.8rem] w-[90%] mx-auto pt-2 flex gap-2 flex-wrap">
-                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">{selectedItem.release_date.slice(0,4)}</p>
-                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">16+</p>
-                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Movie</p>
-                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Comedies</p>
-                          <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Romance</p>
-                        </div>
-                        <p className="text-white text-[.8rem] pt-8 pb-4 w-[90%] mx-auto">
-                         {selectedItem.overview}
-                        </p>
-                        <div className="w-[90%] mx-auto">
-                          <Link to={'/signup/registration'} className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
-                            Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
-                          </Link>
-                        </div>
-                      </div>
+            <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+              onClick={() => setOpenModel(false)}>
+              <div className="w-full h-full top-0 relative flex justify-center items-center">
+                <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[650px] w-full flex justify-center items-center">
+                  <div className="relative w-full rounded-lg">
+                    <img
+                      className="object-cover rounded-t-lg min-h-[160px] max-h-[270px] w-full"
+                      src={`https://image.tmdb.org/t/p/w500/${selectedItem.backdrop_path}`}
+                      alt=""
+                    />
+                    <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#161616]"></div>
+                    <img
+                      className="min-w-[170px] w-[50%] absolute bottom-0 z-20 p-2"
+                      src="https://occ-0-7292-2774.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYKpip_lfUOhGieAWfBmXrNhJLdgEGbksbqTehyeyiFAvEhto4MtOiWMgf_cqU1rde4rLr6JTKft2qvZ_Ukwy9atvKjcsEQRjg.webp?r=7c6"
+                      alt=""
+                    />
+                    <div
+                      className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"
+                      onClick={() => setOpenModel(false)}
+                    >
+                      <RiCloseLargeFill className="text-white text-2xl" />
+                    </div>
+                  </div>
+                  <div className="bg-[#141414] w-full rounded-b-lg">
+                    <div className="text-[#ffffffb3] text-[.6rem] xs:text-[.8rem] w-[90%] mx-auto pt-2 flex gap-2 flex-wrap">
+                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">{selectedItem.release_date.slice(0, 4)}</p>
+                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">16+</p>
+                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Movie</p>
+                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Comedies</p>
+                      <p className="bg-[#414141] py-[3px] px-[6px] rounded-sm">Romance</p>
+                    </div>
+                    <p className="text-white text-[.8rem] pt-8 pb-4 w-[90%] mx-auto">
+                      {selectedItem.overview}
+                    </p>
+                    <div className="w-[90%] mx-auto">
+                      <Link to={'/signup/registration'} className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
+                        Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
+                      </Link>
                     </div>
                   </div>
                 </div>
-              )
-       }
+              </div>
+            </div>
+          )
+          }
 
           {/* More Reasons To Join */}
           < div className='pt-8' >

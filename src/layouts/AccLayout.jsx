@@ -1,12 +1,12 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom"
+import AccHeader from "../components/header/AccHeader"
 
-function ProfileLayout() {
+function AccLayout() {
     return (
         <>
-            <Outlet />
+            <AccHeader/>
+            <Outlet/>
         </>
     )
 }
-
-export default ProfileLayout
+export default AccLayout

@@ -1,62 +1,22 @@
 import React from 'react'
-import logo from '../../assets/imgs/logo.png'
-import { FaRegBell } from 'react-icons/fa'
-import { IoSearchSharp } from 'react-icons/io5'
-import { MdKeyboardArrowRight } from 'react-icons/md'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import movieimg from '../../assets/imgs/movieimg.webp'
-import logoname from '../../assets/imgs/logoname.webp'
+import breakingB from '../../assets/imgs/breakingb.webp'
+import breakingBLogo from '../../assets/imgs/breakingblogo.webp'
 import { Keyboard, Navigation } from 'swiper/modules'
 
 function Home() {
   return (
     <>
-      <header className='h-[60px] sticky z-10 top-0 w-full bg-gradient-to-b from-[#060606] to-transparent'>
-        <div className='max-w-[1450px] mx-auto px-4 pt-2 flex justify-between items-center'>
-          <div className='flex gap-3'>
-            <div className='max-w-[130px]'>
-              <img src={logo} alt="logo" />
-            </div>
-            <ul className='flex justify-center items-center text-white lg:hidden'>
-              Browse
-            </ul>
-            <ul className=' hidden lg:flex justify-center items-center text-white gap-4'>
-              <li>
-                <a>Home</a>
-              </li>
-              <li>
-                <a>Tv Shows</a>
-              </li>
-              <li>
-                <a>Movies</a>
-              </li>
-              <li>
-                <a>Latest</a>
-              </li>
-              <li>
-                <a>My List</a>
-              </li>
-              <li>
-                <a>Browse By Language</a>
-              </li>
-            </ul>
-          </div>
-          <div className='flex text-white text-2xl gap-3'>
-            <IoSearchSharp />
-            <FaRegBell />
-          </div>
-        </div>
-      </header>
       <main>
-        <div className='absolute top-0 h-[880px] w-full'>
-          <img className='object-cover h-[880px] w-full  ' src={movieimg} alt="" />
+        <div className='absolute top-0 h-[730px] w-full'>
+          <img className="object-cover h-full w-full" src={breakingB} alt="" />
           <div className='h-[880px] w-full  absolute top-0 bg-gradient-to-bl from-transparent to-[#141414ae]'></div>
-          <div className='max-w-[1450px] px-4 mx-auto '>
-            <div className='absolute top-[230px] max-w-[500px] max-h-[230px]'>
+          <div className='max-w-[1450px] px-6 mx-auto '>
+            <div className='absolute top-[180px] max-w-[400px] max-h-[230px]'>
               <div>
-                <img className='object-cover' src={logoname} alt="" />
-                <p className='text-white my-4 text-lg font-semibold'>A veteran cop relentlessly hunts a gang of audacious thieves who use modified TMAX bikes to outrun law enforcement around Paris' maze-like streets.</p>
+                <img className='object-cover' src={breakingBLogo} alt="" />
+                <p className='text-white text-sm my-4 font-semibold'>Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."</p>
                 <div className='flex flex-wrap gap-3'>
                   <button className='w-[110px] outline-none h-[45px] bg-white hover:bg-[#ddd] font-semibold text-lg rounded-md'>Play</button>
                   <button className='w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md'>More Info</button>
@@ -64,12 +24,12 @@ function Home() {
               </div>
 
             </div>
-            <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[300px] absolute right-0 text-white border-l-[3px] border-white'>
-              <p>+16</p>
+            <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[380px] absolute right-0 text-white border-l-[3px] border-white'>
+              <p>+18</p>
             </div>
           </div>
         </div>
-        <div className='h-[820px] flex items-end'>
+        <div className='h-[670px] flex items-end'>
           <div className='w-full overflow-hidden z-20 bg-gradient-to-b from-transparent to-[#141414]'>
             <div className="max-w-[1600px] mx-auto px-4">
               <div className="max-w-[1450px] flex flex-col justify-end mx-auto px-4">
@@ -85,7 +45,7 @@ function Home() {
 
                 </div>
               </div>
-              <div className="relative min-h-[200px] flex items-center">
+              <div className="relative min-h-[150px] flex items-center">
                 <Swiper
                   cssMode={true}
                   navigation={{
@@ -97,42 +57,42 @@ function Home() {
                 >
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                   <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
                     <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
+                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                     </div>
                   </SwiperSlide>
                 </Swiper>

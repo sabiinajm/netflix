@@ -11,9 +11,10 @@ import Creditoption from "./components/registration/Creditoption"
 import Login from "./components/intoduction/Login"
 import { useEffect } from "react"
 import Profiles from "./components/account/Profiles"
-import ProfileLayout from "./layouts/AccLayout"
+import ProfileLayout from "./layouts/ProfileLayout"
 import Manage from "./components/account/Manage"
 import Home from "./components/account/Home"
+import AccLayout from "./layouts/AccLayout"
 
 function App() {
   const { pathname } = useLocation()
@@ -37,6 +38,8 @@ function App() {
       <Route path="/" element={<ProfileLayout />}>
         <Route path="/account" element={<Profiles />} />
         <Route path="/ManageProfiles" element={<Manage />} />
+      </Route>
+      <Route path="/" element={<AccLayout />}>
         <Route path="/browse" element={<Home />} />
       </Route>
     </Routes>
