@@ -46,7 +46,7 @@ function AccHeader() {
             </div>
             {/* mobile */}
             <nav className='block xs:hidden'>
-                <div className='w-[90%] mx-auto'>
+                <div className='w-[90%] mx-auto sticky top-0'>
                     <div className='text-white py-3 text-xl flex justify-between items-center mx-auto'>
                         <h1>For sabina</h1>
                         <div className='flex gap-3'>

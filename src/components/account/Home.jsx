@@ -7,11 +7,12 @@ import moneyH from '../../assets/imgs/moneyH.jpg'
 import { Keyboard, Navigation } from 'swiper/modules'
 import ColorThief from 'colorthief';
 
-import { DATA } from '../../context/DataContext'
+import { DATA, TV } from '../../context/DataContext'
 
 
 function Home() {
   const { data } = useContext(DATA)
+  const { tv } = useContext(TV)
   const [dominantColor, setDominantColor] = useState('');
   const imgRef = useRef();
 
@@ -75,46 +76,14 @@ function Home() {
                     keyboard={true}
                     modules={[Navigation, Keyboard]}
                   >
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
-                      </div>
-                    </SwiperSlide>
+                    {data && data.map((item, index) =>
+                      <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                        <div className='transition-all duration-500'>
+                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                        </div>
+                      </SwiperSlide>
+                    )
+                    }
                   </Swiper>
                   <div>
                     <div className="flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
@@ -130,11 +99,10 @@ function Home() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
-          <div className='w-full overflow-hidden bg-[#141414] z-20 '>
-            <div className="max-w-[1600px] mx-auto px-4 z-20">
+          <div className='w-full  bg-[#141414] '>
+            <div className="max-w-[1600px] mx-auto px-4">
               <div className="max-w-[1450px] flex flex-col justify-end mx-auto px-4">
                 <div className="text-white text-xl font-semibold ">
                   <div className='flex items-center group'>
@@ -158,46 +126,14 @@ function Home() {
                   keyboard={true}
                   modules={[Navigation, Keyboard]}
                 >
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className='swiper-slide-trend2 cursor-pointer'>
-                    <div className='transition-all duration-500'>
-                      <img src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABdno7nn0b7fwxbMnzvHgRPjxkMjr34zLX2PYX3fE62v7dJon9i0tO4uSckevh7tdcSqDlEoVLiolFSbv4zv_zbEiRjqjY6jNDDKE4uFgMjjFzth9-N7wdBC_WF2-tDAxuw6-.jpg?r=238" alt="movie" className='object-fill rounded-md h-[130px] w-[230px]' />
-                    </div>
-                  </SwiperSlide>
+                    {tv && tv.map((item, index) =>
+                      <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                        <div className='transition-all duration-500'>
+                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                        </div>
+                      </SwiperSlide>
+                    )
+                    }
                 </Swiper>
                 <div>
                   <div className="flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
@@ -253,12 +189,12 @@ function Home() {
           </div>
           <div className='bg-black pb-12'>
             <div className='w-[90%] mx-auto text-white pt-4 px-2'>
-              <p className='text-lg font-semibold'>New on Netflix</p>
+              <p className='text-lg font-semibold'>Award-winning Period Pieces</p>
               <Swiper
                 cssMode={true}
                 modules={[Navigation, Keyboard]}
               >
-                {data && data.map((item, index) => {
+                {tv && tv.map((item, index) => {
                   return (
                     <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
