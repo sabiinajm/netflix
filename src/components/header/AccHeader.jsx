@@ -5,42 +5,44 @@ import { IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
 function AccHeader() {
     return (
-        <header className='h-[60px] sticky z-10 top-0 w-full bg-gradient-to-b from-[#060606] to-transparent'>
-            <div className='hidden md:flex max-w-[1450px] mx-auto px-6 pt-2 justify-between items-center'>
-                <div className='flex gap-3'>
-                    <div className='max-w-[130px]'>
-                        <img src={logo} alt="logo" />
+        <header>
+            <div className='hidden xs:flex h-[60px] sticky max-w-[1450px] mx-auto  z-10 top-0 w-full bg-gradient-to-b from-[#060606] to-transparent'>
+                <div className=' w-full px-6 pt-2 flex justify-between items-center'>
+                    <div className='flex gap-3'>
+                        <div className='max-w-[130px]'>
+                            <img src={logo} alt="logo" />
+                        </div>
+                        <ul className='flex justify-center items-center text-white lg:hidden'>
+                            Browse
+                        </ul>
+                        <ul className=' hidden lg:flex justify-center items-center text-white gap-4'>
+                            <li>
+                                <a>Home</a>
+                            </li>
+                            <li>
+                                <a>Tv Shows</a>
+                            </li>
+                            <li>
+                                <a>Movies</a>
+                            </li>
+                            <li>
+                                <a>Latest</a>
+                            </li>
+                            <li>
+                                <a>My List</a>
+                            </li>
+                            <li>
+                                <a>Browse By Language</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul className='flex justify-center items-center text-white lg:hidden'>
-                        Browse
-                    </ul>
-                    <ul className=' hidden lg:flex justify-center items-center text-white gap-4'>
-                        <li>
-                            <a>Home</a>
-                        </li>
-                        <li>
-                            <a>Tv Shows</a>
-                        </li>
-                        <li>
-                            <a>Movies</a>
-                        </li>
-                        <li>
-                            <a>Latest</a>
-                        </li>
-                        <li>
-                            <a>My List</a>
-                        </li>
-                        <li>
-                            <a>Browse By Language</a>
-                        </li>
-                    </ul>
-                </div>
-                <div className='flex text-white text-2xl gap-3'>
-                    <IoSearchSharp />
-                    <FaRegBell />
+                    <div className='flex text-white text-2xl gap-3'>
+                        <IoSearchSharp />
+                        <FaRegBell />
+                    </div>
                 </div>
             </div>
-            <nav className='block md:hidden'>
+            <nav className='block xs:hidden'>
                 <div className='w-[90%] mx-auto'>
                     <div className='text-white py-3 text-xl flex justify-between items-center mx-auto'>
                         <h1>For sabina</h1>
