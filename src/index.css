@@ -79,7 +79,6 @@
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  
   .swiper-fade-trend {
     mask-image: linear-gradient(to right, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);

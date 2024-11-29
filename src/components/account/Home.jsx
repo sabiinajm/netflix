@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import breakingB from '../../assets/imgs/breakingb.webp'
+import video from '../../assets/imgs/video.mp4'
 import breakingBLogo from '../../assets/imgs/breakingblogo.webp'
 import moneyH from '../../assets/imgs/moneyH.jpg'
 import { Keyboard, Navigation } from 'swiper/modules'
 import ColorThief from 'colorthief';
+
 
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../context/DataContext'
 
@@ -35,6 +37,25 @@ function Home() {
   const [isSwipedRight4, setIsSwipedRight4] = useState(false);
   const [isSwipedRight5, setIsSwipedRight5] = useState(false);
 
+  const [showImage, setShowImage] = useState(false) // false 
+  const [showVideo, setShowVideo] = useState(true);
+
+  useEffect(() => {
+    const videoTimer = setTimeout(() => {
+      setShowVideo(false);
+      setShowImage(true);
+    }, 15000);
+
+    const imageTimer = setTimeout(() => {
+      setShowImage(true);
+    }, 15000);
+
+    return () => {
+      clearTimeout(videoTimer);
+      clearTimeout(imageTimer);
+    };
+  }, []);
+
   const swipeRight2 = () => {
     setIsSwipedRight2(true);
   }
@@ -47,13 +68,28 @@ function Home() {
   const swipeRight5 = () => {
     setIsSwipedRight5(true);
   }
+  const videoRef = useRef(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 60;
+    }
+  }, []);
   return (
     <>
       <main>
         <div className='hidden xs:block '>
           <div className='absolute top-0 h-[730px] w-full'>
-            <img className="object-cover h-full w-full" src={breakingB} alt="" />
+            {/* <img className="object-cover h-full w-full" src={breakingB} alt="" /> */}
+            <video
+              className="object-cover h-full w-full"
+              src={video}
+              muted
+              autoPlay
+              ref={videoRef}
+              loop
+              playsInline
+            />
             <div className='h-[700px] w-full  absolute top-0 bg-gradient-to-bl from-transparent to-[#141414ae]'></div>
             <div className='max-w-[1450px] px-9 mx-auto '>
               <div className='absolute top-[180px] max-w-[400px] max-h-[230px]'>
@@ -99,11 +135,12 @@ function Home() {
                     modules={[Navigation, Keyboard]}
                   >
                     {data && data.map((item, index) =>
-                      <SwiperSlide key={index}  className="swiper-slide-trend2 cursor-pointer">
+                      <SwiperSlide key={index} className="swiper-slide-trend2 cursor-pointer">
                         <div className='transition-all duration-500'>
-                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px]' />
+                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px] hover:scale-150' />
                         </div>
                       </SwiperSlide>
+
                     )
                     }
                   </Swiper>
@@ -365,6 +402,46 @@ function Home() {
                 modules={[Navigation, Keyboard]}
               >
                 {tv && tv.map((item, index) => {
+                  return (
+                    <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                      <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                      </div>
+                    </SwiperSlide>
+                  )
+                })
+                }
+              </Swiper>
+            </div>
+          </div>
+          <div className='bg-black pb-12'>
+            <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+              <p className='text-lg font-semibold'>Top-rated Tv Shows</p>
+              <Swiper
+                cssMode={true}
+                modules={[Navigation, Keyboard]}
+              >
+                {topTv && topTv.map((item, index) => {
+                  return (
+                    <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                      <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                      </div>
+                    </SwiperSlide>
+                  )
+                })
+                }
+              </Swiper>
+            </div>
+          </div>
+          <div className='bg-black pb-12'>
+            <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+              <p className='text-lg font-semibold'>Top-rated Movies</p>
+              <Swiper
+                cssMode={true}
+                modules={[Navigation, Keyboard]}
+              >
+                {topM && topM.map((item, index) => {
                   return (
                     <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
