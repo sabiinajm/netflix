@@ -7,12 +7,16 @@ import moneyH from '../../assets/imgs/moneyH.jpg'
 import { Keyboard, Navigation } from 'swiper/modules'
 import ColorThief from 'colorthief';
 
-import { DATA, TV } from '../../context/DataContext'
+import { DATA, TOPMOVIES, TOPTV, TV } from '../../context/DataContext'
 
 
 function Home() {
   const { data } = useContext(DATA)
   const { tv } = useContext(TV)
+  // const { comingM } = useContext(COMINGM)
+  const { topM } = useContext(TOPMOVIES)
+  const { topTv } = useContext(TOPTV)
+
   const [dominantColor, setDominantColor] = useState('');
   const imgRef = useRef();
 
@@ -21,19 +25,27 @@ function Home() {
       const colorThief = new ColorThief();
 
       imgRef.current.onload = () => {
-        const color = colorThief.getColor(imgRef.current); // [R, G, B]
+        const color = colorThief.getColor(imgRef.current);
         setDominantColor(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`);
       };
     }
   }, []);
-  const [isSwipedRight1, setIsSwipedRight1] = useState(false);
   const [isSwipedRight2, setIsSwipedRight2] = useState(false);
+  const [isSwipedRight3, setIsSwipedRight3] = useState(false);
+  const [isSwipedRight4, setIsSwipedRight4] = useState(false);
+  const [isSwipedRight5, setIsSwipedRight5] = useState(false);
 
-  const swipeRight1 = () => {
-    setIsSwipedRight1(true);
-  }
   const swipeRight2 = () => {
     setIsSwipedRight2(true);
+  }
+  const swipeRight3 = () => {
+    setIsSwipedRight3(true);
+  }
+  const swipeRight4 = () => {
+    setIsSwipedRight4(true);
+  }
+  const swipeRight5 = () => {
+    setIsSwipedRight5(true);
   }
 
   return (
@@ -76,7 +88,7 @@ function Home() {
 
                   </div>
                 </div>
-                <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight1 ? 'pl-0' : 'pl-10'} `}>
+                <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight2 ? 'pl-0' : 'pl-10'} `}>
                   <Swiper
                     cssMode={true}
                     navigation={{
@@ -87,9 +99,9 @@ function Home() {
                     modules={[Navigation, Keyboard]}
                   >
                     {data && data.map((item, index) =>
-                      <SwiperSlide key={index}  className="cursor-pointer transition-transform duration-500 hover:translate-y-[-10px] hover:scale-125">
+                      <SwiperSlide key={index}  className="swiper-slide-trend2 cursor-pointer">
                         <div className='transition-all duration-500'>
-                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px]' />
                         </div>
                       </SwiperSlide>
                     )
@@ -101,7 +113,7 @@ function Home() {
                         <GoChevronLeft className='text-4xl' />
                       </div>
                     </div>
-                    <div onClick={swipeRight1} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
+                    <div onClick={swipeRight2} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
                       <div className="custom-next2 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
                         <GoChevronRight className='text-4xl' />
                       </div>
@@ -115,8 +127,8 @@ function Home() {
             <div className='max-w-[1600px] mx-auto overflow-hidden'>
               <div className="max-w-[1450px] flex flex-col justify-end ">
                 <div className="text-white text-xl font-semibold ">
-                  <div className='flex items-end h-[50px] group pl-9'>
-                    <h3>Critically Acclaimed TV Dramas</h3>
+                  <div className='flex items-end h-[50px] group pl-10'>
+                    <h3>You May like</h3>
                     <span
                       className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >
@@ -126,7 +138,7 @@ function Home() {
 
                 </div>
               </div>
-              <div className={`relative min-h-[150px] flex items-center transition-all duration-500 ${isSwipedRight2 ? 'pl-0' : 'pl-10'} `}>
+              <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight3 ? 'pl-0' : 'pl-10'} `}>
                 <Swiper
                   cssMode={true}
                   navigation={{
@@ -151,8 +163,156 @@ function Home() {
                       <GoChevronLeft className='text-4xl' />
                     </div>
                   </div>
+                  <div onClick={swipeRight3} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
+                    <div className="custom-next3 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <GoChevronRight className='text-4xl' />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='w-full  bg-[#141414] '>
+            <div className='max-w-[1600px] mx-auto overflow-hidden'>
+              <div className="max-w-[1450px] flex flex-col justify-end ">
+                <div className="text-white text-xl font-semibold ">
+                  <div className='flex items-end h-[50px] group pl-10'>
+                    <h3>To-rated Movies</h3>
+                    <span
+                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                    >
+                      Explore All
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+              <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight4 ? 'pl-0' : 'pl-10'} `}>
+                <Swiper
+                  cssMode={true}
+                  navigation={{
+                    nextEl: '.custom-next4',
+                    prevEl: '.custom-prev4',
+                  }}
+                  keyboard={true}
+                  modules={[Navigation, Keyboard]}
+                >
+                  {topM && topM.map((item, index) =>
+                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                      <div className='transition-all duration-500'>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                      </div>
+                    </SwiperSlide>
+                  )
+                  }
+                </Swiper>
+                <div>
+                  <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
+                    <div className="custom-prev4 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <GoChevronLeft className='text-4xl' />
+                    </div>
+                  </div>
+                  <div onClick={swipeRight4} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
+                    <div className="custom-next4 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <GoChevronRight className='text-4xl' />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <div className='w-full  bg-[#141414] '>
+            <div className='max-w-[1600px] mx-auto overflow-hidden'>
+              <div className="max-w-[1450px] flex flex-col justify-end ">
+                <div className="text-white text-xl font-semibold ">
+                  <div className='flex items-end h-[50px] group pl-9'>
+                    <h3>Critically Acclaimed TV Dramas</h3>
+                    <span
+                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                    >
+                      Explore All
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+              <div className={`relative min-h-[150px] flex items-center transition-all duration-500 ${isSwipedRight2 ? 'pl-0' : 'pl-10'} `}>
+                <Swiper
+                  cssMode={true}
+                  navigation={{
+                    nextEl: '.custom-next3',
+                    prevEl: '.custom-prev3',
+                  }}
+                  keyboard={true}
+                  modules={[Navigation, Keyboard]}
+                >
+                  {comingM && comingM.map((item, index) =>
+                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                      <div className='transition-all duration-500'>
+                        <h1>{comingM.overview}</h1>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                      </div>
+                    </SwiperSlide>
+                  )
+                  }
+                </Swiper>
+                <div>
+                  <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
+                    <div className="custom-prev3 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <GoChevronLeft className='text-4xl' />
+                    </div>
+                  </div>
                   <div onClick={swipeRight2} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
                     <div className="custom-next3 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <GoChevronRight className='text-4xl' />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> */}
+          <div className='w-full  bg-[#141414] '>
+            <div className='max-w-[1600px] mx-auto overflow-hidden'>
+              <div className="max-w-[1450px] flex flex-col justify-end ">
+                <div className="text-white text-xl font-semibold ">
+                  <div className='flex items-end h-[50px] group pl-9'>
+                    <h3>Top-rated Tv Shows</h3>
+                    <span
+                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                    >
+                      Explore All
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+              <div className={`relative min-h-[150px] flex items-center transition-all duration-500 ${isSwipedRight5 ? 'pl-0' : 'pl-10'} `}>
+                <Swiper
+                  cssMode={true}
+                  navigation={{
+                    nextEl: '.custom-next5',
+                    prevEl: '.custom-prev5',
+                  }}
+                  keyboard={true}
+                  modules={[Navigation, Keyboard]}
+                >
+                  {topTv && topTv.map((item, index) =>
+                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                      <div className='transition-all duration-500'>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                      </div>
+                    </SwiperSlide>
+                  )
+                  }
+                </Swiper>
+                <div>
+                  <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
+                    <div className="custom-prev5 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <GoChevronLeft className='text-4xl' />
+                    </div>
+                  </div>
+                  <div onClick={swipeRight5} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
+                    <div className="custom-next5 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
                       <GoChevronRight className='text-4xl' />
                     </div>
                   </div>
