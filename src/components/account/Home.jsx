@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import breakingB from '../../assets/imgs/breakingb.webp'
-import video from '../../assets/imgs/video.mp4'
+import BreakingBvideo from '../../assets/imgs/BreakingBvideo.mp4'
 import breakingBLogo from '../../assets/imgs/breakingblogo.webp'
 import moneyH from '../../assets/imgs/moneyH.jpg'
 import { Keyboard, Navigation } from 'swiper/modules'
@@ -117,7 +117,7 @@ function Home() {
             ) : (
               <video
                 className="object-cover h-full w-full"
-                src={video}
+                src={BreakingBvideo}
                 muted
                 autoPlay
                 ref={videoRef}
