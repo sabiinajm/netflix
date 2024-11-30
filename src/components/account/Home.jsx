@@ -10,6 +10,7 @@ import ColorThief from 'colorthief';
 
 
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../context/DataContext'
+import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 
 
 function Home() {
@@ -37,7 +38,7 @@ function Home() {
   const [isSwipedRight4, setIsSwipedRight4] = useState(false);
   const [isSwipedRight5, setIsSwipedRight5] = useState(false);
 
-  const [showImage, setShowImage] = useState(false) // false 
+  const [showImage, setShowImage] = useState(false)
   const [showVideo, setShowVideo] = useState(true);
 
   useEffect(() => {
@@ -72,18 +73,36 @@ function Home() {
   const [showImageBefore, setShowImageBefore] = useState(true);
 
   useEffect(() => {
-    if (!showImageBefore && videoRef.current) {
-      videoRef.current.currentTime = 100;
-    }
-  }, [showImageBefore]);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       setShowImageBefore(false);
     }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
+
+  function handleVideoEnd() {
+    setShowImageBefore(true)
+  }
+
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const stopVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying)
+    }
+  };
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   return (
     <>
       <main>
@@ -105,6 +124,7 @@ function Home() {
                 loop
                 playsInline
                 preload="auto"
+                onEnded={handleVideoEnd}
                 onLoadedData={() => {
                   if (videoRef.current) {
                     videoRef.current.currentTime = 100;
@@ -115,22 +135,38 @@ function Home() {
 
             <div className='h-[750px] w-full  absolute top-0 bg-gradient-to-bl from-transparent to-[#141414ae]'></div>
             <div className='max-w-[1450px] px-9 mx-auto '>
-              <div className='absolute top-[180px] max-w-[400px] max-h-[230px]'>
-                <div>
-                  <img className='object-cover' src={breakingBLogo} alt="" />
-                  {showImageBefore ?
-                    <p className='text-white text-sm my-4 font-semibold'>Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."</p>
-                    : ""
-                  }
-                  <div className='flex flex-wrap gap-3 pt-2'>
-                    <button className='w-[110px] outline-none h-[45px] bg-white hover:bg-[#ddd] font-semibold text-lg rounded-md'>Play</button>
-                    <button className='w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md'>More Info</button>
+              <div className="absolute top-[180px] max-w-[400px] max-h-[230px]">
+                <div className="transition-all duration-500 overflow-hidden">
+                  <div className="opacity-100 max-h-screen transition-opacity duration-500">
+                    <img className={`object-cover  transition-all duration-500 ease-in-out ${showImageBefore ? "scale-100" : "scale-75 translate-y-6 -translate-x-14"
+                      }`} src={breakingBLogo} alt="" />
+                    <p
+                      className={`text-white text-sm my-4 font-semibold transition-all duration-500 ease-in-out ${showImageBefore ? "opacity-100 max-h-[100px]" : "opacity-0 max-h-0"
+                        }`}
+                    >
+                      Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."
+                    </p>
+                    <div className="flex flex-wrap gap-3 pt-2">
+                      <button className="w-[110px] outline-none h-[45px] bg-white hover:bg-[#ddd] font-semibold text-lg rounded-md">
+                        Play
+                      </button>
+                      <button className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md">
+                        More Info
+                      </button>
+                    </div>
                   </div>
                 </div>
-
               </div>
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
+              </div>
+              <div className={` justify-between absolute bottom-[220px] w-[90px] right-[50px] ${showImageBefore ? "hidden" : "flex"}`}>
+                <div onClick={stopVideo} className='bg-[#14141488] transition-all duration-200 hover:bg-[#5c5c5c] w-[40px] rounded-full h-[40px] flex justify-center text-xl items-center text-white'>
+                  {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
+                </div>
+                <div onClick={toggleMute} className='bg-[#14141488] transition-all duration-200 hover:bg-[#5c5c5c] w-[40px] rounded-full h-[40px] flex justify-center text-xl items-center  text-white'>
+                  {isMuted ? <IoVolumeMute /> : <IoVolumeHigh />}
+                </div>
               </div>
             </div>
           </div>
@@ -384,9 +420,9 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div >
         {/* Mobile */}
-        <div className='block xs:hidden w-[90%] mx-auto'>
+        <div div className='block xs:hidden w-[90%] mx-auto' >
           <div className='w-full pt-4'>
             <div
               className="absolute -z-10 inset-0 pointer-events-none"
@@ -395,7 +431,7 @@ function Home() {
 
             <img ref={imgRef} className='object-cover min-h-[440px] w-full h-[490px] rounded-xl' src={moneyH} alt="" />
           </div>
-        </div>
+        </div >
         <div className='block xs:hidden w-full relative'>
           <div
             className="h-[240px] absolute -z-10 inset-0 pointer-events-none "
