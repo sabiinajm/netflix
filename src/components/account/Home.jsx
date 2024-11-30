@@ -69,34 +69,60 @@ function Home() {
     setIsSwipedRight5(true);
   }
   const videoRef = useRef(null);
+  const [showImageBefore, setShowImageBefore] = useState(true);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 60;
+    if (!showImageBefore && videoRef.current) {
+      videoRef.current.currentTime = 100;
     }
+  }, [showImageBefore]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowImageBefore(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
   return (
     <>
       <main>
         <div className='hidden xs:block '>
-          <div className='absolute top-0 h-[730px] w-full'>
-            {/* <img className="object-cover h-full w-full" src={breakingB} alt="" /> */}
-            <video
-              className="object-cover h-full w-full"
-              src={video}
-              muted
-              autoPlay
-              ref={videoRef}
-              loop
-              playsInline
-            />
-            <div className='h-[700px] w-full  absolute top-0 bg-gradient-to-bl from-transparent to-[#141414ae]'></div>
+          <div className="absolute top-0 h-[730px] w-full bg-black">
+            {showImageBefore ? (
+              <img
+                className="object-cover h-full w-full"
+                src={breakingB}
+                alt="Preview"
+              />
+            ) : (
+              <video
+                className="object-cover h-full w-full"
+                src={video}
+                muted
+                autoPlay
+                ref={videoRef}
+                loop
+                playsInline
+                preload="auto"
+                onLoadedData={() => {
+                  if (videoRef.current) {
+                    videoRef.current.currentTime = 100;
+                  }
+                }}
+              />
+            )}
+
+            <div className='h-[750px] w-full  absolute top-0 bg-gradient-to-bl from-transparent to-[#141414ae]'></div>
             <div className='max-w-[1450px] px-9 mx-auto '>
               <div className='absolute top-[180px] max-w-[400px] max-h-[230px]'>
                 <div>
                   <img className='object-cover' src={breakingBLogo} alt="" />
-                  <p className='text-white text-sm my-4 font-semibold'>Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."</p>
-                  <div className='flex flex-wrap gap-3'>
+                  {showImageBefore ?
+                    <p className='text-white text-sm my-4 font-semibold'>Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."</p>
+                    : ""
+                  }
+                  <div className='flex flex-wrap gap-3 pt-2'>
                     <button className='w-[110px] outline-none h-[45px] bg-white hover:bg-[#ddd] font-semibold text-lg rounded-md'>Play</button>
                     <button className='w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md'>More Info</button>
                   </div>
@@ -135,12 +161,13 @@ function Home() {
                     modules={[Navigation, Keyboard]}
                   >
                     {data && data.map((item, index) =>
-                      <SwiperSlide key={index} className="swiper-slide-trend2 cursor-pointer">
-                        <div className='transition-all duration-500'>
-                          <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px] hover:scale-150' />
-                        </div>
-                      </SwiperSlide>
-
+                      <div>
+                        <SwiperSlide key={index} className="swiper-slide-trend2 cursor-pointer">
+                          <div className='transition-all duration-500'>
+                            <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px]' />
+                          </div>
+                        </SwiperSlide>
+                      </div>
                     )
                     }
                   </Swiper>
