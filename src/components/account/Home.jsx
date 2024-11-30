@@ -11,6 +11,11 @@ import ColorThief from 'colorthief';
 
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../context/DataContext'
 import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
+import { RiCloseLargeFill } from 'react-icons/ri'
+import { Link } from 'react-router-dom'
+import { BsPlusLg } from 'react-icons/bs'
+import { AiOutlineLike } from 'react-icons/ai'
+import { MdOutlineMessage } from 'react-icons/md'
 
 
 function Home() {
@@ -103,6 +108,11 @@ function Home() {
     }
   };
 
+  const [info, setInfo] = useState(false)
+  function moreInfo() {
+    setInfo(true)
+  }
+
   return (
     <>
       <main>
@@ -150,13 +160,75 @@ function Home() {
                       <button className="w-[110px] outline-none h-[45px] bg-white hover:bg-[#ddd] font-semibold text-lg rounded-md">
                         Play
                       </button>
-                      <button className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md">
+                      <button onClick={moreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md">
                         More Info
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
+              {
+                info && (
+                  <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+                  >
+                    <div className="w-full h-full top-0 relative flex justify-center items-center">
+                      <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[800px] w-full flex justify-center items-center">
+                        <div className="relative w-full rounded-lg">
+                          <img
+                            className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full"
+                            src={breakingB}
+                            alt=""
+                          />
+                          <img
+                            className="absolute bottom-[80px] left-[20px] z-30 object-cover rounded-t-lg w-[350px]"
+                            src={breakingBLogo}
+                            alt=""
+                          />
+                          <div className='absolute bottom-[20px] z-40 flex gap-3 justify-between pl-8'>
+                            <button className='w-[120px] h-[42px] rounded-sm text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
+                            <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
+                            <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><AiOutlineLike /></button>
+                          </div>
+                          <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#141414]"></div>
+                          <div
+                            className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"
+
+                          >
+                            <RiCloseLargeFill className="text-white text-2xl" />
+                          </div>
+                        </div>
+                        <div className="bg-[#141414] w-full rounded-b-lg">
+                          <div className='flex justify-between w-[90%] mx-auto'>
+                            <div className='py-4'>
+                              <div className='flex items-center gap-2'>
+                                <p className='text-[#999]'>2024 24 Episodes</p>
+                                <p className='border-[1px] border-white text-white text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
+                                <MdOutlineMessage className='text-[#999]' />
+                              </div>
+                              <div className='flex items-center gap-2'>
+                                <p className='border-[1px] border-white text-white text-xs text-center w-[30px] h-[17px]'>18+</p>
+                                <p className='text-[#fff] text-sm'>violance, nudity</p>
+                              </div>
+                              <p className='text-white text-sm leading-8 py-4'>jhsjkajshjkajshjkaj</p>
+                            </div>
+                            <div className='text-sm w-[260px] gap-3 flex flex-col py-4'>
+                              <p className='text-white '><span className='text-[#999]'>Cast:</span>Kentaro Kumagai, Sayaka Sembogi, Asuna Tomari, <span className='italic'>more</span></p>
+                              <p className='text-white '><span className='text-[#999]'>Cast:</span>Kentaro Kumagai, Sayaka Sembogi, Asuna Tomari, <span className='italic'>more</span></p>
+                              <p className='text-white '><span className='text-[#999]'>Cast:</span>Kentaro Kumagai, Sayaka Sembogi, Asuna Tomari, <span className='italic'>more</span></p>
+                            </div>
+                          </div>
+
+                          <div className="w-[90%] mx-auto">
+                            <Link className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
+                              Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
               </div>
@@ -225,7 +297,7 @@ function Home() {
           </div>
           <div className='w-full  bg-[#141414] '>
             <div className='max-w-[1600px] mx-auto overflow-hidden'>
-              <div className="max-w-[1450px] flex flex-col justify-end ">
+              <div className="flex flex-col justify-end ">
                 <div className="text-white text-xl font-semibold ">
                   <div className='flex items-end h-[50px] group pl-10'>
                     <h3>You May like</h3>
