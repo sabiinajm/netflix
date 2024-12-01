@@ -112,6 +112,17 @@ function Home() {
   function moreInfo() {
     setInfo(true)
   }
+  useEffect(() => {
+    if (info) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [info]);
+
 
   return (
     <>
@@ -135,11 +146,6 @@ function Home() {
                 playsInline
                 preload="auto"
                 onEnded={handleVideoEnd}
-                onLoadedData={() => {
-                  if (videoRef.current) {
-                    videoRef.current.currentTime = 100;
-                  }
-                }}
               />
             )}
 
@@ -169,9 +175,9 @@ function Home() {
               </div>
               {
                 info && (
-                  <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+                  <div className="w-full overflow-y-auto h-full fixed top-0 left-0 bg-[#0005] z-[100]"
                   >
-                    <div className="w-full h-full top-0 relative flex justify-center items-center">
+                    <div className="w-full h-full top-[90px] relative flex justify-center items-center">
                       <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[800px] w-full flex justify-center items-center">
                         <div className="relative w-full rounded-lg">
                           <img

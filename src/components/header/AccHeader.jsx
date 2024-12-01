@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom'
 function AccHeader() {
     return (
         <header>
-            <div className='hidden xs:flex h-[60px] sticky max-w-[1450px] mx-auto  z-10 top-0 w-full bg-gradient-to-b from-[#060606] to-transparent'>
-                <div className=' w-full px-8 pt-2 flex justify-between items-center'>
+            <div className='hidden xs:flex h-[60px] sticky  z-10 top-[60px] w-full bg-gradient-to-b from-[#060606] to-transparent'>
+                <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-between items-center'>
                     <div className='flex gap-3'>
                         <Link to={'/browse'} className='max-w-[130px]'>
                             <img src={logo} alt="logo" />

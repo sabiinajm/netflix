@@ -2,83 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-.custom-prev.swiper-button-disabled {
-    transform: translateX(-5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-.custom-prev2.swiper-button-disabled {
-    transform: translateX(-5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-.custom-prev3.swiper-button-disabled {
-    transform: translateX(-5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-.custom-prev4.swiper-button-disabled {
-    transform: translateX(-5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-.custom-prev5.swiper-button-disabled {
-    transform: translateX(-5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-
-
-  
-  .custom-next.swiper-button-disabled {
-    transform: translateX(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .custom-next2.swiper-button-disabled {
-    transform: translateX(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .custom-next3.swiper-button-disabled {
-    transform: translateX(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .custom-next4.swiper-button-disabled {
-    transform: translateX(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .custom-next5.swiper-button-disabled {
-    transform: translateX(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-
+.custom-prev.swiper-button-disabled,
+.custom-prev2.swiper-button-disabled,
+.custom-prev3.swiper-button-disabled,
+.custom-prev4.swiper-button-disabled,
+.custom-prev5.swiper-button-disabled,
 .main-prev.swiper-button-disabled {
-    transform: translateX(-5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
+  transform: translateX(-5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
   
-  .main-next.swiper-button-disabled {
-    transform: translateX(5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
+.custom-next.swiper-button-disabled,
+.custom-next2.swiper-button-disabled,
+.custom-next3.swiper-button-disabled,
+.custom-next4.swiper-button-disabled,
+.custom-next5.swiper-button-disabled,
+.main-next.swiper-button-disabled {
+  transform: translateX(5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
   .swiper-fade-trend {
     mask-image: linear-gradient(to right, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -124,7 +72,7 @@
   display: flex;
   justify-content: center;
   position: absolute;
-   bottom: -30px;
+  bottom: -30px;
   align-items: center;
   width: 100%;
 }
