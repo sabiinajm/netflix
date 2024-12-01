@@ -287,12 +287,12 @@ function Home() {
                   </Swiper>
                   <div>
                     <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
-                      <div className="custom-prev2 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <div className="custom-prev2 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-r from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                         <GoChevronLeft className='text-4xl' />
                       </div>
                     </div>
                     <div onClick={swipeRight2} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
-                      <div className="custom-next2 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                      <div className="custom-next2 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-l from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                         <GoChevronRight className='text-4xl' />
                       </div>
                     </div>
@@ -337,12 +337,12 @@ function Home() {
                 </Swiper>
                 <div>
                   <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
-                    <div className="custom-prev3 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                    <div className="custom-prev3 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-r from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                       <GoChevronLeft className='text-4xl' />
                     </div>
                   </div>
                   <div onClick={swipeRight3} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
-                    <div className="custom-next3 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                    <div className="custom-next3 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-l from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                       <GoChevronRight className='text-4xl' />
                     </div>
                   </div>
@@ -386,12 +386,12 @@ function Home() {
                 </Swiper>
                 <div>
                   <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
-                    <div className="custom-prev4 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                    <div className="custom-prev4 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-r from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                       <GoChevronLeft className='text-4xl' />
                     </div>
                   </div>
                   <div onClick={swipeRight4} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
-                    <div className="custom-next4 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                    <div className="custom-next4 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-l from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                       <GoChevronRight className='text-4xl' />
                     </div>
                   </div>
@@ -485,12 +485,12 @@ function Home() {
                 </Swiper>
                 <div>
                   <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
-                    <div className="custom-prev5 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                    <div className="custom-prev5 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-r from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                       <GoChevronLeft className='text-4xl' />
                     </div>
                   </div>
                   <div onClick={swipeRight5} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
-                    <div className="custom-next5 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
+                    <div className="custom-next5 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-l from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
                       <GoChevronRight className='text-4xl' />
                     </div>
                   </div>
