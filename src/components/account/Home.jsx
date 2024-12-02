@@ -120,6 +120,7 @@ function Home() {
   }
 
 
+
   return (
     <>
       <main>
@@ -169,21 +170,21 @@ function Home() {
               </div>
               {
                 info && !closeInfo && (
-                  <div  onClick={HandleCloseInfo} className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
-                  >
-                    <div className="w-full h-full relative flex justify-center items-center">
-                      <div  onClick={(e) => e.stopPropagation()} className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[800px] w-full flex justify-center items-center">
-                        <div className="relative w-full rounded-lg">
-                          <img
-                            className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full"
-                            src={breakingB}
-                            alt=""
-                          />
-                          <img
-                            className="absolute bottom-[80px] left-[20px] z-30 object-cover rounded-t-lg w-[350px]"
-                            src={breakingBLogo}
-                            alt=""
-                          />
+                  <div
+          onClick={HandleCloseInfo}
+          className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+        >
+          <div className="w-full h-full flex justify-center">
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="border-[1px] max-h-[1000px] overflow-auto border-[#444] rounded-lg flex-col z-30 max-w-[800px] w-full flex "
+  
+            >
+              <div className="relative top-0 w-full rounded-lg"> 
+                <img className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full"
+                    src={breakingB} alt=""/>
+                <img className="absolute bottom-[80px] left-[20px] z-30 object-cover rounded-t-lg w-[350px]"
+                    src={breakingBLogo}alt=""/>
                           <div className='absolute bottom-[20px] z-40 flex gap-3 justify-between pl-8'>
                             <button className='w-[120px] h-[42px] rounded-sm text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
                             <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
