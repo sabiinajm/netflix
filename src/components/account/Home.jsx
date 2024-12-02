@@ -296,7 +296,7 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className='h-[670px] flex items-end'>
+          <div className='h-[730px] flex items-end'>
             <div className='w-full z-20 bg-gradient-to-b from-transparent to-[#141414]'>
               <div className='max-w-[1600px] mx-auto overflow-hidden'>
                 <div className="flex flex-col justify-end">
