@@ -43,25 +43,25 @@ function Home() {
   const [isSwipedRight4, setIsSwipedRight4] = useState(false);
   const [isSwipedRight5, setIsSwipedRight5] = useState(false);
 
-  const [showImage, setShowImage] = useState(false)
-  const [showVideo, setShowVideo] = useState(true);
+    // const [showImage, setShowImage] = useState(false)
+  // const [showVideo, setShowVideo] = useState(true);
 
-  useEffect(() => {
-    const videoTimer = setTimeout(() => {
-      setShowVideo(false);
-      setShowImage(true);
-    }, 15000);
+  // useEffect(() => {
+  //   const videoTimer = setTimeout(() => {
+  //     setShowVideo(false);
+  //     setShowImage(true);
+  //   }, 15000);
 
-    const imageTimer = setTimeout(() => {
-      setShowImage(true);
-    }, 15000);
+  //   const imageTimer = setTimeout(() => {
+  //     setShowImage(true);
+  //   }, 15000);
 
-    return () => {
-      clearTimeout(videoTimer);
-      clearTimeout(imageTimer);
-    };
-  }, []);
-
+  //   return () => {
+  //     clearTimeout(videoTimer);
+  //     clearTimeout(imageTimer);
+  //   };
+  // }, []);
+  
   const swipeRight2 = () => {
     setIsSwipedRight2(true);
   }
@@ -403,7 +403,7 @@ function Home() {
               <div className="max-w-[1450px] flex flex-col justify-end ">
                 <div className="text-white text-xl font-semibold ">
                   <div className='flex items-end h-[50px] group pl-10'>
-                    <h3>To-rated Movies</h3>
+                    <h3>Top-rated Movies</h3>
                     <span
                       className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >

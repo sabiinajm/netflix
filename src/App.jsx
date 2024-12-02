@@ -41,6 +41,10 @@ function App() {
       </Route>
       <Route path="/" element={<AccLayout />}>
         <Route path="/browse" element={<Home />} />
+        <Route path="/tvShows" element={<Home />} />
+        <Route path="/movies" element={<Home />} />
+        <Route path="/latest" element={<Home />} />
+        <Route path="/myList" element={<Home />} />
       </Route>
     </Routes>
   )
