@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import { BsPlusLg } from 'react-icons/bs'
 import { AiOutlineLike } from 'react-icons/ai'
 import { MdOutlineMessage } from 'react-icons/md'
+import { IoIosInformationCircleOutline } from 'react-icons/io'
 
 
 function Home() {
@@ -109,19 +110,14 @@ function Home() {
   };
 
   const [info, setInfo] = useState(false)
+  const [closeInfo, setCloseInfo] = useState(false)
   function moreInfo() {
     setInfo(true)
+    setCloseInfo(false)
   }
-  useEffect(() => {
-    if (info) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [info]);
+  function HandleCloseInfo() {
+    setCloseInfo(true)
+  }
 
 
   return (
@@ -163,22 +159,20 @@ function Home() {
                       Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
-                      <button className="w-[110px] outline-none h-[45px] bg-white hover:bg-[#ddd] font-semibold text-lg rounded-md">
-                        Play
-                      </button>
-                      <button onClick={moreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md">
-                        More Info
+                      <button className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
+                      <button onClick={moreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
+                        <IoIosInformationCircleOutline className='text-3xl' /> More Info
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
               {
-                info && (
-                  <div className="w-full overflow-y-auto h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+                info && !closeInfo && (
+                  <div  onClick={HandleCloseInfo} className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
                   >
-                    <div className="w-full h-full top-[90px] relative flex justify-center items-center">
-                      <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[800px] w-full flex justify-center items-center">
+                    <div className="w-full h-full relative flex justify-center items-center">
+                      <div  onClick={(e) => e.stopPropagation()} className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[800px] w-full flex justify-center items-center">
                         <div className="relative w-full rounded-lg">
                           <img
                             className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full"
@@ -200,7 +194,7 @@ function Home() {
                             className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"
 
                           >
-                            <RiCloseLargeFill className="text-white text-2xl" />
+                            <RiCloseLargeFill onClick={HandleCloseInfo} className="text-white text-2xl" />
                           </div>
                         </div>
                         <div className="bg-[#141414] w-full rounded-b-lg">
@@ -223,11 +217,65 @@ function Home() {
                               <p className='text-white '><span className='text-[#999]'>Cast:</span>Kentaro Kumagai, Sayaka Sembogi, Asuna Tomari, <span className='italic'>more</span></p>
                             </div>
                           </div>
-
-                          <div className="w-[90%] mx-auto">
-                            <Link className="bg-[#ff0f0f] mb-6 rounded-[.3rem] w-full xs:w-[150px] xs:mx-0 h-[42px] lg:w-[220px] lg:text-xl lg:font-semibold my-2 text-white hover:bg-[#c11119] transition-all duration-300 flex justify-center items-center">
-                              Get Started <GoChevronRight className="text-xl md:ml-4 md:text-3xl" />
-                            </Link>
+                          <h2 className='text-white text-2xl font-semibold py-5 w-[90%] mx-auto'>More Like This</h2>
+                          <div className='grid grid-cols-2 md:grid-cols-3 gap-4 w-[90%] mx-auto'>
+                            <div className='flex flex-col'>
+                              <div className='relative'>
+                                <img src={breakingB} alt='' className='rounded-md' />
+                                <p className='text-white z-10 absolute top-1 right-1'>4 seasons</p>
+                                <div className="bg-gradient-to-tr from-transparent via-transparent to-black/85 w-full h-full absolute top-0 right-0"></div>
+                                <div className='flex justify-center items-center absolute bottom-0 w-full'><p className='bg-red-600 text-white font-semibold rounded-t-sm text-[.75rem] h-[20px] w-[120px] text-center'>Recently added</p></div>
+                              </div>
+                              <div className='bg-[#2f2f2f] p-3 rounded-b-md'>
+                                <div className='flex justify-between'>
+                                  <div className='flex items-center gap-1'>
+                                    <p className='border-[1px] border-[#999] text-[#999] text-xs flex justify-center items-center w-[40px] h-[22px]'>13</p>
+                                    <p className='border-[1px] border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
+                                    <p className='text-[#999]'>2024</p>
+                                  </div>
+                                  <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
+                                </div>
+                                <p className='text-[#ddd] py-4 text-sm leading-6'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus officiis fuga quidem blanditiis ratione quos architecto.</p>
+                              </div>
+                            </div>
+                            <div className='flex flex-col'>
+                              <div className='relative'>
+                                <img src={breakingB} alt='' className='rounded-t-md' />
+                                <p className='text-white z-10 absolute top-1 right-1'>4 seasons</p>
+                                <div className="bg-gradient-to-tr from-transparent via-transparent to-black/85 w-full h-full absolute top-0 right-0"></div>
+                                <div className='flex justify-center items-center absolute bottom-0 w-full'><p className='bg-red-600 text-white font-semibold rounded-t-sm text-[.75rem] h-[20px] w-[120px] text-center'>Recently added</p></div>
+                              </div>
+                              <div className='bg-[#2f2f2f] p-3 rounded-b-md'>
+                                <div className='flex justify-between'>
+                                  <div className='flex items-center gap-1'>
+                                    <p className='border-[1px] border-[#999] text-[#999] text-xs flex justify-center items-center w-[40px] h-[22px]'>13</p>
+                                    <p className='border-[1px] border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
+                                    <p className='text-[#999]'>2024</p>
+                                  </div>
+                                  <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
+                                </div>
+                                <p className='text-[#ddd] py-4 text-sm leading-6'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus officiis fuga quidem blanditiis ratione quos architecto.</p>
+                              </div>
+                            </div>
+                            <div className='flex flex-col'>
+                              <div className='relative'>
+                                <img src={breakingB} alt='' className='rounded-t-md' />
+                                <p className='text-white z-10 absolute top-1 right-1'>4 seasons</p>
+                                <div className="bg-gradient-to-tr from-transparent via-transparent to-black/85 w-full h-full absolute top-0 right-0"></div>
+                                <div className='flex justify-center items-center absolute bottom-0 w-full'><p className='bg-red-600 text-white font-semibold rounded-t-sm text-[.75rem] h-[20px] w-[120px] text-center'>Recently added</p></div>
+                              </div>
+                              <div className='bg-[#2f2f2f] p-3 rounded-b-md'>
+                                <div className='flex justify-between'>
+                                  <div className='flex items-center gap-1'>
+                                    <p className='border-[1px] border-[#999] text-[#999] text-xs flex justify-center items-center w-[40px] h-[22px]'>13</p>
+                                    <p className='border-[1px] border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
+                                    <p className='text-[#999]'>2024</p>
+                                  </div>
+                                  <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
+                                </div>
+                                <p className='text-[#ddd] py-4 text-sm leading-6'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus officiis fuga quidem blanditiis ratione quos architecto.</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
