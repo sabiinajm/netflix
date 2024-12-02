@@ -90,7 +90,7 @@ function Main() {
               clickable: true,
               type: "bullets",
             }}
-            keyboard={true}
+            keyboard
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,
@@ -200,12 +200,12 @@ function Main() {
           <h1 className='text-lg md:text-3xl text-[#fff] font-bold pb-3'>Trending Now</h1>
           <div className="relative min-h-[200px] lg:min-h-[320px] flex items-center">
             <Swiper className='swiper-fade-trend'
-              cssMode={true}
+              cssMode
               navigation={{
                 nextEl: '.custom-next',
                 prevEl: '.custom-prev',
               }}
-              keyboard={true}
+              keyboard
               modules={[Navigation, Keyboard]}
             >
               {data && data.map((item, index) => {

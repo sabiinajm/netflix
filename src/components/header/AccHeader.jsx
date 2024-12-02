@@ -6,11 +6,26 @@ import { HiMiniHome } from 'react-icons/hi2'
 import { IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 function AccHeader() {
+    const [scroll, setScroll] = useState(0)
+    useEffect(() => {
+        const handleScroll = () => {
+            setScroll(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <header>
-            <div className='hidden xs:flex h-[60px] sticky  z-10 top-[60px] w-full bg-gradient-to-b from-[#060606] to-transparent'>
-                <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-between items-center'>
+            <div
+                className={`hidden xs:flex h-[70px] fixed z-50 top-0 w-full bg-gradient-to-b from-[#060606] to-transparent transition-all duration-500 ${scroll > 5 ? 'bg-[#141414]' : ''
+                    }`}
+            >     <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-between items-center'>
                     <div className='flex gap-3'>
                         <Link to={'/browse'} className='max-w-[130px]'>
                             <img src={logo} alt="logo" />
@@ -19,24 +34,18 @@ function AccHeader() {
                             Browse
                         </ul>
                         <ul className=' hidden lg:flex justify-center items-center text-white gap-4'>
-                            <Link to={'/browse'}>
-                                <a>Home</a>
+                            <Link to={'/browse'}>Home
                             </Link>
-                            <Link to={''}>
-                                <a>Tv Shows</a>
+                            <Link to={''}>Tv Shows
                             </Link>
-                            <li>
-                                <a>Movies</a>
-                            </li>
-                            <li>
-                                <a>Latest</a>
-                            </li>
-                            <li>
-                                <a>My List</a>
-                            </li>
-                            <li>
-                                <a>Browse By Language</a>
-                            </li>
+                            <Link>Movies
+                            </Link>
+                            <Link>Latest
+                            </Link>
+                            <Link>My List
+                            </Link>
+                            <Link>Browse By Language
+                            </Link>
                         </ul>
                     </div>
                     <div className='flex text-white text-2xl gap-3'>

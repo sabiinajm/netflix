@@ -12,7 +12,6 @@ import ColorThief from 'colorthief';
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../context/DataContext'
 import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import { RiCloseLargeFill } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
 import { BsPlusLg } from 'react-icons/bs'
 import { AiOutlineLike } from 'react-icons/ai'
 import { MdOutlineMessage } from 'react-icons/md'
@@ -323,9 +322,9 @@ function Home() {
                     keyboard={true}
                     modules={[Navigation, Keyboard]}
                   >
-                    {data && data.map((item, index) =>
+                    {data && data.map((item) =>
                       <div>
-                        <SwiperSlide key={index} className="swiper-slide-trend2 cursor-pointer">
+                        <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
                           <div className='transition-all duration-500'>
                             <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px]' />
                           </div>
@@ -375,8 +374,8 @@ function Home() {
                   keyboard={true}
                   modules={[Navigation, Keyboard]}
                 >
-                  {tv && tv.map((item, index) =>
-                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                  {tv && tv.map((item) =>
+                    <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                       </div>
@@ -424,8 +423,8 @@ function Home() {
                   keyboard={true}
                   modules={[Navigation, Keyboard]}
                 >
-                  {topM && topM.map((item, index) =>
-                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                  {topM && topM.map((item) =>
+                    <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                       </div>
@@ -523,8 +522,8 @@ function Home() {
                   keyboard={true}
                   modules={[Navigation, Keyboard]}
                 >
-                  {topTv && topTv.map((item, index) =>
-                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
+                  {topTv && topTv.map((item) =>
+                    <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
                       </div>
@@ -572,9 +571,9 @@ function Home() {
               cssMode={true}
               modules={[Navigation, Keyboard]}
             >
-              {data && data.map((item, index) => {
+              {data && data.map((item) => {
                 return (
-                  <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                  <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
                     <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                       <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                     </div>
@@ -591,9 +590,9 @@ function Home() {
                 cssMode={true}
                 modules={[Navigation, Keyboard]}
               >
-                {tv && tv.map((item, index) => {
+                {tv && tv.map((item) => {
                   return (
-                    <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
@@ -611,9 +610,9 @@ function Home() {
                 cssMode={true}
                 modules={[Navigation, Keyboard]}
               >
-                {topTv && topTv.map((item, index) => {
+                {topTv && topTv.map((item) => {
                   return (
-                    <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
@@ -631,9 +630,9 @@ function Home() {
                 cssMode={true}
                 modules={[Navigation, Keyboard]}
               >
-                {topM && topM.map((item, index) => {
+                {topM && topM.map((item) => {
                   return (
-                    <SwiperSlide key={index} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
