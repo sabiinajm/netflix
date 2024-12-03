@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import homeBg from '../../assets/imgs/home-bg.jpg'
+import homeBg from '../../../assets/imgs/home-bg.jpg'
 import { Link } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');

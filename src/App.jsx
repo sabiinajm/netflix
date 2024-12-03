@@ -1,20 +1,20 @@
 import { Route, Routes, useLocation } from "react-router-dom"
-import Main from "./components/intoduction/Main"
-import IntroLayout from "./layouts/IntroLayout"
-import StepsLayout from "./layouts/RegLayout"
-import Step2 from "./components/registration/Step2"
-import Planform from "./components/registration/Planform"
-import Step3 from "./components/registration/Step3"
-import Step1 from "./components/registration/Step1"
-import Registration from "./components/registration/Registration"
-import Creditoption from "./components/registration/Creditoption"
-import Login from "./components/intoduction/Login"
 import { useEffect } from "react"
-import Profiles from "./components/account/Profiles"
+import IntroLayout from "./layouts/IntroLayout"
 import ProfileLayout from "./layouts/ProfileLayout"
-import Manage from "./components/account/Manage"
-import Home from "./components/account/Home"
 import AccLayout from "./layouts/AccLayout"
+import RegLayout from "./layouts/RegLayout"
+import Step1 from "./components/main/registration/Step1"
+import Registration from "./components/main/registration/Registration"
+import Step2 from "./components/main/registration/Step2"
+import Planform from "./components/main/registration/Planform"
+import Step3 from "./components/main/registration/Step3"
+import Creditoption from "./components/main/registration/Creditoption"
+import Profiles from "./components/main/account/Profiles"
+import Manage from "./components/main/account/Manage"
+import Home from "./components/main/account/Home"
+import Main from "./components/main/intoduction/Main"
+import Login from "./components/main/intoduction/Login"
 
 function App() {
   const { pathname } = useLocation()
@@ -27,7 +27,7 @@ function App() {
         <Route index element={<Main />} />
         <Route path="/login" element={<Login />} />
       </Route>
-      <Route path="/" element={<StepsLayout />}>
+      <Route path="/" element={<RegLayout />}>
         <Route path="/signup/password" element={<Step1 />} />
         <Route path="/signup/registration" element={<Registration />} />
         <Route path="/signup" element={<Step2 />} />

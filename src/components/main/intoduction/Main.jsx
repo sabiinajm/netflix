@@ -1,18 +1,14 @@
-import homeBg from '../../assets/imgs/home-bg.jpg'
-import show1 from '../../assets/imgs/show1.webp'
-import show2 from '../../assets/imgs/show2.jpg'
-import Mname from '../../assets/imgs/movieName.png'
+import homeBg from '../../../assets/imgs/home-bg.jpg'
+import show1 from '../../../assets/imgs/show1.webp'
+import show2 from '../../../assets/imgs/show2.jpg'
+import Mname from '../../../assets/imgs/movieName.png'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import "swiper/css/effect-fade";
 import 'swiper/css/pagination';
-
 import { Navigation, Pagination, Autoplay, Keyboard, EffectFade } from 'swiper/modules';
-
 
 import { useContext, useEffect, useState } from 'react';
 
@@ -21,8 +17,7 @@ import { BsPlusLg } from 'react-icons/bs';
 import { RiCloseLargeFill } from 'react-icons/ri';
 
 import { Link } from 'react-router-dom';
-import { DATA } from '../../context/DataContext'
-
+import { DATA } from '../../../context/DataContext'
 
 function Main() {
   const { data } = useContext(DATA)
@@ -46,7 +41,6 @@ function Main() {
     setBgImage(imgElement.src);
   };
 
-
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,7 +48,6 @@ function Main() {
   const handleInput = (e) => {
     const value = e.target.value;
     setEmail(value);
-
   };
 
   const handleSubmit = (e) => {
@@ -174,9 +167,7 @@ function Main() {
               className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
         origin-[0_0] peer-focus:scale-90  peer-focus:-translate-y-4 peer-focus:text-gray-400 
         peer-[:not(:placeholder-shown)]:scale-90   peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
-            >
-              Email address
-            </label>
+            >Email address</label>
           </div>
           {error && <p className='text-red-600 xs:hidden mb-1'>{error}</p>}
           <button
@@ -235,7 +226,6 @@ function Main() {
                 </div>
               </div>
             </div>
-
           </div>
           {openModel && selectedItem && (
             <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"

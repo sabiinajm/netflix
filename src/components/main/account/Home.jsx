@@ -1,21 +1,24 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
+
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import breakingB from '../../assets/imgs/breakingb.webp'
-import BreakingBvideo from '../../assets/imgs/BreakingBvideo.mp4'
-import breakingBLogo from '../../assets/imgs/breakingblogo.webp'
-import moneyH from '../../assets/imgs/moneyH.jpg'
-import { Keyboard, Navigation } from 'swiper/modules'
-import ColorThief from 'colorthief';
-
-
-import { DATA, TOPMOVIES, TOPTV, TV } from '../../context/DataContext'
 import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import { RiCloseLargeFill } from 'react-icons/ri'
 import { BsPlusLg } from 'react-icons/bs'
 import { AiOutlineLike } from 'react-icons/ai'
 import { MdOutlineMessage } from 'react-icons/md'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
+
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Keyboard, Navigation } from 'swiper/modules'
+
+import breakingB from '../../../assets/imgs/breakingb.webp'
+import BreakingBvideo from '../../../assets/imgs/BreakingBvideo.mp4'
+import breakingBLogo from '../../../assets/imgs/breakingblogo.webp'
+import moneyH from '../../../assets/imgs/moneyH.jpg'
+
+import ColorThief from 'colorthief';
+
+import { DATA, TOPMOVIES, TOPTV, TV } from '../../../context/DataContext'
 
 
 function Home() {
@@ -43,25 +46,6 @@ function Home() {
   const [isSwipedRight4, setIsSwipedRight4] = useState(false);
   const [isSwipedRight5, setIsSwipedRight5] = useState(false);
 
-    // const [showImage, setShowImage] = useState(false)
-  // const [showVideo, setShowVideo] = useState(true);
-
-  // useEffect(() => {
-  //   const videoTimer = setTimeout(() => {
-  //     setShowVideo(false);
-  //     setShowImage(true);
-  //   }, 15000);
-
-  //   const imageTimer = setTimeout(() => {
-  //     setShowImage(true);
-  //   }, 15000);
-
-  //   return () => {
-  //     clearTimeout(videoTimer);
-  //     clearTimeout(imageTimer);
-  //   };
-  // }, []);
-  
   const swipeRight2 = () => {
     setIsSwipedRight2(true);
   }
@@ -118,8 +102,15 @@ function Home() {
     setCloseInfo(true)
   }
 
+  const [hoveredCard, setHoveredCard] = useState(null);
 
+  const handleMouseEnter = (id) => {
+    setHoveredCard(id);
+  };
 
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
   return (
     <>
       <main>
@@ -170,20 +161,20 @@ function Home() {
               {
                 info && !closeInfo && (
                   <div
-          onClick={HandleCloseInfo}
-          className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
-        >
-          <div className="w-full h-full flex justify-center">
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="border-[1px] max-h-[1000px] overflow-auto border-[#444] rounded-lg flex-col z-30 max-w-[800px] w-full flex "
-  
-            >
-              <div className="relative top-0 w-full rounded-lg"> 
-                <img className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full"
-                    src={breakingB} alt=""/>
-                <img className="absolute bottom-[80px] left-[20px] z-30 object-cover rounded-t-lg w-[350px]"
-                    src={breakingBLogo}alt=""/>
+                    onClick={HandleCloseInfo}
+                    className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+                  >
+                    <div className="w-full h-full flex justify-center">
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className="border-[1px] max-h-[1000px] overflow-auto border-[#444] rounded-lg flex-col z-30 max-w-[800px] w-full flex "
+
+                      >
+                        <div className="relative top-0 w-full rounded-lg">
+                          <img className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full"
+                            src={breakingB} alt="" />
+                          <img className="absolute bottom-[80px] left-[20px] z-30 object-cover rounded-t-lg w-[350px]"
+                            src={breakingBLogo} alt="" />
                           <div className='absolute bottom-[20px] z-40 flex gap-3 justify-between pl-8'>
                             <button className='w-[120px] h-[42px] rounded-sm text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
                             <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
@@ -304,7 +295,7 @@ function Home() {
                     <div className='flex items-center group pl-10'>
                       <h3>Critically Acclaimed TV Dramas</h3>
                       <span
-                        className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                        className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                       >
                         Explore All
                       </span>
@@ -322,17 +313,49 @@ function Home() {
                     keyboard={true}
                     modules={[Navigation, Keyboard]}
                   >
-                    {data && data.map((item) =>
-                      <div>
-                        <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
-                          <div className='transition-all duration-500'>
-                            <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-cover rounded-sm h-[130px] w-[230px]' />
-                          </div>
-                        </SwiperSlide>
-                      </div>
-                    )
-                    }
+                    {data && data.map((item) => (
+                      <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
+                        <div className="relative transition-all duration-500">
+                          <img
+                            onMouseEnter={() => handleMouseEnter(item.id)}
+                            onMouseLeave={handleMouseLeave}
+                            src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                            alt="movie"
+                            className="object-cover rounded-sm h-[130px] w-[234px]"
+                          />
+                          {hoveredCard === item.id && (
+                            <div onMouseEnter={() => handleMouseEnter(item.id)} className="fixed w-[300px] -top-[80px] scale-125 inset-0 bg-[#141414] flex flex-col justify-end p-4 z-10">
+                              {/* Buttons */}
+                              <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="" />
+                              <div className="flex gap-3 mb-4">
+                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                  <IoPlaySharp className="text-xl" />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <BsPlusLg />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <AiOutlineLike />
+                                </button>
+                              </div>
+
+                              {/* Metadata */}
+                              <div className="flex items-center gap-1 text-sm text-white">
+                                <p className="border border-[#999] text-[#999] text-xs flex justify-center items-center w-[40px] h-[22px]">
+                                  13
+                                </p>
+                                <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]">
+                                  HD
+                                </p>
+                                <p className="text-[#999]">2024</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </SwiperSlide>
+                    ))}
                   </Swiper>
+
                   <div>
                     <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
                       <div className="custom-prev2 flex items-center justify-center h-[131px] w-[65px]  bg-gradient-to-r from-[#000000c2] hover:from-[#000000e5] to-transparent text-white cursor-pointer transition-all duration-150">
@@ -356,7 +379,7 @@ function Home() {
                   <div className='flex items-end h-[50px] group pl-10'>
                     <h3>You May like</h3>
                     <span
-                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                      className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >
                       Explore All
                     </span>
@@ -377,7 +400,7 @@ function Home() {
                   {tv && tv.map((item) =>
                     <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
                       </div>
                     </SwiperSlide>
                   )
@@ -405,7 +428,7 @@ function Home() {
                   <div className='flex items-end h-[50px] group pl-10'>
                     <h3>Top-rated Movies</h3>
                     <span
-                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                      className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >
                       Explore All
                     </span>
@@ -426,7 +449,7 @@ function Home() {
                   {topM && topM.map((item) =>
                     <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
                       </div>
                     </SwiperSlide>
                   )
@@ -454,10 +477,10 @@ function Home() {
                   <div className='flex items-end h-[50px] group pl-9'>
                     <h3>Critically Acclaimed TV Dramas</h3>
                     <span
-                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
-                    >
-                      Explore All
-                    </span>
+                        className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                      >
+                        Explore All
+                      </span>
                   </div>
 
                 </div>
@@ -476,7 +499,7 @@ function Home() {
                     <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
                         <h1>{comingM.overview}</h1>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
                       </div>
                     </SwiperSlide>
                   )
@@ -504,7 +527,7 @@ function Home() {
                   <div className='flex items-end h-[50px] group pl-9'>
                     <h3>Top-rated Tv Shows</h3>
                     <span
-                      className="w-0 font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
+                      className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >
                       Explore All
                     </span>
@@ -525,7 +548,7 @@ function Home() {
                   {topTv && topTv.map((item) =>
                     <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
                       <div className='transition-all duration-500'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[230px]' />
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
                       </div>
                     </SwiperSlide>
                   )

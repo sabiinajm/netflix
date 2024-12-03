@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import RegHeader from "../components/header/RegHeader"
 import RegFooter from "../components/footer/RegFooter"
 
-function StepsLayout() {
+function RegLayout() {
     return (
         <>
             <RegHeader />
@@ -11,4 +11,4 @@ function StepsLayout() {
         </>
     )
 }
-export default StepsLayout
+export default RegLayout
