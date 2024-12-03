@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
+import { GoChevronDown, GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import { RiCloseLargeFill } from 'react-icons/ri'
 import { BsPlusLg } from 'react-icons/bs'
@@ -289,10 +289,10 @@ function Home() {
           </div>
           <div className='h-[730px] flex items-end'>
             <div className='w-full z-20 bg-gradient-to-b from-transparent to-[#141414]'>
-              <div className='max-w-[1600px] mx-auto overflow-hidden'>
+              <div className='max-w-[1600px] mx-auto overflow-hidden translate-y-8'>
                 <div className="flex flex-col justify-end">
                   <div className="text-white text-xl font-semibold ">
-                    <div className='flex items-center group pl-10'>
+                    <div className='flex items-center group pl-10 translate-y-8'>
                       <h3>Critically Acclaimed TV Dramas</h3>
                       <span
                         className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
@@ -305,6 +305,7 @@ function Home() {
                 </div>
                 <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight2 ? 'pl-0' : 'pl-10'} `}>
                   <Swiper
+                    className='h-[245px]'
                     cssMode={true}
                     navigation={{
                       nextEl: '.custom-next2',
@@ -315,36 +316,48 @@ function Home() {
                   >
                     {data && data.map((item) => (
                       <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
-                        <div className="relative transition-all duration-500">
+                        <div
+                          onMouseEnter={() => handleMouseEnter(item.id)}
+                          onMouseLeave={handleMouseLeave}
+                          className="transition-all duration-500 h-full flex justify-center items-center"
+                        >
                           <img
-                            onMouseEnter={() => handleMouseEnter(item.id)}
-                            onMouseLeave={handleMouseLeave}
                             src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                             alt="movie"
                             className="object-cover rounded-sm h-[130px] w-[234px]"
                           />
                           {hoveredCard === item.id && (
-                            <div onMouseEnter={() => handleMouseEnter(item.id)} className="fixed w-[300px] -top-[80px] scale-125 inset-0 bg-[#141414] flex flex-col justify-end p-4 z-10">
-                              {/* Buttons */}
-                              <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="" />
-                              <div className="flex gap-3 mb-4">
-                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
-                                  <IoPlaySharp className="text-xl" />
-                                </button>
+                            <div
+                              className="absolute top-[10px] rounded-md bg-[#141414] z-20 hover:scale-110 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]"
+                            >
+                              {/* Background Image */}
+                              <img
+                                src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                                alt=""
+                                className='rounded-t-md' />
+                              <div className="flex justify-between pt-3 px-4">
+                                <div className="flex gap-3 mb-4">
+                                  <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                    <IoPlaySharp className="text-xl" />
+                                  </button>
+                                  <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                    <BsPlusLg />
+                                  </button>
+                                  <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                    <AiOutlineLike />
+                                  </button>
+                                </div>
                                 <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
-                                  <BsPlusLg />
-                                </button>
-                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
-                                  <AiOutlineLike />
+                                  <GoChevronDown />
                                 </button>
                               </div>
 
                               {/* Metadata */}
-                              <div className="flex items-center gap-1 text-sm text-white">
-                                <p className="border border-[#999] text-[#999] text-xs flex justify-center items-center w-[40px] h-[22px]">
+                              <div className="flex items-center gap-2 text-sm text-white px-4 pb-1">
+                                <p className="border border-[#999] text-[#999] text-[.7rem] flex justify-center items-center w-[30px] h-[15px]">
                                   13
                                 </p>
-                                <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]">
+                                <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
                                   HD
                                 </p>
                                 <p className="text-[#999]">2024</p>
@@ -373,10 +386,10 @@ function Home() {
             </div>
           </div>
           <div className='w-full  bg-[#141414] '>
-            <div className='max-w-[1600px] mx-auto overflow-hidden'>
+            <div className='max-w-[1600px] mx-auto overflow-hidden -translate-y-10'>
               <div className="flex flex-col justify-end ">
                 <div className="text-white text-xl font-semibold ">
-                  <div className='flex items-end h-[50px] group pl-10'>
+                  <div className='flex items-end h-[50px] group pl-10 translate-y-9'>
                     <h3>You May like</h3>
                     <span
                       className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
@@ -389,6 +402,7 @@ function Home() {
               </div>
               <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight3 ? 'pl-0' : 'pl-10'} `}>
                 <Swiper
+                  className='h-[245px]'
                   cssMode={true}
                   navigation={{
                     nextEl: '.custom-next3',
@@ -398,9 +412,55 @@ function Home() {
                   modules={[Navigation, Keyboard]}
                 >
                   {tv && tv.map((item) =>
-                    <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
+                    <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
+                      <div
+                        onMouseEnter={() => handleMouseEnter(item.id)}
+                        onMouseLeave={handleMouseLeave}
+                        className="transition-all duration-500 h-full flex justify-center items-center"
+                      >
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                          alt="movie"
+                          className="object-cover rounded-sm h-[130px] w-[234px]"
+                        />
+                        {hoveredCard === item.id && (
+                          <div
+                            className="absolute top-[10px] rounded-md bg-[#141414] z-20 hover:scale-110 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]"
+                          >
+                            {/* Background Image */}
+                            <img
+                              src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                              alt=""
+                              className='rounded-t-md' />
+                            <div className="flex justify-between pt-3 px-4">
+                              <div className="flex gap-3 mb-4">
+                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                  <IoPlaySharp className="text-xl" />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <BsPlusLg />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <AiOutlineLike />
+                                </button>
+                              </div>
+                              <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                <GoChevronDown />
+                              </button>
+                            </div>
+
+                            {/* Metadata */}
+                            <div className="flex items-center gap-2 text-sm text-white px-4 pb-1">
+                              <p className="border border-[#999] text-[#999] text-[.7rem] flex justify-center items-center w-[30px] h-[15px]">
+                                13
+                              </p>
+                              <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
+                                HD
+                              </p>
+                              <p className="text-[#999]">2024</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </SwiperSlide>
                   )
@@ -422,22 +482,22 @@ function Home() {
             </div>
           </div>
           <div className='w-full  bg-[#141414] '>
-            <div className='max-w-[1600px] mx-auto overflow-hidden'>
-              <div className="max-w-[1450px] flex flex-col justify-end ">
+            <div className='max-w-[1600px] mx-auto overflow-hidden -translate-y-24'>
+              <div className="flex flex-col justify-end ">
                 <div className="text-white text-xl font-semibold ">
-                  <div className='flex items-end h-[50px] group pl-10'>
-                    <h3>Top-rated Movies</h3>
+                  <div className='flex items-end h-[50px] group pl-10 translate-y-9'>
+                    <h3>You May like</h3>
                     <span
                       className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >
                       Explore All
                     </span>
                   </div>
-
                 </div>
               </div>
               <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight4 ? 'pl-0' : 'pl-10'} `}>
                 <Swiper
+                  className='h-[245px]'
                   cssMode={true}
                   navigation={{
                     nextEl: '.custom-next4',
@@ -447,9 +507,55 @@ function Home() {
                   modules={[Navigation, Keyboard]}
                 >
                   {topM && topM.map((item) =>
-                    <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
+                    <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
+                      <div
+                        onMouseEnter={() => handleMouseEnter(item.id)}
+                        onMouseLeave={handleMouseLeave}
+                        className="transition-all duration-500 h-full flex justify-center items-center"
+                      >
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                          alt="movie"
+                          className="object-cover rounded-sm h-[130px] w-[234px]"
+                        />
+                        {hoveredCard === item.id && (
+                          <div
+                            className="absolute top-[10px] rounded-md bg-[#141414] z-20 hover:scale-110 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]"
+                          >
+                            {/* Background Image */}
+                            <img
+                              src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                              alt=""
+                              className='rounded-t-md' />
+                            <div className="flex justify-between pt-3 px-4">
+                              <div className="flex gap-3 mb-4">
+                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                  <IoPlaySharp className="text-xl" />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <BsPlusLg />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <AiOutlineLike />
+                                </button>
+                              </div>
+                              <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                <GoChevronDown />
+                              </button>
+                            </div>
+
+                            {/* Metadata */}
+                            <div className="flex items-center gap-2 text-sm text-white px-4 pb-1">
+                              <p className="border border-[#999] text-[#999] text-[.7rem] flex justify-center items-center w-[30px] h-[15px]">
+                                13
+                              </p>
+                              <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
+                                HD
+                              </p>
+                              <p className="text-[#999]">2024</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </SwiperSlide>
                   )
@@ -520,23 +626,23 @@ function Home() {
               </div>
             </div>
           </div> */}
-          <div className='w-full  bg-[#141414] '>
-            <div className='max-w-[1600px] mx-auto overflow-hidden'>
-              <div className="max-w-[1450px] flex flex-col justify-end ">
+          <div className='w-full bg-[#141414] '>
+            <div className='max-w-[1600px] mx-auto overflow-hidden -translate-y-32'>
+              <div className="flex flex-col justify-end ">
                 <div className="text-white text-xl font-semibold ">
-                  <div className='flex items-end h-[50px] group pl-9'>
-                    <h3>Top-rated Tv Shows</h3>
+                  <div className='flex items-end h-[50px] group pl-10 translate-y-9'>
+                    <h3>You May like</h3>
                     <span
                       className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
                     >
                       Explore All
                     </span>
                   </div>
-
                 </div>
               </div>
-              <div className={`relative min-h-[150px] flex items-center transition-all duration-500 ${isSwipedRight5 ? 'pl-0' : 'pl-10'} `}>
+              <div className={`relative min-h-[150px] flex items-center  transition-all duration-500 ${isSwipedRight5 ? 'pl-0' : 'pl-10'} `}>
                 <Swiper
+                  className='h-[245px]'
                   cssMode={true}
                   navigation={{
                     nextEl: '.custom-next5',
@@ -546,9 +652,55 @@ function Home() {
                   modules={[Navigation, Keyboard]}
                 >
                   {topTv && topTv.map((item) =>
-                    <SwiperSlide key={item.id} className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
+                    <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
+                      <div
+                        onMouseEnter={() => handleMouseEnter(item.id)}
+                        onMouseLeave={handleMouseLeave}
+                        className="transition-all duration-500 h-full flex justify-center items-center"
+                      >
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                          alt="movie"
+                          className="object-cover rounded-sm h-[130px] w-[234px]"
+                        />
+                        {hoveredCard === item.id && (
+                          <div
+                            className="absolute top-[10px] rounded-md bg-[#141414] z-20 hover:scale-110 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]"
+                          >
+                            {/* Background Image */}
+                            <img
+                              src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                              alt=""
+                              className='rounded-t-md' />
+                            <div className="flex justify-between pt-3 px-4">
+                              <div className="flex gap-3 mb-4">
+                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                  <IoPlaySharp className="text-xl" />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <BsPlusLg />
+                                </button>
+                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                  <AiOutlineLike />
+                                </button>
+                              </div>
+                              <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                <GoChevronDown />
+                              </button>
+                            </div>
+
+                            {/* Metadata */}
+                            <div className="flex items-center gap-2 text-sm text-white px-4 pb-1">
+                              <p className="border border-[#999] text-[#999] text-[.7rem] flex justify-center items-center w-[30px] h-[15px]">
+                                13
+                              </p>
+                              <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
+                                HD
+                              </p>
+                              <p className="text-[#999]">2024</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </SwiperSlide>
                   )
