@@ -5,6 +5,7 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Keyboard, Navigation } from 'swiper/modules'
 import ColorThief from 'colorthief';
+import MoreInfo from "./MoreInfo"
 
 function TvShows() {
   const { data } = useContext(DATA)
@@ -14,19 +15,6 @@ function TvShows() {
   const { topTv } = useContext(TOPTV)
 
   const [randomImage, setRandomImage] = useState(null);
-  const [dominantColor, setDominantColor] = useState('');
-  const imgRef = useRef();
-
-  useEffect(() => {
-    if (imgRef.current) {
-      const colorThief = new ColorThief();
-
-      imgRef.current.onload = () => {
-        const color = colorThief.getColor(imgRef.current);
-        setDominantColor(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`);
-      };
-    }
-  }, []);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -34,7 +22,10 @@ function TvShows() {
       setRandomImage(data[randomIndex]);
     }
   }, [data]);
-
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
+  const handleShowMoreInfo = () => {
+    setShowMoreInfo(!showMoreInfo);
+  }
   return (
     <main>
       <div className="h-[600px] w-full hidden xs:block bg-[#141414]">
@@ -66,26 +57,27 @@ function TvShows() {
                       >{randomImage.overview}</p>
                       <div className="flex flex-wrap gap-3 pt-2">
                         <button className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
-                        <button className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
+                        <button onClick={handleShowMoreInfo}className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
                           <IoIosInformationCircleOutline className='text-3xl' /> More Info
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
+                {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} i image={`https://image.tmdb.org/t/p/original` + randomImage.backdrop_path} />}
                 <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[100px] absolute right-0 text-white border-l-[3px] border-white'>
                   <p>+18</p>
                 </div>
               </div>
             </div>
-          ) : ( 
+          ) : (
             <div className="flex gap-4 m-8 rounded absolute top-28 animate-pulse h-40 items-end">
               <div className="flex flex-col gap-4">
                 <div className="h-6 w-32 rounded-t bg-[#313131]"></div>
                 <div className="h-28 w-60 sm:w-64  rounded-t bg-[#202020]"></div>
               </div>
-                <div className="h-28 w-60 sm:w-64 rounded-t bg-[#202020]"></div>
-                <div className="h-28 w-60 sm:w-64 rounded-t bg-[#202020]"></div>
+              <div className="h-28 w-60 sm:w-64 rounded-t bg-[#202020]"></div>
+              <div className="h-28 w-60 sm:w-64 rounded-t bg-[#202020]"></div>
             </div>
           )
         }
@@ -97,7 +89,7 @@ function TvShows() {
             className="absolute -z-10 inset-0 pointer-events-none bg-[#141414] "
           ></div>
           {randomImage ?
-            <img ref={imgRef} className='object-cover min-h-[440px] w-full h-[490px] rounded-xl' src={`https://image.tmdb.org/t/p/original` + randomImage.backdrop_path}
+            <img className='object-cover min-h-[440px] w-full h-[490px] rounded-xl' src={`https://image.tmdb.org/t/p/original` + randomImage.backdrop_path}
               alt="" /> : ''
           }
         </div>
