@@ -80,12 +80,15 @@ function Main() {
               prevEl: '.main-prev',
             }}
             pagination={{
+              el: '.custom-pagination',
+              bulletClass: 'custom-bullet',
+              bulletActiveClass: 'custom-bullet-active',
               clickable: true,
-              type: "bullets",
+              type: "bullets"
             }}
             keyboard
             autoplay={{
-              delay: 5000,
+              delay: 3000,
               disableOnInteraction: false,
             }}
             onSlideChange={handleSlideChange}
@@ -135,18 +138,8 @@ function Main() {
               </div>
             </SwiperSlide>
           </Swiper>
-          {/* <div>
-            <div className=" w-[40px] flex justify-center items-center transform -translate-y-1/2 lg:translate-y-4 lg:w-[180px] absolute top-1/2 left-1 lg:-left-4 z-20">
-              <div className="main-prev flex items-center justify-center h-[90px] w-[30px]  bg-[#444] text-white rounded-full hover:bg-[#2a2a2a] border-[1px] cursor-pointer transition-all duration-150">
-                <GoChevronLeft />
-              </div>
-            </div>
-            <div className=" w-[40px] flex justify-center items-center transform -translate-y-1/2 lg:translate-y-4 lg:w-[180px] absolute top-1/2 right-1 lg:-right-4 z-20">
-              <div className="main-next flex items-center justify-center h-[90px] w-[30px] bg-[#444] text-white rounded-full hover:bg-[#2a2a2a] border-[1px]  cursor-pointer transition-all duration-150">
-                <GoChevronRight />
-              </div>
-            </div>
-          </div> */}
+          <div class="custom-pagination">
+          </div>
         </div>
         <img src={bgImage} alt="bgBlur" className='blur-xl w-full absolute -top-4 opacity-25 transition-all duration-200 object-cover h-[1100px]' />
       </div>

@@ -8,7 +8,6 @@ import { IoIosInformationCircleOutline } from 'react-icons/io'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Keyboard, Navigation } from 'swiper/modules'
-
 import breakingB from '../../../assets/imgs/breakingb.webp'
 import BreakingBvideo from '../../../assets/imgs/BreakingBvideo.mp4'
 import breakingBLogo from '../../../assets/imgs/breakingblogo.webp'
