@@ -154,7 +154,7 @@ function Home() {
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
               </div>
-              <div className={` justify-between absolute bottom-[220px] w-[90px] right-[50px] ${showImageBefore ? "hidden" : "flex"}`}>
+              <div className={`z-30 justify-between absolute bottom-[220px] w-[90px] right-[50px] ${showImageBefore ? "hidden" : "flex"}`}>
                 <div onClick={stopVideo} className='bg-[#14141488] transition-all duration-200 hover:bg-[#5c5c5c] w-[40px] rounded-full h-[40px] flex justify-center text-xl items-center text-white'>
                   {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
                 </div>
