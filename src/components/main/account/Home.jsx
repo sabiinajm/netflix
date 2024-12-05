@@ -103,6 +103,26 @@ function Home() {
   const handleMouseLeave = () => {
     setHoveredCard(null);
   };
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [modal, setModal] = useState(false);
+  function handleSlideMoreInfo(itemId, source) {
+    const sources = {
+      data,
+      tv,
+      topM,
+      topTv,
+    };
+
+    const selectedItem = sources[source]?.find((item) => item.id === itemId);
+
+    if (selectedItem) {
+      setSelectedItem(selectedItem);
+      setModal(!modal)
+    }
+  }
+
+
   return (
     <>
       <main>
@@ -150,7 +170,8 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} image={breakingB} />}
+              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} setModal={setModal} image={breakingB} />}
+              {modal && selectedItem && <MoreInfo setModal={setModal} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
               </div>
@@ -224,7 +245,7 @@ function Home() {
                                     <AiOutlineLike />
                                   </button>
                                 </div>
-                                <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                <button onClick={() => handleSlideMoreInfo(item.id, "data")} className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                   <GoChevronDown />
                                 </button>
                               </div>
@@ -321,7 +342,7 @@ function Home() {
                                   <AiOutlineLike />
                                 </button>
                               </div>
-                              <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                              <button onClick={() => handleSlideMoreInfo(item.id, "tv")} className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                 <GoChevronDown />
                               </button>
                             </div>
@@ -416,7 +437,7 @@ function Home() {
                                   <AiOutlineLike />
                                 </button>
                               </div>
-                              <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                              <button onClick={() => handleSlideMoreInfo(item.id, "topM")} className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                 <GoChevronDown />
                               </button>
                             </div>
@@ -453,56 +474,6 @@ function Home() {
               </div>
             </div>
           </div>
-          {/* <div className='w-full  bg-[#141414] '>
-            <div className='max-w-[1600px] mx-auto overflow-hidden'>
-              <div className="max-w-[1450px] flex flex-col justify-end ">
-                <div className="text-white text-xl font-semibold ">
-                  <div className='flex items-end h-[50px] group pl-9'>
-                    <h3>Critically Acclaimed TV Dramas</h3>
-                    <span
-                        className="w-0 text-sm font-semibold text-cyan-500 translate-x-0 group-hover:translate-x-2 whitespace-nowrap opacity-0 transition-all delay-300 duration-200 group-hover:opacity-100 group-hover:w-[100px] ml-2 flex items-center"
-                      >
-                        Explore All
-                      </span>
-                  </div>
-
-                </div>
-              </div>
-              <div className={`relative min-h-[150px] flex items-center transition-all duration-500 ${isSwipedRight2 ? 'pl-0' : 'pl-10'} `}>
-                <Swiper
-                  cssMode={true}
-                  navigation={{
-                    nextEl: '.custom-next3',
-                    prevEl: '.custom-prev3',
-                  }}
-                  keyboard={true}
-                  modules={[Navigation, Keyboard]}
-                >
-                  {comingM && comingM.map((item, index) =>
-                    <SwiperSlide key={index} className='swiper-slide-trend2 cursor-pointer'>
-                      <div className='transition-all duration-500'>
-                        <h1>{comingM.overview}</h1>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className='object-fill rounded-sm h-[130px] w-[234px]' />
-                      </div>
-                    </SwiperSlide>
-                  )
-                  }
-                </Swiper>
-                <div>
-                  <div className="flex justify-center w-[70px] items-center transform -translate-y-1/2 absolute top-1/2 -left-1 z-20">
-                    <div className="custom-prev3 flex items-center justify-center h-[131px] w-[65px]  bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
-                      <GoChevronLeft className='text-4xl' />
-                    </div>
-                  </div>
-                  <div onClick={swipeRight2} className="w-[70px] flex justify-center items-center transform -translate-y-1/2 absolute top-1/2 -right-1 z-20">
-                    <div className="custom-next3 flex items-center justify-center h-[131px] w-[65px] bg-[#00000061] text-white hover:bg-[#0000008d] cursor-pointer transition-all duration-150">
-                      <GoChevronRight className='text-4xl' />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <div className='w-full bg-[#141414] '>
             <div className='max-w-[1600px] mx-auto overflow-hidden -translate-y-32'>
               <div className="flex flex-col justify-end ">
@@ -561,7 +532,7 @@ function Home() {
                                   <AiOutlineLike />
                                 </button>
                               </div>
-                              <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                              <button onClick={() => handleSlideMoreInfo(item.id, "topTv")} className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                 <GoChevronDown />
                               </button>
                             </div>

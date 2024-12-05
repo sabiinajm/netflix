@@ -109,7 +109,7 @@ function TvShows() {
                     </div>
                   </div>
                 </div>
-                {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} i image={`https://image.tmdb.org/t/p/original` + randomImage.backdrop_path} />}
+                {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + randomImage.backdrop_path} />}
               </div>
             </div>
           ) : (

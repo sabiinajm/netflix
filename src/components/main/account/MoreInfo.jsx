@@ -4,10 +4,11 @@ import breakingBLogo from '../../../assets/imgs/breakingblogo.webp'
 import { BsPlusLg } from "react-icons/bs"
 import { IoPlaySharp } from "react-icons/io5"
 import { AiOutlineLike } from "react-icons/ai"
-function MoreInfo({setShowMoreInfo, image }) {
+function MoreInfo({setShowMoreInfo, image, setModal }) {
 
     const handleClose = () => {
         setShowMoreInfo(false);
+        setModal(false);
     };
     return (
             <div
