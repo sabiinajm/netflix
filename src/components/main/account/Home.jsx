@@ -15,9 +15,9 @@ import moneyH from '../../../assets/imgs/moneyH.jpg'
 
 import ColorThief from 'colorthief';
 
+
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../../context/DataContext'
 import MoreInfo from './MoreInfo'
-
 
 function Home() {
   const { data } = useContext(DATA)
@@ -170,8 +170,9 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} setModal={setModal} image={breakingB} />}
-              {modal && selectedItem && <MoreInfo setModal={setModal} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
+              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} setModal={setModal} image={breakingB} />}
+              {modal && selectedItem && <MoreInfo setModal={setModal} year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
+                overview={selectedItem.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
               </div>
