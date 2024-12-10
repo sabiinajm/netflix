@@ -259,7 +259,7 @@ function Home() {
                                 <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
                                   HD
                                 </p>
-                                <p className="text-[#999]">2024</p>
+                                <p className="text-[#999]">{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                               </div>
                             </div>
                           )}
@@ -356,7 +356,7 @@ function Home() {
                               <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
                                 HD
                               </p>
-                              <p className="text-[#999]">2024</p>
+                              <p className="text-[#999]">{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                             </div>
                           </div>
                         )}
@@ -451,7 +451,7 @@ function Home() {
                               <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
                                 HD
                               </p>
-                              <p className="text-[#999]">2024</p>
+                              <p className="text-[#999]">{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                             </div>
                           </div>
                         )}
@@ -546,7 +546,7 @@ function Home() {
                               <p className="border border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[15px]">
                                 HD
                               </p>
-                              <p className="text-[#999]">2024</p>
+                              <p className="text-[#999]">{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                             </div>
                           </div>
                         )}

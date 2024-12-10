@@ -6,14 +6,18 @@ import avatar from '../../assets/imgs/avatar.jpg'
 import ringb from '../../assets/imgs/ringb.png'
 import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
-import { IoSearch, IoSearchSharp } from 'react-icons/io5'
+import { IoPersonOutline, IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
+import { GrEdit } from 'react-icons/gr'
+import { RiFolderTransferLine } from 'react-icons/ri'
+import { AiOutlineQuestionCircle } from 'react-icons/ai'
 function AccHeader({ bgColor }) {
     const [scroll, setScroll] = useState(0)
-    const [onRingBell, setOnRingBell] = useState('false')
+    const [onRingBell, setOnRingBell] = useState(false)
+    const [onProfile, setOnProfile] = useState(false)
     useEffect(() => {
         const handleScroll = () => {
             setScroll(window.scrollY);
@@ -53,10 +57,10 @@ function AccHeader({ bgColor }) {
                             </Link>
                         </ul>
                     </div>
-                    <div
-                        onMouseLeave={() => setOnRingBell(false)} className='flex items-center text-white text-2xl gap-4'>
+                    <div className='flex items-center text-white text-2xl gap-4'>
                         <IoSearchSharp />
-                        <div className='relative'>
+                        <div className='relative p-2'
+                            onMouseLeave={() => setOnRingBell(false)}>
                             <div
                                 className='cursor-pointer p-2 rounded-full'
                                 onMouseEnter={() => setOnRingBell(true)}
@@ -96,9 +100,42 @@ function AccHeader({ bgColor }) {
                                 </div>
                             )}
                         </div>
-                        <div className='flex items-center text-lg'>
-                            <img className='h-[35px] my-4 rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
-                            <IoMdArrowDropdown />
+                        <div onMouseLeave={() => setOnProfile(false)} className='flex items-center'>
+                            <div className='relative flex items-center'>
+                                <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
+                                <IoMdArrowDropdown />
+                                {onProfile && (
+                                    <div onMouseEnter={() => setOnProfile(true)} className='absolute top-[56px] right-0 mt-2 w-[230px] border-[1px] border-[#5f5f5f] text-white shadow-lg z-10'>
+                                        <div className='p-2 group bg-black flex items-center gap-4'>
+                                            <img className='h-[32px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
+                                            <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Sabina</h4>
+                                        </div>
+                                        <div className='p-2 group bg-black flex items-center gap-4'>
+                                            <img className='h-[32px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfjwXqIYd3kCEU6KWsiHSHvkft8VhZg0yyD50a_pHXku4dz9VgxWwfA2ontwogStpj1NE9NJMt7sCpSKFEY2zmgqqQfcw1FMWwB9.png?r=229" alt="ava1" />
+                                            <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Good News</h4>
+                                        </div>
+                                        <div className='group p-2 bg-black flex items-center gap-4'>
+                                            <GrEdit className='pl-1' />
+                                            <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Manage Profiles</h4>
+                                        </div>
+                                        <div className='p-2 group bg-black flex items-center gap-4'>
+                                            <RiFolderTransferLine className='pl-1' />
+                                            <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Transfer Profile</h4>
+                                        </div>
+                                        <div className='p-2 group bg-black flex items-center gap-4'>
+                                            <IoPersonOutline className='pl-1' />
+                                            <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Account</h4>
+                                        </div>
+                                        <div className='p-2 group border-b-[1px] border-b-[#444] bg-black flex items-center gap-4'>
+                                            <AiOutlineQuestionCircle className='pl-1' />
+                                            <h4 className='text-[.8rem] hover:underline cursor-pointer'>Help Centre</h4>
+                                        </div>
+                                        <div className='p-2 bg-black text-center'>
+                                            <p className='text-[.8rem] hover:underline cursor-pointer'>Sign out of Netflix</p>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
