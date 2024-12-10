@@ -1,14 +1,19 @@
-import { BiSolidVideos } from 'react-icons/bi'
+import { BiArrowToBottom, BiSolidArrowToBottom, BiSolidVideos } from 'react-icons/bi'
 import logo from '../../assets/imgs/logo.png'
 import { FaRegBell } from 'react-icons/fa'
+import moneyH from '../../assets/imgs/moneyH.jpg'
+import avatar from '../../assets/imgs/avatar.jpg'
+import ringb from '../../assets/imgs/ringb.png'
 import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
 import { IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-function AccHeader({bgColor}) {
+import { IoMdArrowDropdown } from 'react-icons/io'
+function AccHeader({ bgColor }) {
     const [scroll, setScroll] = useState(0)
+    const [onRingBell, setOnRingBell] = useState('false')
     useEffect(() => {
         const handleScroll = () => {
             setScroll(window.scrollY);
@@ -48,9 +53,53 @@ function AccHeader({bgColor}) {
                             </Link>
                         </ul>
                     </div>
-                    <div className='flex text-white text-2xl gap-3'>
+                    <div
+                        onMouseLeave={() => setOnRingBell(false)} className='flex items-center text-white text-2xl gap-4'>
                         <IoSearchSharp />
-                        <FaRegBell />
+                        <div className='relative'>
+                            <div
+                                className='cursor-pointer p-2 rounded-full'
+                                onMouseEnter={() => setOnRingBell(true)}
+                            >
+                                <FaRegBell />
+                            </div>
+
+                            {onRingBell && (
+                                <div onMouseEnter={() => setOnRingBell(true)} className='absolute overflow-y-scroll h-[250px] right-0 mt-2 w-[350px] md:w-[400px] border-x-[1px] border-t-2 border-t-white border-x-[#5f5f5f] text-white shadow-lg z-10'>
+                                    <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
+                                        <div className='flex w-full justify-between px-3 cursor-pointer'>
+                                            <img className='w-[100px] h-[60px] object-cover rounded-md' src={moneyH} alt="" />
+                                            <div className='w-[250px] pl-3'>
+                                                <h4 className='text-[.9rem] leading-5'>Rewatch your favorite moments <br /> See what you've watched</h4>
+                                                <p className='text-xs text-[#888]'>2 days ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
+                                        <Link to={'/latest'} className='flex w-full justify-between px-3 cursor-pointer'>
+                                            <img className='w-[100px] h-[60px] object-cover rounded-md' src={ringb} alt="" />
+                                            <div className='w-[250px] pl-3'>
+                                                <h4 className='text-[.9rem] leading-5'>Netflex Lookahead <br /> Explore what's coming soon.</h4>
+                                                <p className='text-xs text-[#888]'>3 days ago</p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                    <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
+                                        <div className='flex w-full justify-between px-3 cursor-pointer'>
+                                            <img className='w-[100px] h-[60px] object-cover rounded-md' src={avatar} alt="" />
+                                            <div className='w-[250px] pl-3'>
+                                                <h4 className='text-[.9rem] leading-5'>Suggestions for tonight <br /> Explore personalized picks.</h4>
+                                                <p className='text-xs text-[#888]'>2 days ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <div className='flex items-center text-lg'>
+                            <img className='h-[35px] my-4 rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
+                            <IoMdArrowDropdown />
+                        </div>
                     </div>
                 </div>
             </div>

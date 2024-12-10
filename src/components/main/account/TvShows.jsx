@@ -11,6 +11,7 @@ import { RxTextAlignLeft } from "react-icons/rx"
 import { GoChevronDown, GoChevronLeft, GoChevronRight } from "react-icons/go"
 import { AiOutlineLike } from "react-icons/ai"
 import { BsPlusLg } from "react-icons/bs"
+import Loading from "./Loading"
 
 function TvShows() {
   const { data } = useContext(DATA)
@@ -112,16 +113,7 @@ function TvShows() {
                 {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + randomImage.backdrop_path} />}
               </div>
             </div>
-          ) : (
-            <div className="flex gap-4 m-8 rounded absolute top-28 animate-pulse h-40 items-end">
-              <div className="flex flex-col gap-4">
-                <div className="h-6 w-32 rounded-t bg-[#313131]"></div>
-                <div className="h-28 w-60 sm:w-64  rounded-t bg-[#202020]"></div>
-              </div>
-              <div className="h-28 w-60 sm:w-64 rounded-t bg-[#202020]"></div>
-              <div className="h-28 w-60 sm:w-64 rounded-t bg-[#202020]"></div>
-            </div>
-          )
+          ) : (<Loading/> )
         }
       </div>
       <div className='w-full  bg-[#141414] '>

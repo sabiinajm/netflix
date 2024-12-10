@@ -6,17 +6,18 @@ import { IoPlaySharp } from "react-icons/io5"
 import { AiOutlineLike } from "react-icons/ai"
 
 import { DATA } from '../../../context/DataContext'
-import { useContext } from "react"
+import { useContext} from "react"
 function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
     const { data } = useContext(DATA)
     const handleClose = () => {
         setShowMoreInfo(false);
         setModal(false);
     };
+
     return (
         <div
             onClick={handleClose}
-            className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+            className="bg-[#141414] w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
         >
             <div className="w-full h-full flex justify-center">
                 <div
@@ -64,14 +65,33 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
                         </div>
                         <h2 className='text-white text-2xl font-semibold py-5 w-[90%] mx-auto'>More Like This</h2>
                         <div className='grid grid-cols-2 md:grid-cols-3 gap-4 w-[90%] mx-auto'>
-                            {
+                            {!data ? (
+                                Array(6).fill().map((_, index) => (
+                                    <div key={index} className='flex flex-col animate-pulse'>
+                                        <div className='relative bg-gray-700 h-[150px] rounded-md'></div>
+                                        <div className='bg-[#2f2f2f] p-3 rounded-b-md'>
+                                            <div className='flex justify-between'>
+                                                <div className='flex items-center gap-1'>
+                                                    <div className='bg-gray-600 w-[40px] h-[22px]'></div>
+                                                    <div className='bg-gray-600 w-[30px] h-[17px]'></div>
+                                                    <div className='bg-gray-600 w-[50px] h-[17px]'></div>
+                                                </div>
+                                                <div className='bg-gray-600 w-[40px] h-[40px] rounded-full'></div>
+                                            </div>
+                                            <div className='bg-gray-600 h-[60px] mt-4'></div>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
                                 data && data.map((item) => (
                                     <div key={item.id} className='flex flex-col'>
                                         <div className='relative'>
-                                            <img src={`https://image.tmdb.org/t/p/original` + item.backdrop_path} alt='' className='rounded-md' />
+                                            <img src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`} alt='' className='rounded-md' />
                                             <p className='text-white z-10 absolute top-1 right-1'>4 seasons</p>
                                             <div className="bg-gradient-to-tr from-transparent via-transparent to-black/85 w-full h-full absolute top-0 right-0"></div>
-                                            <div className='flex justify-center items-center absolute bottom-0 w-full'><p className='bg-red-600 text-white font-semibold rounded-t-sm text-[.75rem] h-[20px] w-[120px] text-center'>Recently added</p></div>
+                                            <div className='flex justify-center items-center absolute bottom-0 w-full'>
+                                                <p className='bg-red-600 text-white font-semibold rounded-t-sm text-[.75rem] h-[20px] w-[120px] text-center'>Recently added</p>
+                                            </div>
                                         </div>
                                         <div className='bg-[#2f2f2f] p-3 rounded-b-md'>
                                             <div className='flex justify-between'>
@@ -80,15 +100,15 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
                                                     <p className='border-[1px] border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
                                                     <p className='text-[#999]'>2024</p>
                                                 </div>
-                                                <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
+                                                <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'>
+                                                    <BsPlusLg />
+                                                </button>
                                             </div>
                                             <p className='text-[#ddd] py-4 text-sm leading-6'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus officiis fuga quidem blanditiis ratione quos architecto.</p>
                                         </div>
                                     </div>
                                 ))
-
-                            }
-
+                            )}
                         </div>
                     </div>
                 </div>

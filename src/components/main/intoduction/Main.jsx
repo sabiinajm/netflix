@@ -224,7 +224,7 @@ function Main() {
             <div className="w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
               onClick={() => setOpenModel(false)}>
               <div className="w-full h-full top-0 relative flex justify-center items-center">
-                <div className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[650px] w-full flex justify-center items-center">
+                <div onClick={(e) => e.stopPropagation()} className="border-[1px] border-[#444] rounded-lg flex-col fixed z-30 max-w-[650px] w-full flex justify-center items-center">
                   <div className="relative w-full rounded-lg">
                     <img
                       className="object-cover rounded-t-lg min-h-[160px] max-h-[270px] w-full"
