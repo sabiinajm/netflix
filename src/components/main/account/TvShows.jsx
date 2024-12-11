@@ -10,7 +10,7 @@ import { RxTextAlignLeft } from "react-icons/rx"
 import Loading from "./Loading"
 import Carousel from "./Carousel"
 
-function TvShows({ header = "Tv Shows", type = "tv" }) {
+function TvShows({ header = "Tv Shows", type = "tvshows" }) {
   const { data } = useContext(DATA)
   const { tv } = useContext(TV)
   // const { comingM } = useContext(COMINGM)
@@ -85,6 +85,7 @@ function TvShows({ header = "Tv Shows", type = "tv" }) {
       topM,
       topTv,
     };
+    console.log({ source })
     const selectedItem = sources[source]?.find((item) => item.id === itemId);
     if (selectedItem) {
       setSelectedItem(selectedItem);
@@ -161,8 +162,9 @@ function TvShows({ header = "Tv Shows", type = "tv" }) {
       <div className='w-full  bg-[#141414] '>
         <Carousel
           title={type === "movies" ? "Action Movies" : "TV Dramas"}
-          items={type === "movies" ? topM : topTv}
+          items={type === "movies" ? topM : type == "tvshows" ? topTv : []}
           genreId={18}
+          type={type}
           isSwipedRight={isSwipedRight}
           handleMouseEnter={handleMouseEnter}
           handleMouseLeave={handleMouseLeave}
@@ -173,24 +175,26 @@ function TvShows({ header = "Tv Shows", type = "tv" }) {
         />
         <Carousel
           title={type === "movies" ? "Comedy Movies" : "Fantasy TV Shows"}
-          items={data}
-          genreId={type === "movies" ? 35 : 28}
+          items={type === "movies" ? topM : type == "tvshows" ? topTv : []}
+          type={type}
+          genreId={type === "movies" ? 14 : 35}
           isSwipedRight={isSwipedRight2}
           handleMouseEnter={handleMouseEnter2}
           handleMouseLeave={handleMouseLeave2}
-          handleSlideMoreInfo ={handleSlideMoreInfo}
+          handleSlideMoreInfo={handleSlideMoreInfo}
           hoveredCard={hoveredCard2}
           customClass="2"
           swipeRight={swipeRight2}
         />
         <Carousel
           title={type === "movies" ? "Thriller Movies" : "Adventure TV Shows"}
-          items={type === "movies" ? topM : topTv}
+          items={type === "movies" ? topM : type == "tvshows" ? topTv : []}
           genreId={type === "movies" ? 80 : 10765}
+          type={type}
           isSwipedRight={isSwipedRight3}
           handleMouseEnter={handleMouseEnter3}
           handleMouseLeave={handleMouseLeave3}
-          handleSlideMoreInfo ={handleSlideMoreInfo}
+          handleSlideMoreInfo={handleSlideMoreInfo}
           hoveredCard={hoveredCard3}
           customClass="3"
           swipeRight={swipeRight3}

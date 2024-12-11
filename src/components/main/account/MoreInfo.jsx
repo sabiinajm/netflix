@@ -10,8 +10,10 @@ import { useContext } from "react"
 function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
     const { data } = useContext(DATA)
     const handleClose = () => {
-        if(setShowMoreInfo) setShowMoreInfo(false) 
-        else setModal(false);
+        if (setShowMoreInfo) {
+            setShowMoreInfo(false);
+        }
+        setModal(false);
     };
 
     return (

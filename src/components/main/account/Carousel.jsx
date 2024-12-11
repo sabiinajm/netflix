@@ -3,7 +3,7 @@ import Card from "./Card"
 import { GoChevronLeft, GoChevronRight } from "react-icons/go"
 import { Keyboard, Navigation } from "swiper/modules"
 
-function Carousel({   title, items, genreId,handleSlideMoreInfo, isSwipedRight, handleMouseEnter, handleMouseLeave, hoveredCard, customClass, swipeRight }) {
+function Carousel({ type,  title, items, genreId,handleSlideMoreInfo, isSwipedRight, handleMouseEnter, handleMouseLeave, hoveredCard, customClass, swipeRight }) {
 
     return (
         <div className='max-w-[1600px] mx-auto overflow-hidden '>
@@ -32,7 +32,7 @@ function Carousel({   title, items, genreId,handleSlideMoreInfo, isSwipedRight, 
                         .filter((item) => item.genre_ids.includes(genreId))
                         .map((item) => (
                             <SwiperSlide key={item.id} className="swiper-slide-trend2 cursor-pointer">
-                                <Card  handleSlideMoreInfo={handleSlideMoreInfo} item={item} handleMouseEnter={handleMouseEnter} handleMouseLeave={handleMouseLeave} hoveredCard={hoveredCard} />
+                                <Card type={type} handleSlideMoreInfo={handleSlideMoreInfo} item={item} handleMouseEnter={handleMouseEnter} handleMouseLeave={handleMouseLeave} hoveredCard={hoveredCard} />
                             </SwiperSlide>
                         ))}
                 </Swiper>
