@@ -10,14 +10,14 @@ import { useContext } from "react"
 function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
     const { data } = useContext(DATA)
     const handleClose = () => {
-        setShowMoreInfo(false);
-        setModal(false);
+        if(setShowMoreInfo) setShowMoreInfo(false) 
+        else setModal(false);
     };
 
     return (
         <div
             onClick={handleClose}
-            className="bg-[#141414] w-full h-full fixed top-0 left-0 bg-[#0005] z-[100]"
+            className=" w-full h-full fixed top-0 left-0 bg-[#0000006e] z-[100]"
         >
             <div className="w-full h-full flex justify-center">
                 <div

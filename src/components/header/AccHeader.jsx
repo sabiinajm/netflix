@@ -114,14 +114,14 @@ function AccHeader({ bgColor }) {
                                             <img className='h-[32px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfjwXqIYd3kCEU6KWsiHSHvkft8VhZg0yyD50a_pHXku4dz9VgxWwfA2ontwogStpj1NE9NJMt7sCpSKFEY2zmgqqQfcw1FMWwB9.png?r=229" alt="ava1" />
                                             <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Good News</h4>
                                         </div>
-                                        <div className='group p-2 bg-black flex items-center gap-4'>
+                                        <Link to={'/ManageProfiles'} className='group p-2 bg-black flex items-center gap-4'>
                                             <GrEdit className='pl-1' />
                                             <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Manage Profiles</h4>
-                                        </div>
-                                        <div className='p-2 group bg-black flex items-center gap-4'>
+                                        </Link>
+                                        {/* <div className='p-2 group bg-black flex items-center gap-4'>
                                             <RiFolderTransferLine className='pl-1' />
                                             <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Transfer Profile</h4>
-                                        </div>
+                                        </div> */}
                                         <div className='p-2 group bg-black flex items-center gap-4'>
                                             <IoPersonOutline className='pl-1' />
                                             <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Account</h4>
@@ -131,7 +131,7 @@ function AccHeader({ bgColor }) {
                                             <h4 className='text-[.8rem] hover:underline cursor-pointer'>Help Centre</h4>
                                         </div>
                                         <div className='p-2 bg-black text-center'>
-                                            <p className='text-[.8rem] hover:underline cursor-pointer'>Sign out of Netflix</p>
+                                            <Link to={'/login'} className='text-[.8rem] hover:underline cursor-pointer'>Sign out of Netflix</Link>
                                         </div>
                                     </div>
                                 )}

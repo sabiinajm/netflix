@@ -16,6 +16,7 @@ import Home from "./components/main/account/Home"
 import Main from "./components/main/intoduction/Main"
 import Login from "./components/main/intoduction/Login"
 import TvShows from "./components/main/account/TvShows"
+import Movies from "./components/main/account/Movies"
 
 function App() {
   const { pathname } = useLocation()
@@ -43,7 +44,7 @@ function App() {
       <Route path="/" element={<AccLayout />}>
         <Route path="/browse" element={<Home />} />
         <Route path="/tvShows" element={<TvShows />} />
-        <Route path="/movies" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/latest" element={<Home />} />
         <Route path="/myList" element={<Home />} />
       </Route>
