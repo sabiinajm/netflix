@@ -1,8 +1,12 @@
 import Media from "./Media"
+import RandomImage from "./RandomImage"
 
 function Movies() {
   return (
-    <Media header="Movies"  type="movies"/>
+    <>
+      <RandomImage header="Movies"/>
+      <Media type="movies" />
+    </>
   )
 }
 export default Movies

@@ -21,7 +21,7 @@ function Card({type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLea
                                 <AiOutlineLike />
                             </button>
                         </div>
-                        <button onClick={() => handleSlideMoreInfo(item.id, type === "tvshows" ? "topTv" : type === "movies" ? "topM" : '')}
+                        <button onClick={() => handleSlideMoreInfo(item.id, type === "tvshows" ? "topTv" : type === "movies" ? "topM" : type === "data" ? "data" : "")}
                             className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                             <GoChevronDown />
                         </button>
