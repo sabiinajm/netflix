@@ -15,6 +15,11 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
         }
         setModal(false);
     };
+    function truncateByWords(text, maxWords) {
+        const words = text.split(' ');
+        if (words.length <= maxWords) return text;
+        return words.slice(0, maxWords).join(' ') + ' ...';
+    }
 
     return (
         <div
@@ -85,7 +90,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
                                                 <BsPlusLg />
                                             </button>
                                         </div>
-                                        <p className='text-[#ddd] py-4 text-sm leading-6'>{item.overview.slice(0, 125) + ' ...'}</p>
+                                        <p className='text-[#ddd] py-4 text-sm leading-6'>{truncateByWords(item.overview, 19)}</p>
                                     </div>
                                 </div>
                             ))}

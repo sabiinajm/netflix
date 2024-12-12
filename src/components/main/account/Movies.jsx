@@ -1,8 +1,8 @@
-import TvShows from "./TvShows"
+import Media from "./Media"
 
 function Movies() {
   return (
-    <TvShows header="Movies"  type="movies"/>
+    <Media header="Movies"  type="movies"/>
   )
 }
 export default Movies

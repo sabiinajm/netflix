@@ -2,7 +2,7 @@ import { GoChevronDown } from "react-icons/go"
 import { AiOutlineLike } from "react-icons/ai"
 import { BsPlusLg } from "react-icons/bs"
 import { IoPlaySharp } from "react-icons/io5"
-function Card({topTv, topM, data,type, item, items, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
+function Card({type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
     return (
         <div onMouseEnter={() => handleMouseEnter(item.id)} onMouseLeave={handleMouseLeave} className="transition-all duration-500 h-full flex justify-center items-center">
             <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className="object-cover rounded-sm h-[130px] w-[234px]" />
