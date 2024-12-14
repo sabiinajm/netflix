@@ -1,14 +1,23 @@
 import { Outlet, useLocation } from "react-router-dom"
 import AccHeader from "../components/header/AccHeader"
 import AccFooter from "../components/footer/accFooter"
+import { useEffect, useState } from "react";
 
 function AccLayout() {
     const location = useLocation();
     const isTvShowsPage = location.pathname === "/browse";
+    const [showHeader, setShowHeader] = useState(true);
+    useEffect(() => {
+        if (location.pathname === "/video") {
+            setShowHeader(false);
+        } else {
+            setShowHeader(true);
+        }
+    }, [location]);
     return (
         <>
-            <AccHeader bgColor={!isTvShowsPage ? "bg-[#141414]" : ""}/>
-            <Outlet/>
+            <AccHeader showHeader={showHeader} bgColor={!isTvShowsPage ? "bg-[#141414]" : ""} />
+            <Outlet />
             <AccFooter />
         </>
     )

@@ -72,7 +72,7 @@ function Media({ type }) {
                     overview={selectedItem.overview}
                 />
             )}
-            <div className='w-full bg-[#141414] pt-12'>
+            <div className='w-full bg-[#141414] xs:pt-12'>
                 <Carousel
                     title={type === "movies" ? "Action Movies" : type === "tvshows" ? "TV Dramas" : "New on Netflix"}
                     items={type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : []}

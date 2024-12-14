@@ -18,6 +18,7 @@ import ColorThief from 'colorthief';
 
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../../context/DataContext'
 import MoreInfo from './MoreInfo'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
   const { data } = useContext(DATA)
@@ -121,7 +122,10 @@ function Home() {
       setModal(!modal)
     }
   }
-
+  const navigate = useNavigate()
+  function openVideo() {
+    navigate('/video');
+  }
 
   return (
     <>
@@ -162,7 +166,7 @@ function Home() {
                       Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
-                      <button className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
+                      <button onClick={openVideo} className='w-[120px] cursor-pointer h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
                       <button onClick={handleShowMoreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
                         <IoIosInformationCircleOutline className='text-3xl' /> More Info
                       </button>
@@ -236,7 +240,7 @@ function Home() {
                                 className='rounded-t-md' />
                               <div className="flex justify-between pt-3 px-4">
                                 <div className="flex gap-3 mb-4">
-                                  <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                  <button onClick={openVideo} className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
                                     <IoPlaySharp className="text-xl" />
                                   </button>
                                   <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
@@ -333,7 +337,7 @@ function Home() {
                               className='rounded-t-md' />
                             <div className="flex justify-between pt-3 px-4">
                               <div className="flex gap-3 mb-4">
-                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                <button onClick={openVideo} className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
                                   <IoPlaySharp className="text-xl" />
                                 </button>
                                 <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
@@ -428,7 +432,7 @@ function Home() {
                               className='rounded-t-md' />
                             <div className="flex justify-between pt-3 px-4">
                               <div className="flex gap-3 mb-4">
-                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                <button onClick={openVideo} className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
                                   <IoPlaySharp className="text-xl" />
                                 </button>
                                 <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
@@ -523,7 +527,7 @@ function Home() {
                               className='rounded-t-md' />
                             <div className="flex justify-between pt-3 px-4">
                               <div className="flex gap-3 mb-4">
-                                <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
+                                <button onClick={openVideo} className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center">
                                   <IoPlaySharp className="text-xl" />
                                 </button>
                                 <button className="w-[30px] h-[30px]  rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">

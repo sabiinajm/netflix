@@ -18,6 +18,8 @@ import Login from "./components/main/intoduction/Login"
 import TvShows from "./components/main/account/TvShows"
 import Movies from "./components/main/account/Movies"
 import Latest from "./components/main/account/Latest"
+import MyList from "./components/main/account/MyLIst"
+import VideoPlayer from "./components/main/VideoPlayer"
 
 function App() {
   const { pathname } = useLocation()
@@ -47,7 +49,8 @@ function App() {
         <Route path="/tvShows" element={<TvShows />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/latest" element={<Latest />} />
-        <Route path="/myList" element={<Home />} />
+        <Route path="/myList" element={<MyList />} />
+        <Route path="/video" element={<VideoPlayer />} />
       </Route>
     </Routes>
   )

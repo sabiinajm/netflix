@@ -2,7 +2,12 @@ import { GoChevronDown } from "react-icons/go"
 import { AiOutlineLike } from "react-icons/ai"
 import { BsPlusLg } from "react-icons/bs"
 import { IoPlaySharp } from "react-icons/io5"
+import { useNavigate } from "react-router-dom";
 function Card({type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
+    const navigate = useNavigate()
+    function openVideo() {
+        navigate('/video');
+      }
     return (
         <div onMouseEnter={() => handleMouseEnter(item.id)} onMouseLeave={handleMouseLeave} className="transition-all duration-500 h-full flex justify-center items-center">
             <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className="object-cover rounded-sm h-[130px] w-[234px]" />
@@ -11,7 +16,7 @@ function Card({type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLea
                     <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="" className="rounded-t-md" />
                     <div className="flex justify-between pt-3 px-4">
                         <div className="flex gap-3 mb-4">
-                            <button className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center items-center">
+                            <button onClick={openVideo} className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center items-center">
                                 <IoPlaySharp className="text-xl" />
                             </button>
                             <button className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
