@@ -22,7 +22,20 @@ function VideoPlayer() {
             setIsPlaying(!isPlaying);
         }
     };
+    const skipBackward = () => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = Math.max(videoRef.current.currentTime - 10, 0);
+        }
+    };
 
+    const skipForward = () => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = Math.min(
+                videoRef.current.currentTime + 10,
+                videoRef.current.duration
+            );
+        }
+    };
 
     return (
         <>
