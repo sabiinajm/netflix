@@ -92,6 +92,35 @@ function VideoPlayer() {
             clearTimeout(imageTimeout);
         };
     }, []);
+    const [progress, setProgress] = useState(0);
+    const [currentTime, setCurrentTime] = useState('00:00');
+    const [duration, setDuration] = useState('00:00');
+    
+    useEffect(() => {
+        const video = videoRef.current;
+
+        const updateProgress = () => {
+            if (video && video.duration) {
+                const progressPercentage = (video.currentTime / video.duration) * 100;
+                setProgress(progressPercentage);
+
+                const formatTime = (timeInSeconds) => {
+                    const minutes = Math.floor(timeInSeconds / 60);
+                    const seconds = Math.floor(timeInSeconds % 60);
+                    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                };
+
+                setCurrentTime(formatTime(video.currentTime));
+                setDuration(formatTime(video.duration));
+            }
+        };
+
+        video.addEventListener('timeupdate', updateProgress);
+
+        return () => {
+            video.removeEventListener('timeupdate', updateProgress);
+        };
+    }, []);
 
     return (
         <>
@@ -129,17 +158,22 @@ function VideoPlayer() {
                 <MdOutlineEmojiFlags className='text-white absolute top-[30px] right-[20px] text-4xl  z-20' />
 
             </div >
-            <div className='absolute inset-0 z-20 text-white h-[50px] w-full  ' >
+            <div className='absolute inset-0 z-20 text-white h-[50px] w-full ' >
 
                 <div className={`fixed w-full bottom-0 z-30 h-[110px] px-[18px] flex flex-col justify-between `}>
-                    <div className='relative flex items-center '>
-                        <div className='absolute w-[94%] left-0 h-[5px] bg-[gray] flex items-center '>
-                            <div className={`h-full absolute bg-[red] flex items-center justify-end `}>
-                                <div className=' h-[12px] w-[12px] bg-[red] rounded-full  '></div>
+                    <div className="relative flex items-center">
+
+                        <div className="absolute w-[90%] left-0 h-[5px] bg-[gray] flex items-center">
+                            <div
+                                className="h-full relative bg-[red] flex items-center"
+                                style={{ width: `${progress}%` }}
+                            >
+                                <div className="h-[12px] absolute right-0 w-[12px] bg-[red] rounded-full"></div>
                             </div>
                         </div>
-                        <div className='absolute right-0 ml-[12px] w-[5%] text-end'>
-                            33:88
+
+                        <div className="absolute right-0 ml-[10px] w-[100px] text-end">
+                            {currentTime} / {duration}
                         </div>
                     </div>
 
