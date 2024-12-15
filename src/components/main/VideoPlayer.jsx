@@ -1,8 +1,9 @@
-import { MdOutlineArrowBack, MdOutlineEmojiFlags, MdOutlinePause } from 'react-icons/md'
+import { MdOutlineArrowBack, MdOutlineEmojiFlags } from 'react-icons/md'
 import BreakingBvideo from '../../assets/imgs/BreakingBvideo.mp4'
+import BreakingBimg from '../../assets/imgs/Breakingb.webp'
+import Spinner from '../../assets/imgs/loadSpinner.png'
 import { useNavigate } from 'react-router-dom'
-import { useRef, useState } from 'react'
-import { IoVolumeHighOutline, IoVolumeMuteOutline } from 'react-icons/io5'
+import { useEffect, useRef, useState } from 'react'
 function VideoPlayer() {
     const navigate = useNavigate()
     function goBack() {
@@ -73,10 +74,48 @@ function VideoPlayer() {
             setIsFullscreen(false);
         }
     };
+    const [isLoading, setIsLoading] = useState(true);
+    const [isImageVisible, setIsImageVisible] = useState(false);
+
+    useEffect(() => {
+        const loadingTimeout = setTimeout(() => {
+            setIsLoading(false);
+            setIsImageVisible(true);
+        }, 2000);
+
+        const imageTimeout = setTimeout(() => {
+            setIsImageVisible(false);
+        }, 4000);
+
+        return () => {
+            clearTimeout(loadingTimeout);
+            clearTimeout(imageTimeout);
+        };
+    }, []);
+
     return (
         <>
             <div className='h-screen bg-black'>
-                <MdOutlineArrowBack onClick={goBack} className='text-white absolute top-[30px] left-[20px] text-4xl  z-20' />
+                {isLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black z-[999]">
+                        <img src={Spinner} alt="" className='spinner w-[50px] sm:w-auto' />
+                    </div>
+                )}
+                {isImageVisible && (
+
+                    <div className="text-white inset-0  z-[999] flex items-center justify-center text-center fixed">
+                        <img src={BreakingBimg} alt="Video thumbnail" className="relative object-cover w-full h-full" />
+                        <div className='bg-black h-full w-full absolute top-0 left-0 opacity-65'></div>
+                        <div className=" absolute top-[40%] left-[10px] sm:left-[100px] z-50">
+                            <div className='flex flex-col justify-between items-start'>
+                                <h3 className='text-2xl md:text-5xl text-start text-[#efefefda] pb-6'>Breaking Bad | season 1 episode 1</h3>
+                                <p className='md:w-[400px] px-2 text-lg text-start'>Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                )}
+                <MdOutlineArrowBack onClick={goBack} className='z-50 text-white absolute top-[30px] left-[20px] text-4xl  cursor-pointer' />
                 <div className=' z-[10]  '>
                     <video ref={videoRef}
                         autoPlay
@@ -89,7 +128,7 @@ function VideoPlayer() {
                 </div>
                 <MdOutlineEmojiFlags className='text-white absolute top-[30px] right-[20px] text-4xl  z-20' />
 
-            </div>
+            </div >
             <div className='absolute inset-0 z-20 text-white h-[50px] w-full  ' >
 
                 <div className={`fixed w-full bottom-0 z-30 h-[110px] px-[18px] flex flex-col justify-between `}>
