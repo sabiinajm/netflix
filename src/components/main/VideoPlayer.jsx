@@ -1,10 +1,8 @@
 import { MdOutlineArrowBack, MdOutlineEmojiFlags, MdOutlinePause } from 'react-icons/md'
 import BreakingBvideo from '../../assets/imgs/BreakingBvideo.mp4'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useRef, useState } from 'react'
-import { IoMdPlay } from 'react-icons/io'
-import { IoVolumeHighOutline, IoVolumeMediumOutline, IoVolumeMuteOutline } from 'react-icons/io5'
-import { HiVolumeOff } from 'react-icons/hi'
+import { IoVolumeHighOutline, IoVolumeMuteOutline } from 'react-icons/io5'
 function VideoPlayer() {
     const navigate = useNavigate()
     function goBack() {
@@ -56,7 +54,25 @@ function VideoPlayer() {
         }
         setShowSpeedMenu(false);
     };
-
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const toggleFullscreen = () => {
+        if (!isFullscreen) {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            }
+            setIsFullscreen(true);
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+            setIsFullscreen(false);
+        }
+    };
     return (
         <>
             <div className='h-screen bg-black'>
@@ -121,20 +137,36 @@ function VideoPlayer() {
                             </button>
                             <button onClick={toggleMute} className=" md:text-5xl hover:scale-[1.15] text-white">
                                 {isMuted ? (
-                                    <IoVolumeMuteOutline />
+                                    <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 9v6h4l5 5V4l-5 5H7z"></path>
+                                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                                    </svg>
+
+
                                 ) : (
-                                    <IoVolumeHighOutline />
+                                    <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]'
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="48"
+                                        height="48"
+                                        fill="currentColor"
+                                    >
+                                        <path d="M3 9v6h4l5 5V4L7 9H3z" />
+                                        <path d="M14.5 8.5a4.5 4.5 0 010 6.36l1.42 1.42a6.5 6.5 0 000-9.2l-1.42 1.42zM17.5 5.5a7.5 7.5 0 010 10.6l1.42 1.42a9.5 9.5 0 000-13.44L17.5 5.5z" />
+                                    </svg>
+
+
                                 )}
                             </button>
                         </div>
-                        <div className='hidden med:block'>
+                        <div className='hidden md:block'>
                             <h1><strong>Breaking Bad</strong> E1 <span className='ml-[4px]'>Episode 1</span></h1>
                         </div>
                         <div className='flex gap-[27px]'>
-                            <button>
+                            <button className='hidden md:block'>
                                 <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-name="NextEpisode" aria-labelledby=":rk4:" aria-hidden="true"><path fillRule="evenodd" clipRule="evenodd" d="M22 3H20V21H22V3ZM4.28615 3.61729C3.28674 3.00228 2 3.7213 2 4.89478V19.1052C2 20.2787 3.28674 20.9977 4.28615 20.3827L15.8321 13.2775C16.7839 12.6918 16.7839 11.3082 15.8321 10.7225L4.28615 3.61729ZM4 18.2104V5.78956L14.092 12L4 18.2104Z" fill="currentColor"></path></svg>
                             </button>
-                            <button className='mr-[27px]'>
+                            <button className='mr-[27px] hidden md:block'>
                                 <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-name="Episodes" aria-labelledby=":rk5:" aria-hidden="true"><path fillRule="evenodd" clipRule="evenodd" d="M8 5H22V13H24V5C24 3.89543 23.1046 3 22 3H8V5ZM18 9H4V7H18C19.1046 7 20 7.89543 20 9V17H18V9ZM0 13C0 11.8954 0.895431 11 2 11H14C15.1046 11 16 11.8954 16 13V19C16 20.1046 15.1046 21 14 21H2C0.895431 21 0 20.1046 0 19V13ZM14 19V13H2V19H14Z" fill="currentColor"></path></svg>
                             </button>
 
@@ -161,7 +193,7 @@ function VideoPlayer() {
                                 </button>
 
                                 {showSpeedMenu && (
-                                    <div className="absolute p-4 rounded bg-[#262626] w-[300px] md:w-[500px] h-[150px] bottom-[50px] right-[20px] z-10">
+                                    <div className="absolute p-4 rounded bg-[#262626] w-[300px] md:w-[500px] h-[150px] bottom-[50px] right-[-50px] md:right-[-80px] z-10">
                                         <h1 className="font-[500] text-[16px] tabl:text-[27px]">Playback Speed</h1>
                                         <div className="grid w-full h-[50px] place-items-center mt-3 tabl:px-[20px]">
                                             <div className="flex justify-between w-full h-[1px] bg-gray-200">
@@ -185,7 +217,7 @@ function VideoPlayer() {
                                                             />
                                                             <label
                                                                 htmlFor={`speed-${index}`}
-                                                                className="block cursor-pointer select-none rounded-full w-[20px] h-[20px] bg-[grey] mt-[-9px] peer-checked:bg-blue-500"
+                                                                className="block cursor-pointer select-none rounded-full w-[15px] h-[15px] bg-[grey] mt-[-6px] peer-checked:bg-white peer-checked:scale-150"
                                                             ></label>
                                                         </div>
                                                         <h3 className="mt-[10px] text-[18px]">{option.label}</h3>
@@ -196,7 +228,7 @@ function VideoPlayer() {
                                     </div>
                                 )}
                             </div>
-                            <button >
+                            <button onClick={toggleFullscreen}>
                                 <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-name="FullscreenEnter" aria-labelledby=":rk8:" aria-hidden="true" data-uia="control-fullscreen-enter"><path fillRule="evenodd" clipRule="evenodd" d="M0 5C0 3.89543 0.895431 3 2 3H9V5H2V9H0V5ZM22 5H15V3H22C23.1046 3 24 3.89543 24 5V9H22V5ZM2 15V19H9V21H2C0.895431 21 0 20.1046 0 19V15H2ZM22 19V15H24V19C24 20.1046 23.1046 21 22 21H15V19H22Z" fill="currentColor"></path></svg>
                             </button>
                         </div>
