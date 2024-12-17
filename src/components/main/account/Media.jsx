@@ -2,11 +2,11 @@ import { DATA, TOPMOVIES, TOPTV, TV } from "../../../context/DataContext"
 import { useContext, useState } from "react"
 import Carousel from "./Carousel"
 import MoreInfo from "./MoreInfo"
+import { useLocation } from "react-router-dom"
 
 function Media({ type }) {
     const { data } = useContext(DATA)
     const { tv } = useContext(TV)
-    // const { comingM } = useContext(COMINGM)
     const { topM } = useContext(TOPMOVIES)
     const { topTv } = useContext(TOPTV)
 
@@ -62,6 +62,43 @@ function Media({ type }) {
         }
     };
 
+    const carouselsData = [
+        {
+            title: type === "movies" ? "Action Movies" : type === "tvshows" ? "TV Dramas" : "New on Netflix",
+            items: type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : [],
+            genreId: type === "movies" || type === "tvshows" ? 18 : 35,
+            isSwipedRight: isSwipedRight,
+            handleMouseEnter: handleMouseEnter,
+            handleMouseLeave: handleMouseLeave,
+            hoveredCard: hoveredCard,
+            customClass: "",
+            swipeRight: swipeRight,
+        },
+        {
+            title: type === "movies" ? "Comedy Movies" : type === "tvshows" ? "Fantasy TV Shows" : "Worth the Wait",
+            items: type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : [],
+            genreId: type === "movies" ? 14 : type === "tvshows" ? 35 : 14,
+            isSwipedRight: isSwipedRight2,
+            handleMouseEnter: handleMouseEnter2,
+            handleMouseLeave: handleMouseLeave2,
+            hoveredCard: hoveredCard2,
+            customClass: "2",
+            swipeRight: swipeRight2,
+        },
+        {
+            title: type === "movies" ? "Thriller Movies" : type === "tvshows" ? "Adventure TV Shows" : "Coming Next Week",
+            items: type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : [],
+            genreId: type === "movies" ? 80 : type === "tvshows" ? 10765 : 16,
+            isSwipedRight: isSwipedRight3,
+            handleMouseEnter: handleMouseEnter3,
+            handleMouseLeave: handleMouseLeave3,
+            hoveredCard: hoveredCard3,
+            customClass: "3",
+            swipeRight: swipeRight3,
+        },
+    ];
+    const location = useLocation();
+    const isHome = location.pathname === '/browse';
     return (
         <main>
             {modal && selectedItem && (
@@ -72,49 +109,28 @@ function Media({ type }) {
                     overview={selectedItem.overview}
                 />
             )}
-            <div className='w-full bg-[#141414] xs:pt-12'>
-                <Carousel
-                    title={type === "movies" ? "Action Movies" : type === "tvshows" ? "TV Dramas" : "New on Netflix"}
-                    items={type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : []}
-                    genreId={type === "movies" || type === "tvshows" ? 18 : 35}
-                    type={type}
-                    isSwipedRight={isSwipedRight}
-                    handleMouseEnter={handleMouseEnter}
-                    handleMouseLeave={handleMouseLeave}
-                    handleSlideMoreInfo={handleSlideMoreInfo}
-                    hoveredCard={hoveredCard}
-                    customClass=""
-                    swipeRight={swipeRight}
-                />
-                <Carousel
-                    title={type === "movies" ? "Comedy Movies" : type === "tvshows" ? "Fantasy TV Shows" : "Worth the Wait"}
-                    items={type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : []}
-                    type={type}
-                    genreId={type === "movies" ? 14 : type === "tvshows" ? 35 : 14}
-                    isSwipedRight={isSwipedRight2}
-                    handleMouseEnter={handleMouseEnter2}
-                    handleMouseLeave={handleMouseLeave2}
-                    handleSlideMoreInfo={handleSlideMoreInfo}
-                    hoveredCard={hoveredCard2}
-                    customClass="2"
-                    swipeRight={swipeRight2}
-                />
-                <Carousel
-                    title={type === "movies" ? "Thriller Movies" : type === "tvshows" ? "Adventure TV Shows" : "Coming Next Week"}
-                    items={type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : []}
-                    genreId={type === "movies" ? 80 : type === "tvshows" ? 10765 : 16}
-                    type={type}
-                    isSwipedRight={isSwipedRight3}
-                    handleMouseEnter={handleMouseEnter3}
-                    handleMouseLeave={handleMouseLeave3}
-                    handleSlideMoreInfo={handleSlideMoreInfo}
-                    hoveredCard={hoveredCard3}
-                    customClass="3"
-                    swipeRight={swipeRight3}
-                />
-            </div>
+            <div className={`w-full ${isHome ? '' : 'bg-[#141414] xs:pt-12'}`} >
+            {
+                carouselsData.map((carousel, index) => (
+                    <Carousel
+                        key={index}
+                        title={carousel.title}
+                        items={carousel.items}
+                        genreId={carousel.genreId}
+                        type={type}
+                        isSwipedRight={carousel.isSwipedRight}
+                        handleMouseEnter={carousel.handleMouseEnter}
+                        handleMouseLeave={carousel.handleMouseLeave}
+                        handleSlideMoreInfo={handleSlideMoreInfo}
+                        hoveredCard={carousel.hoveredCard}
+                        customClass={carousel.customClass}
+                        swipeRight={carousel.swipeRight}
+                    />
+                ))
+            }
+        </div>
 
-        </main>
+        </main >
     )
 }
 export default Media

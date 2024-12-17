@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function AccLayout() {
     const location = useLocation();
-    const isTvShowsPage = location.pathname === "/browse";
+    const isHomePage = location.pathname === "/browse";
     const [showHeader, setShowHeader] = useState(true);
     const [showFooter, setShowFooter] = useState(true);
     useEffect(() => {
@@ -19,7 +19,7 @@ function AccLayout() {
     }, [location]);
     return (
         <>
-            <AccHeader showHeader={showHeader} bgColor={!isTvShowsPage ? "bg-[#141414]" : ""} />
+            <AccHeader showHeader={showHeader} bgColor={isHomePage ? "" : "bg-[#141414]"} />
             <Outlet />
             <AccFooter showFooter={showFooter} />
         </>

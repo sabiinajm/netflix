@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
 import { getData, getTv, topRatedMovies, topRatedTv } from '../services/api'
 
