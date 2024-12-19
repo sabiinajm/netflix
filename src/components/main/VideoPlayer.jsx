@@ -39,10 +39,12 @@ function VideoPlayer() {
     };
     const toggleMute = () => {
         if (videoRef.current) {
-            videoRef.current.muted = !videoRef.current.muted;
-            setIsMuted(videoRef.current.muted);
+            videoRef.current.muted = !isMuted;
+            setIsMuted(!isMuted);
         }
+        setOpenVolume(!openVolume)
     };
+
     const [showSpeedMenu, setShowSpeedMenu] = useState(false);
     const [playbackRate, setPlaybackRate] = useState(1);
     const toggleSpeedMenu = () => {
@@ -95,7 +97,7 @@ function VideoPlayer() {
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState('00:00');
     const [duration, setDuration] = useState('00:00');
-    
+
     useEffect(() => {
         const video = videoRef.current;
 
@@ -121,6 +123,53 @@ function VideoPlayer() {
             video.removeEventListener('timeupdate', updateProgress);
         };
     }, []);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (videoRef.current) {
+                videoRef.current.play();
+                setIsPlaying(isPlaying);
+            }
+        }, 4000);
+
+        return () => clearTimeout(timer);
+    }, []);
+    const [openVolume, setOpenVolume] = useState(false);
+
+    const [volume, setVolume] = useState(0.5);
+    const sliderRef = useRef(null);
+
+    const handleMouseDown = (e) => {
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        updateVolume(e);
+    };
+
+    const handleMouseMove = (e) => {
+        updateVolume(e);
+    };
+
+    const handleMouseUp = () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    const updateVolume = (e) => {
+        if (!sliderRef.current) return;
+
+        const boundingBox = sliderRef.current.getBoundingClientRect();
+        const clickY = e.clientY - boundingBox.top;
+        const height = boundingBox.height;
+
+        let newVolume = 1 - clickY / height;
+        newVolume = Math.max(0, Math.min(1, newVolume));
+
+        setVolume(newVolume);
+        if (videoRef.current) {
+            videoRef.current.volume = newVolume;
+            setIsMuted(newVolume === 0);
+        }
+    };
+
 
     return (
         <>
@@ -147,7 +196,8 @@ function VideoPlayer() {
                 <MdOutlineArrowBack onClick={goBack} className='z-50 text-white absolute top-[30px] left-[20px] text-4xl  cursor-pointer' />
                 <div className=' z-[10]  '>
                     <video ref={videoRef}
-                        autoPlay
+                        volume={volume}
+                        preload="auto"
                         className='w-full h-screen object-cover'
                         src={BreakingBvideo}
                     />
@@ -208,29 +258,49 @@ function VideoPlayer() {
                             <button onClick={skipForward} >
                                 <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-name="Forward10" aria-labelledby=":rk2:" aria-hidden="true"><path fillRule="evenodd" clipRule="evenodd" d="M6.4443 3.68532C8.36795 2.39998 10.6778 1.8214 12.9802 2.04817C14.8093 2.22833 16.5439 2.90793 18 4H16V6H20C20.5523 6 21 5.55229 21 5V1H19V2.2532C17.2948 1.02859 15.2881 0.2658 13.1762 0.057802C10.4133 -0.214319 7.64154 0.479975 5.33316 2.02238C3.02478 3.56479 1.32262 5.85989 0.516718 8.51661C-0.289188 11.1733 -0.148981 14.0273 0.913451 16.5922C1.97588 19.1572 3.8948 21.2744 6.34325 22.5831C8.79169 23.8918 11.6182 24.3111 14.3411 23.7694C17.064 23.2278 19.5149 21.7588 21.2761 19.6127C23.0374 17.4666 24 14.7763 24 12L22 12C22 14.3136 21.1978 16.5555 19.7301 18.3439C18.2624 20.1323 16.22 21.3565 13.9509 21.8079C11.6818 22.2592 9.32641 21.9098 7.28604 20.8192C5.24567 19.7286 3.64657 17.9643 2.76121 15.8269C1.87585 13.6894 1.75901 11.3111 2.4306 9.09718C3.10219 6.88324 4.52065 4.97067 6.4443 3.68532ZM22 4V7H19V9H23C23.5523 9 24 8.55229 24 8V4H22ZM12.6018 15.5758C13.0389 15.8586 13.5466 16 14.125 16C14.7034 16 15.2078 15.8586 15.6382 15.5758C16.0753 15.2865 16.4116 14.8815 16.6469 14.3609C16.8823 13.8338 17 13.2135 17 12.5C17 11.7929 16.8823 11.1759 16.6469 10.6488C16.4116 10.1217 16.0753 9.71671 15.6382 9.43389C15.2078 9.14463 14.7034 9 14.125 9C13.5466 9 13.0389 9.14463 12.6018 9.43389C12.1713 9.71671 11.8385 10.1217 11.6031 10.6488C11.3677 11.1759 11.25 11.7929 11.25 12.5C11.25 13.2135 11.3677 13.8338 11.6031 14.3609C11.8385 14.8815 12.1713 15.2865 12.6018 15.5758ZM15.043 14.0909C14.8211 14.4637 14.5151 14.6501 14.125 14.6501C13.7349 14.6501 13.429 14.4637 13.207 14.0909C12.9851 13.7117 12.8741 13.1814 12.8741 12.5C12.8741 11.8186 12.9851 11.2916 13.207 10.9187C13.429 10.5395 13.7349 10.3499 14.125 10.3499C14.5151 10.3499 14.8211 10.5395 15.043 10.9187C15.2649 11.2916 15.3759 11.8186 15.3759 12.5C15.3759 13.1814 15.2649 13.7117 15.043 14.0909ZM8.60395 10.7163V15.8554H10.1978V9.01929L7 9.81956V11.1405L8.60395 10.7163Z" fill="currentColor"></path></svg>
                             </button>
-                            <button onClick={toggleMute} className=" md:text-5xl hover:scale-[1.15] text-white">
-                                {isMuted ? (
-                                    <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M7 9v6h4l5 5V4l-5 5H7z"></path>
-                                        <line x1="1" y1="1" x2="23" y2="23"></line>
-                                    </svg>
-
-
-                                ) : (
-                                    <svg className='w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]'
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        width="48"
-                                        height="48"
-                                        fill="currentColor"
-                                    >
-                                        <path d="M3 9v6h4l5 5V4L7 9H3z" />
-                                        <path d="M14.5 8.5a4.5 4.5 0 010 6.36l1.42 1.42a6.5 6.5 0 000-9.2l-1.42 1.42zM17.5 5.5a7.5 7.5 0 010 10.6l1.42 1.42a9.5 9.5 0 000-13.44L17.5 5.5z" />
-                                    </svg>
-
-
+                            <div className='relative'>
+                                <button onMouseEnter={() => setOpenVolume(true)}
+                                    onMouseLeave={() => setOpenVolume(false)} onClick={toggleMute} className="md:text-5xl hover:scale-[1.15] text-white">
+                                    {isMuted ? (
+                                        <svg
+                                            className="w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <path d="M7 9v6h4l5 5V4l-5 5H7z"></path>
+                                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                                        </svg>
+                                    ) : (
+                                        <svg
+                                            className="w-[4vw] h-[4vw] max-w-[40px] max-h-[40px] hover:scale-[1.15]"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            width="48"
+                                            height="48"
+                                            fill="currentColor"
+                                        >
+                                            <path d="M3 9v6h4l5 5V4L7 9H3z" />
+                                            <path d="M14.5 8.5a4.5 4.5 0 010 6.36l1.42 1.42a6.5 6.5 0 000-9.2l-1.42 1.42zM17.5 5.5a7.5 7.5 0 010 10.6l1.42 1.42a9.5 9.5 0 000-13.44L17.5 5.5z" />
+                                        </svg>
+                                    )}
+                                </button>
+                                {openVolume && (
+                                    <div  onMouseEnter={() => setOpenVolume(true)}
+                                    onMouseLeave={() => setOpenVolume(false)} ref={sliderRef} onMouseDown={handleMouseDown} className='bg-[#262626] absolute bottom-[50px] right-[-10px] md:right-[10px] w-[25px] h-[120px]'>
+                                        <div className='bg-[#999] absolute bottom-[20px] right-[9px] md:right-[10px] w-[8px] h-[80px]'></div>
+                                        <div style={{ height: `${volume * 80}px`, backgroundColor: "#f00", transition: 'height 0.2s ease-in-out' }} className='bg-[#999] absolute bottom-[10px] right-[9px] md:right-[10px] w-[8px] h-[80px]'>
+                                            <div style={{ bottom: `${volume * 80}px`, right: '-4px', transition: 'bottom 0.2s ease-in-out' }} className='h-[15px] w-[15px] rounded-full absolute bottom-[-4px] right-[-4px] bg-[#f00]'></div>
+                                        </div>
+                                    </div>
                                 )}
-                            </button>
+                            </div>
                         </div>
                         <div className='hidden md:block'>
                             <h1><strong>Breaking Bad</strong> E1 <span className='ml-[4px]'>Episode 1</span></h1>

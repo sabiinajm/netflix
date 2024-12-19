@@ -33,7 +33,7 @@ function AccHeader({ bgColor, showHeader }) {
             {showHeader && (
                 <>
                     <div
-                        className={`hidden xs:flex h-[70px] fixed z-50 top-0 w-full ${bgColor} bg-gradient-to-b from-[#060606] to-transparent z-[999] transition-all duration-500 ${scroll > 5 ? 'bg-[#141414]' : ''
+                        className={`hidden xs:flex h-[70px] fixed z-[65] top-0 w-full ${bgColor} bg-gradient-to-b from-[#060606] to-transparent  transition-all duration-500 ${scroll > 5 ? 'bg-[#141414]' : ''
                             }`}
                     >     <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-between items-center'>
                             <div className='flex gap-3'>

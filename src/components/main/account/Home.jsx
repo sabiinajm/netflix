@@ -167,8 +167,8 @@ function Home() {
                       Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
-                      <button onClick={openVideo} className='w-[120px] cursor-pointer h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
-                      <button onClick={handleShowMoreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
+                      <button onClick={openVideo} className='z-[60] w-[120px] cursor-pointer h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
+                      <button onClick={handleShowMoreInfo} className="z-[60] w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
                         <IoIosInformationCircleOutline className='text-3xl' /> More Info
                       </button>
                     </div>
@@ -193,7 +193,7 @@ function Home() {
           </div>
           <div className='h-[730px] flex items-end relative'>
             <div className=' bg-gradient-to-b from-transparent absolute h-[150px] w-full bottom-[58px] to-[#141414]'></div>
-            <div className='w-full translate-y-[760px] z-20 bg-[#141414]'>
+            <div className='w-full relative top-[760px] bg-[#141414]'>
               <Media type={"data"} />
             </div>
           </div>

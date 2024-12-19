@@ -109,7 +109,7 @@ function Media({ type }) {
                     overview={selectedItem.overview}
                 />
             )}
-            <div className={`w-full ${isHome ? '' : 'bg-[#141414] xs:pt-12'}`} >
+            <div className={`w-full ${isHome ? 'translate-y-[-180px]' : 'bg-[#141414] xs:pt-12'}`} >
             {
                 carouselsData.map((carousel, index) => (
                     <Carousel
