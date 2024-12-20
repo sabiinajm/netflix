@@ -3,11 +3,42 @@ import { GoCheckCircleFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 function Planform() {
+    const planform = {
+        Basic: {
+            "id": 1,
+            "monthlyPrice": "EUR 7.99",
+            "videoAndSoundQuality": "Good",
+            "resolution": "720p (HD)",
+            "supportedDevices": ["TV", "computer", "mobile phone", "tablet"],
+            "DevicesYourHouseholdCanWatchAtTheSameTime": 1,
+            "downloadDevices": 1
+        },
+        Standard: {
+            "id": 2,
+            "monthlyPrice": "EUR 9.99",
+            "videoAndSoundQuality": "Great",
+            "resolution": "1080p (Full HD)",
+            "supportedDevices": ["TV", "computer", "mobile phone", "tablet"],
+            "DevicesYourHouseholdCanWatchAtTheSameTime": 2,
+            "downloadDevices": 2
+        },
+        Premium: {
+            "id": 3,
+            "monthlyPrice": "EUR 11.99",
+            "videoAndSoundQuality": "Best",
+            "resolution": "4K (Ultra HD) + HDR",
+            "spatialAudio": "Included",
+            "supportedDevices": ["TV", "computer", "mobile phone", "tablet"],
+            "DevicesYourHouseholdCanWatchAtTheSameTime": 4,
+            "downloadDevices": 6
+        }
+    }
     const [activeDiv, setActiveDiv] = useState(null);
 
-    const handleClick = (id) => {
-        setActiveDiv(activeDiv === id ? null : id);
+    const handleClick = (planId) => {
+        setActiveDiv(planId);
     };
+
     return (
         <main className="max-w-[600px] lg:max-w-[1200px] p-6 mx-auto">
             <div>
@@ -27,31 +58,16 @@ function Planform() {
                             <p className="lg:font-semibold">720p</p>
                             {activeDiv === 1 && <GoCheckCircleFill className="absolute text-xl bottom-3 right-3" />}
                         </div>
-                        <ul className="hidden lg:flex flex-col justify-center lg:gap-2 min-h-[500px] w-[90%] mx-auto">
-                            <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                <p className="text-[#787878] font-semibold text-sm">Monthly price</p>
-                                <h3 className="text-[#212121] text-lg font-semibold lg:w-auto text-right">EUR 7.99</h3>
-                            </li>
-                            <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                <p className="text-[#787878] font-semibold text-sm">Video and sound quality</p>
-                                <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">Good</h3>
-                            </li>
-                            <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                <p className="text-[#787878] font-semibold text-sm">Resolution</p>
-                                <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">720p (HD)</h3>
-                            </li>
-                            <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                <p className="text-[#787878] font-semibold text-sm">Supported devices</p>
-                                <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">TV, computer, mobile phone, tablet</h3>
-                            </li>
-                            <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                <p className="text-[#787878] font-semibold text-sm">Devices your household can watch at the same time</p>
-                                <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">1</h3>
-                            </li>
-                            <li className="flex flex-col justify-between items-center lg:items-start py-3">
-                                <p className="text-[#787878] font-semibold text-sm">Download devices</p>
-                                <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">1</h3>
-                            </li>
+                        <ul className="hidden lg:flex flex-col justify-center lg:gap-2 min-h-[480px] w-[90%] mx-auto">
+                            {Object.entries(planform.Basic).map(([key, value]) => (
+                                key !== "id" &&
+                                <li key={key} className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
+                                    <p className="text-[#787878] font-semibold text-sm">{key.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase()}</p>
+                                    <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">
+                                        {Array.isArray(value) ? value.join(", ") : value}
+                                    </h3>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div
@@ -66,31 +82,16 @@ function Planform() {
                             <h2 className="font-bold ">Standart</h2>
                             <p className="lg:font-semibold">1080p</p>
                             {activeDiv === 2 && <GoCheckCircleFill className="absolute text-xl bottom-3 right-3" />}
-                            <ul className="hidden lg:flex flex-col justify-center lg:gap-2 min-h-[560px] w-[90%] mx-auto">
-                                <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                    <p className="text-[#787878] font-semibold text-sm">Monthly price</p>
-                                    <h3 className="text-[#212121] text-lg font-semibold lg:w-auto text-right">EUR 7.99</h3>
-                                </li>
-                                <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                    <p className="text-[#787878] font-semibold text-sm">Video and sound quality</p>
-                                    <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">Good</h3>
-                                </li>
-                                <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                    <p className="text-[#787878] font-semibold text-sm">Resolution</p>
-                                    <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">720p (HD)</h3>
-                                </li>
-                                <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                    <p className="text-[#787878] font-semibold text-sm">Supported devices</p>
-                                    <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">TV, computer, mobile phone, tablet</h3>
-                                </li>
-                                <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                    <p className="text-[#787878] font-semibold text-sm">Devices your household can watch at the same time</p>
-                                    <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">1</h3>
-                                </li>
-                                <li className="flex flex-col justify-between items-center lg:items-start py-3">
-                                    <p className="text-[#787878] font-semibold text-sm">Download devices</p>
-                                    <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">1</h3>
-                                </li>
+                            <ul className="hidden lg:flex flex-col justify-center lg:gap-2 min-h-[540px] w-[90%] mx-auto">
+                                {Object.entries(planform.Standard).map(([key, value]) => (
+                                    key !== "id" &&
+                                    <li key={key} className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
+                                        <p className="text-[#787878] font-semibold text-sm">{key.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase()}</p>
+                                        <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">
+                                            {Array.isArray(value) ? value.join(", ") : value}
+                                        </h3>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -111,31 +112,16 @@ function Planform() {
                                     <h2 className="font-bold ">Premium</h2>
                                     <p className="lg:font-semibold">4K + HDR</p>
                                     {activeDiv === 3 && <GoCheckCircleFill className="absolute text-xl bottom-3 right-3" />}
-                                    <ul className="hidden lg:flex flex-col justify-center lg:gap-2 min-h-[560px] w-[90%] mx-auto">
-                                        <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                            <p className="text-[#787878] font-semibold text-sm">Monthly price</p>
-                                            <h3 className="text-[#212121] text-lg font-semibold lg:w-auto text-right">EUR 7.99</h3>
-                                        </li>
-                                        <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                            <p className="text-[#787878] font-semibold text-sm">Video and sound quality</p>
-                                            <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">Good</h3>
-                                        </li>
-                                        <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                            <p className="text-[#787878] font-semibold text-sm">Resolution</p>
-                                            <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">720p (HD)</h3>
-                                        </li>
-                                        <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                            <p className="text-[#787878] font-semibold text-sm">Supported devices</p>
-                                            <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">TV, computer, mobile phone, tablet</h3>
-                                        </li>
-                                        <li className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
-                                            <p className="text-[#787878] font-semibold text-sm">Devices your household can watch at the same time</p>
-                                            <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">1</h3>
-                                        </li>
-                                        <li className="flex flex-col justify-between items-center lg:items-start py-3">
-                                            <p className="text-[#787878] font-semibold text-sm">Download devices</p>
-                                            <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">1</h3>
-                                        </li>
+                                    <ul className="hidden lg:flex flex-col justify-center lg:gap-2 min-h-[540px] w-[90%] mx-auto">
+                                        {Object.entries(planform.Standard).map(([key, value]) => (
+                                            key !== "id" &&
+                                            <li key={key} className="flex flex-col justify-between items-center lg:items-start py-3 border-b-[1px]">
+                                                <p className="text-[#787878] font-semibold text-sm">{key.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase()}</p>
+                                                <h3 className="text-[#212121] text-sm font-semibold lg:w-auto text-right">
+                                                    {Array.isArray(value) ? value.join(", ") : value}
+                                                </h3>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -143,30 +129,21 @@ function Planform() {
                     </div>
                 </div>
                 <ul className="w-full py-6 xs:max-w-[500px] mx-auto lg:hidden">
-                    <li className="flex justify-between items-center py-3 border-b-[1px]">
-                        <p className="text-[#787878] font-semibold text-sm w-[40%]">Monthly price</p>
-                        <h3 className="text-[#212121] text-lg font-semibold w-[30%] text-right">EUR 7.99</h3>
-                    </li>
-                    <li className="flex justify-between items-center  py-3 border-b-[1px]">
-                        <p className="text-[#787878] font-semibold text-sm w-[40%]">Video and sound quality</p>
-                        <h3 className="text-[#212121] text-sm font-semibold w-[30%] text-right">Good</h3>
-                    </li>
-                    <li className="flex justify-between items-center  py-3 border-b-[1px]">
-                        <p className="text-[#787878] font-semibold text-sm w-[40%]">Resolution</p>
-                        <h3 className="text-[#212121] text-sm font-semibold w-[30%] text-right">720p (HD)</h3>
-                    </li>
-                    <li className="flex justify-between items-center  py-3 border-b-[1px]">
-                        <p className="text-[#787878] font-semibold text-sm w-[40%]">Supported devices</p>
-                        <h3 className="text-[#212121] text-sm font-semibold w-[30%] text-right">TV, computer, mobile phone, tablet</h3>
-                    </li>
-                    <li className="flex justify-between items-center  py-3 border-b-[1px]">
-                        <p className="text-[#787878] font-semibold text-sm w-[40%]">Devices your household can watch at the same time</p>
-                        <h3 className="text-[#212121] text-sm font-semibold w-[30%] text-right">1</h3>
-                    </li>
-                    <li className="flex justify-between items-center  py-3 border-b-[1px]">
-                        <p className="text-[#787878] font-semibold text-sm w-[40%]">Download devices</p>
-                        <h3 className="text-[#212121] text-sm font-semibold w-[30%] text-right">1</h3>
-                    </li>
+                    {activeDiv && Object.entries(planform).map(([key, plan]) => {
+                        if (plan.id === activeDiv) {
+                            return Object.entries(plan).map(([key, value]) => (
+                                <li key={key} className="flex justify-between items-center py-3 border-b-[1px]">
+                                    <p className="text-[#787878] font-semibold text-sm w-[40%]">
+                                        {key.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase()}
+                                    </p>
+                                    <h3 className="text-[#212121] text-lg font-semibold w-[30%] text-right">
+                                        {Array.isArray(value) ? value.join(", ") : value}
+                                    </h3>
+                                </li>
+                            ));
+                        }
+                        return null;
+                    })}
                 </ul>
                 <div className="text-xs w-full mx-auto text-[#787878] font-semibold pt-3 pb-6 lg:px-8">
                     <p className="pt-5">HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our <span className="text-blue-600 cursor-pointer">Terms of Use</span> for more details.</p>

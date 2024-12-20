@@ -154,8 +154,9 @@ function AccHeader({ bgColor, showHeader }) {
                             </div>
                             <div>
                                 <ul className='flex gap-2 text-white'>
-                                    <li className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Tv Shows</li>
-                                    <li className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Movies</li>
+                                    <Link to={'/tvShows'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Tv Shows</Link>
+                                    <Link to={'/movies'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Movies</Link>
+                                    {/* Categories onclick should open popup */}
                                     <li className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Categories</li>
                                 </ul>
                             </div>
@@ -163,10 +164,10 @@ function AccHeader({ bgColor, showHeader }) {
                     </nav>
                     <nav className='block xs:hidden fixed bottom-0 bg-[#141414] text-[#888] w-full z-50'>
                         <div className='w-[90%] mx-auto flex justify-between items-center h-[60px]'>
-                            <div className='flex flex-col items-center'>
+                            <Link to={'/browse'} className='flex flex-col items-center'>
                                 <HiMiniHome className='text-2xl' />
                                 <p className='text-[.6rem]'>Home</p>
-                            </div>
+                            </Link>
                             <div className='flex flex-col items-center'>
                                 <BiSolidVideos className='text-2xl' />
                                 <p className='text-[.6rem]'>News & Hot</p>

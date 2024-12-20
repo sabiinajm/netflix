@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom"
 import AccHeader from "../components/header/AccHeader"
-import AccFooter from "../components/footer/accFooter"
 import { useEffect, useState } from "react";
+import AccFooter from "../components/footer/AccFooter";
 
 function AccLayout() {
     const location = useLocation();
@@ -21,7 +21,7 @@ function AccLayout() {
         <>
             <AccHeader showHeader={showHeader} bgColor={isHomePage ? "" : "bg-[#141414]"} />
             <Outlet />
-            <AccFooter showFooter={showFooter} />
+            <AccFooter showFooter={showFooter} translateX={isHomePage ? "xs:translate-y-[600px]" : ""} />
         </>
     )
 }

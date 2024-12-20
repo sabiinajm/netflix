@@ -32,13 +32,13 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
                 {edit && (
                     <div className='fixed w-full h-full overflow-auto bg-[#141414] text-[#dedede]'>
                         <div className='w-full h-[60px] bg-gradient-to-b from-black to-transparent sticky top-0'></div>
-                        <div className='w-[80%] md:max-w-[600px] flex justify-center items-center mx-auto px-4'>
-                            <div>
-                                <h1 className='text-5xl pb-3'>Edit Profile</h1>
-                                <div className='flex gap-2  border-y-[1px] border-[#555] '>
+                        <div className=' md:max-w-[600px] flex justify-center items-center mx-auto px-4'>
+                            <div className='w-[80%] md:w-full'>
+                                <h1 className='text-2xl sm:text-5xl pb-3'>Edit Profile</h1>
+                                <div className='flex flex-wrap sm:flex-nowrap gap-2  border-y-[1px] border-[#555] '>
                                     <img className='h-[84px] sm:h-[120px] my-4 rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
-                                    <div className='p-4'>
-                                        <input type="text" placeholder='sabina' className='w-full h-[40px] bg-[#666] pl-3' />
+                                    <div className='sm:p-4'>
+                                        <input type="text" placeholder='sabina' className='w-[90%] sm:w-full h-[40px] bg-[#666] pl-3' />
                                         <div className='py-4'>
                                             <h3 className='text-xl pb-2'>Language:</h3>
                                             <select className='bg-black border-white border-[1px] p-1 pr-8 font-semibold'>
@@ -47,7 +47,7 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
                                         </div>
                                         <h3 className='text-xl pb-2'>Game Handle:</h3>
                                         <p className='text-sm font-semibold pb-4'>Your handle is a unique name that'll be used for playing with other Netflix members  across all Netflix Games. <span className='cursor-pointer'>Learn more</span></p>
-                                        <input type="text" placeholder='Create Game Handle' className='w-full h-[40px] bg-[#666] pl-3' />
+                                        <input type="text" placeholder='Create Game Handle' className='w-[90%] sm:w-full h-[40px] bg-[#666] pl-3' />
                                         <p className='text-end'>0/16</p>
                                         <div className='border-y-[1px] border-[#555] my-5 py-5'>
                                             <h3 className='text-xl pb-2'>Maturity Settings:</h3>
@@ -61,10 +61,10 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
                                         </div>
                                     </div>
                                 </div>
-                                <div className='flex justify-start gap-4 items-center py-6'>
-                                    <button className='bg-[#fff] text-[#000] font-semibold text-xl w-[100px] h-[40px] hover:bg-red-700 hover:text-[#fff]'>Save</button>
-                                    <button onClick={closeImageEdit} className='border-[1px] border-[#999]  text-xl text-[#999] w-[120px] h-[40px] hover:text-white hover:border-white'>Cancel</button>
-                                    <button className='border-[1px] border-[#999]  text-xl text-[#999] w-[180px] h-[40px] hover:text-white hover:border-white'>Delete Profile</button>
+                                <div className='flex flex-col sm:flex-row justify-center sm:justify-start gap-4 items-center py-6'>
+                                    <button className='bg-[#fff] text-[#000] font-semibold text-xl w-full sm:w-[100px] h-[40px] hover:bg-red-700 hover:text-[#fff]'>Save</button>
+                                    <button onClick={closeImageEdit} className='border-[1px] border-[#999]  text-xl text-[#999] w-full sm:w-[120px] h-[40px] hover:text-white hover:border-white'>Cancel</button>
+                                    <button className='border-[1px] border-[#999]  text-xl text-[#999] w-full sm:w-[180px] h-[40px] hover:text-white hover:border-white'>Delete Profile</button>
                                 </div>
                             </div>
                         </div>

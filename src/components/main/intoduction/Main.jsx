@@ -138,7 +138,7 @@ function Main() {
               </div>
             </SwiperSlide>
           </Swiper>
-          <div class="custom-pagination">
+          <div className="custom-pagination">
           </div>
         </div>
         <img src={bgImage} alt="bgBlur" className='blur-xl w-full absolute -top-4 opacity-25 transition-all duration-200 object-cover h-[1100px]' />

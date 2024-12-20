@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import MoreInfo from "./MoreInfo";
 import { DATA } from "../../../context/DataContext";
 import Genres from "./Genres";
+import { useNavigate } from "react-router-dom";
 
 function RandomImage({ header }) {
     const { data } = useContext(DATA)
@@ -21,6 +22,10 @@ function RandomImage({ header }) {
         }
     }, [data]);
 
+    const navigate = useNavigate()
+    function openVideo() {
+        navigate('/video');
+    }
     return (
         <>
             {randomImage ? (
@@ -47,7 +52,7 @@ function RandomImage({ header }) {
                                             {randomImage.overview}
                                         </p>
                                         <div className="flex flex-wrap gap-3 pt-2">
-                                            <button className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'>
+                                            <button onClick={openVideo} className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'>
                                                 <IoPlaySharp className='text-3xl' /> Play
                                             </button>
                                             <button onClick={handleShowMoreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
@@ -65,7 +70,7 @@ function RandomImage({ header }) {
                 </div>
             ) : !randomImage ?
                 <div className="h-[100px] bg-[#141414]">
-                    <Genres header={header} setRandomImage={setRandomImage}/>
+                    <Genres header={header} setRandomImage={setRandomImage} />
                 </div>
 
                 : (

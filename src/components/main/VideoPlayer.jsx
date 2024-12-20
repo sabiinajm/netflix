@@ -55,27 +55,15 @@ function VideoPlayer() {
         if (videoRef.current) {
             videoRef.current.playbackRate = rate;
         }
-        setShowSpeedMenu(false);
     };
-    const [isFullscreen, setIsFullscreen] = useState(false);
     const toggleFullscreen = () => {
-        if (!isFullscreen) {
-            const elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            }
-            setIsFullscreen(true);
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen?.();
         } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            }
-            setIsFullscreen(false);
+            document.exitFullscreen?.();
         }
     };
+
     const [isLoading, setIsLoading] = useState(true);
     const [isImageVisible, setIsImageVisible] = useState(false);
 
@@ -94,35 +82,72 @@ function VideoPlayer() {
             clearTimeout(imageTimeout);
         };
     }, []);
+
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState('00:00');
     const [duration, setDuration] = useState('00:00');
+    const progressBarRef = useRef(null);
+    const [isSeeking, setIsSeeking] = useState(false);
+    const formatTime = (timeInSeconds) => {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = Math.floor(timeInSeconds % 60);
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    };
 
     useEffect(() => {
         const video = videoRef.current;
 
         const updateProgress = () => {
-            if (video && video.duration) {
+            if (video && video.duration && !isSeeking) {
                 const progressPercentage = (video.currentTime / video.duration) * 100;
                 setProgress(progressPercentage);
-
-                const formatTime = (timeInSeconds) => {
-                    const minutes = Math.floor(timeInSeconds / 60);
-                    const seconds = Math.floor(timeInSeconds % 60);
-                    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                };
-
                 setCurrentTime(formatTime(video.currentTime));
                 setDuration(formatTime(video.duration));
             }
         };
 
         video.addEventListener('timeupdate', updateProgress);
+        video.addEventListener('loadedmetadata', updateProgress);
 
         return () => {
             video.removeEventListener('timeupdate', updateProgress);
+            video.removeEventListener('loadedmetadata', updateProgress);
         };
-    }, []);
+    }, [isSeeking]);
+
+    const handleProgressBarClick = (e) => {
+        const video = videoRef.current;
+        const progressBar = progressBarRef.current;
+        const clickPosition = e.nativeEvent.offsetX;
+        const progressBarWidth = progressBar.offsetWidth;
+        const newProgress = (clickPosition / progressBarWidth) * 113;
+
+        setProgress(newProgress);
+        video.currentTime = (newProgress / 100) * video.duration;
+    };
+
+    const handleMouseDownVideo = () => {
+        setIsSeeking(true);
+    };
+
+    const handleMouseMoveVideo = (e) => {
+        if (isSeeking) {
+            const video = videoRef.current;
+            const progressBar = progressBarRef.current;
+            const rect = progressBar.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const newProgress = Math.min(Math.max((offsetX / rect.width) * 113, 0), 113);
+
+            setProgress(newProgress);
+            video.currentTime = (newProgress / 113) * video.duration;
+        }
+    };
+
+    const handleMouseUpVideo = () => {
+        setIsSeeking(false);
+    };
+
+
     useEffect(() => {
         const timer = setTimeout(() => {
             if (videoRef.current) {
@@ -217,8 +242,8 @@ function VideoPlayer() {
 
                 )}
                 <MdOutlineArrowBack onClick={goBack} className='z-50 text-white absolute top-[30px] left-[20px] text-4xl  cursor-pointer' />
-                <div className=' z-[10]  ' 
-                        onClick={togglePlayPause}>
+                <div className=' z-[10]  '
+                    onClick={togglePlayPause}>
                     <video onMouseMove={resetControlsTimer} ref={videoRef}
                         volume={volume}
                         preload="auto"
@@ -236,14 +261,17 @@ function VideoPlayer() {
                 <div className='absolute inset-0 z-20 text-white h-[50px] w-full ' >
 
                     <div className={`fixed w-full bottom-0 z-30 h-[110px] px-[18px] flex flex-col justify-between `}>
-                        <div className="relative flex items-center">
+                        <div ref={progressBarRef}
+                            onClick={handleProgressBarClick}
+                            onMouseMove={handleMouseMoveVideo}
+                            onMouseLeave={handleMouseUpVideo} className="relative flex items-center">
 
                             <div className="absolute w-[90%] left-0 h-[5px] bg-[gray] flex items-center">
                                 <div
-                                    className="h-full relative bg-[red] flex items-center"
+                                    className="h-full relative bg-[red] transition-all duration-150 ease-out flex items-center"
                                     style={{ width: `${progress}%` }}
                                 >
-                                    <div className="h-[12px] absolute right-0 w-[12px] bg-[red] rounded-full"></div>
+                                    <div onMouseDown={handleMouseDownVideo} className="h-[12px] hover:scale-150 absolute transition-all duration-150 ease-out right-0 w-[12px] bg-[red] rounded-full"></div>
                                 </div>
                             </div>
 
@@ -375,7 +403,7 @@ function VideoPlayer() {
                                         </svg>
                                     </button>
 
-                                    {!showSpeedMenu && (
+                                    {showSpeedMenu && (
                                         <div onMouseEnter={() => {
                                             toggleSpeedMenu(true);
                                         }}

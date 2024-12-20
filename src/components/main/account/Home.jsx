@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import { GoChevronDown, GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
-import { BsPlusLg } from 'react-icons/bs'
-import { AiOutlineLike } from 'react-icons/ai'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -41,23 +38,7 @@ function Home() {
       };
     }
   }, []);
-  const [isSwipedRight2, setIsSwipedRight2] = useState(false);
-  const [isSwipedRight3, setIsSwipedRight3] = useState(false);
-  const [isSwipedRight4, setIsSwipedRight4] = useState(false);
-  const [isSwipedRight5, setIsSwipedRight5] = useState(false);
 
-  const swipeRight2 = () => {
-    setIsSwipedRight2(true);
-  }
-  const swipeRight3 = () => {
-    setIsSwipedRight3(true);
-  }
-  const swipeRight4 = () => {
-    setIsSwipedRight4(true);
-  }
-  const swipeRight5 = () => {
-    setIsSwipedRight5(true);
-  }
   const videoRef = useRef(null);
   const [showImageBefore, setShowImageBefore] = useState(true);
 
@@ -96,15 +77,6 @@ function Home() {
   const handleShowMoreInfo = () => {
     setShowMoreInfo(!showMoreInfo);
   }
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const handleMouseEnter = (id) => {
-    setHoveredCard(id);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredCard(null);
-  };
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [modal, setModal] = useState(false);
@@ -123,11 +95,18 @@ function Home() {
       setModal(!modal)
     }
   }
+
   const navigate = useNavigate()
   function openVideo() {
     navigate('/video');
   }
-
+  const [randomImage, setRandomImage] = useState(null);
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const randomIndex = Math.floor(Math.random() * data.length);
+      setRandomImage(data[randomIndex]);
+    }
+  }, [data]);
   return (
     <>
       <main>
@@ -200,7 +179,7 @@ function Home() {
           <div className='w-full translate-y-[740px] bg-[#141414] '>
             <Media type={"tvshows"} />
           </div>
-          <div className='w-full translate-y-[490px] bg-[#141414] '>
+          <div className='w-full translate-y-[700px] bg-[#141414] '>
             <Media type={"movies"} />
           </div>
         </div >
@@ -222,7 +201,7 @@ function Home() {
               background: `linear-gradient(to top, black, ${dominantColor})`,
             }}
           ></div>
-          <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+          <div className='w-[90%] mx-auto  text-white pt-4 px-2'>
             <p className='text-lg font-semibold'>New on Netflix</p>
             <Swiper
               cssMode={true}
@@ -230,7 +209,7 @@ function Home() {
             >
               {data && data.map((item) => {
                 return (
-                  <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
+                  <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
                     <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                       <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                     </div>
@@ -241,7 +220,7 @@ function Home() {
             </Swiper>
           </div>
           <div className='bg-black pb-12'>
-            <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+            <div className='w-[90%]  mx-auto text-white pt-4 px-2'>
               <p className='text-lg font-semibold'>Award-winning Period Pieces</p>
               <Swiper
                 cssMode={true}
@@ -249,7 +228,7 @@ function Home() {
               >
                 {tv && tv.map((item) => {
                   return (
-                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
@@ -269,7 +248,7 @@ function Home() {
               >
                 {topTv && topTv.map((item) => {
                   return (
-                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
@@ -289,7 +268,7 @@ function Home() {
               >
                 {topM && topM.map((item) => {
                   return (
-                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>

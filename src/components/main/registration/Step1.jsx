@@ -6,7 +6,6 @@ function Step1() {
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const [acceptOffers, setAcceptOffers] = useState(false);
 
     const handleInput = (e, type) => {
         const value = e.target.value;
@@ -25,6 +24,10 @@ function Step1() {
             setEmailError("Email is required.")
             return
         }
+        if (!password) {
+            setPasswordError("password is required.")
+            return
+        }
         if (!emailRegex.test(email)) {
             setEmailError("Invalid email format.")
             return;
@@ -32,11 +35,8 @@ function Step1() {
         setEmailError("")
     };
 
-    const handleCheckboxChange = (e) => {
-        setAcceptOffers(e.target.checked);
-    };
+    const isFormValid = email && password && !emailError && !passwordError;
 
-    const isFormValid = email && password && !emailError && !passwordError && acceptOffers;
     return (
         <main className="px-4 max-w-[1100px] mx-auto">
             <div className="max-w-[500px] mx-auto py-8">
@@ -87,8 +87,6 @@ function Step1() {
                     <label> <input
                         type="checkbox"
                         className="text-blue-500 cursor-pointer hover:underline"
-                        checked={acceptOffers}
-                        onChange={handleCheckboxChange}
                     /><span className="ml-2">Please do not email me Netflix offers.</span></label>
                     <button className="relative w-[90%] mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl rounded-sm">
                         {isFormValid ?

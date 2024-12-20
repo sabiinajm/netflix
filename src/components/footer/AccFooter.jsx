@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-function AccFooter({ showFooter }) {
+function AccFooter({ showFooter, translateX }) {
     const [btn, setBtn] = useState("Service Code")
     return (
         <>
         { showFooter && (
-            <footer className=' bg-[#141414] py-6 text-[#999] font-semibold min-h-[50vh] flex items-end'>
+            <footer className={`${translateX} bg-[#141414] py-6 text-[#999] font-semibold min-h-[50vh] flex items-end`}>
                 <div className='max-w-[1100px] w-[900px] px-4 mx-auto text-[.8rem]'>
                     <div className='flex gap-4 text-white text-start mb-2'>
                         <Link>
