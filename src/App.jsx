@@ -20,6 +20,7 @@ import Movies from "./components/main/account/Movies"
 import Latest from "./components/main/account/Latest"
 import MyList from "./components/main/account/MyLIst"
 import VideoPlayer from "./components/main/VideoPlayer"
+import Searched from "./components/main/account/Searched"
 
 function App() {
   const { pathname } = useLocation()
@@ -46,6 +47,7 @@ function App() {
       </Route>
       <Route path="/" element={<AccLayout />}>
         <Route path="/browse" element={<Home />} />
+        <Route path="/searched" element={<Searched />} />
         <Route path="/tvShows" element={<TvShows />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/latest" element={<Latest />} />

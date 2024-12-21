@@ -4,28 +4,36 @@ import { Link } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [error, setError] = useState('');
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+  const handleInput = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!email && !password) {
-      setErrorMessage('Both fields are required.');
+      setError('Both fields are required.');
       return;
     }
 
     if (!emailRegex.test(email)) {
-      setErrorMessage('Please enter a valid email address.');
+      setError('Please enter a valid email address.');
       return;
     }
 
     if (password.length < 6) {
-      setErrorMessage('Password must be at least 6 characters.');
+      setError('Password must be at least 6 characters.');
       return;
     }
-    setErrorMessage('');
+    setError('');
   };
+  const isValid = !error && emailRegex.test(email) && password;
+
+  const [selectedItem, setSelectedItem] = useState(null);
 
   return (
     <main>
@@ -41,9 +49,9 @@ function Login() {
               <input
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleInput}
                 placeholder="Email address"
-                className={`peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
+                className={`${error && 'border-red-700'} peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
                 placeholder:text-transparent focus:pt-6 focus:pb-6 py-2 `}
               />
               <label
@@ -60,7 +68,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className={`peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
+                className={`${error && 'border-red-700'} peer focus:outline-2 outline-offset-2 h-[55px] pl-3 rounded-[.3rem] bg-[#191919b2] text-white border-[#dddddd4c] border-[1px] w-full 
                 placeholder:text-transparent focus:pt-6 focus:pb-6 py-2 `}
               />
               <label
@@ -71,10 +79,16 @@ function Login() {
                 Password
               </label>
             </div>
-            {errorMessage && <p className="text-red-600 text-sm mt-2">{errorMessage}</p>}
-            <Link to={'/account'} type="submit" className='bg-red-600 flex justify-center items-center h-[42px] font-semibold text-white rounded-md'>
-              Sign in
-            </Link>
+            {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+            {isValid ? (
+              <Link to={'/account'} type="submit" className='bg-red-600 flex justify-center items-center h-[42px] font-semibold text-white rounded-md'>
+                Sign in
+              </Link>
+            ) : (
+              <button className='bg-red-600 flex justify-center items-center h-[42px] font-semibold text-white rounded-md'>
+                Sign in
+              </button>
+            )}
           </form>
           <p className='text-white text-center'>OR</p>
           <button className='bg-[#a8a8a846] h-[42px] font-semibold text-white rounded-md'>

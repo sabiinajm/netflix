@@ -43,7 +43,7 @@ function Main() {
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
   const handleInput = (e) => {
     const value = e.target.value;

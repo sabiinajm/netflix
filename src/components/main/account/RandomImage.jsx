@@ -78,7 +78,7 @@ function RandomImage({ header }) {
                 )}
 
             {/* Mobile Version */}
-            <div div className="block xs:hidden w-[90%] mx-auto" >
+            <div div className="block xs:hidden w-[90%] mx-auto " >
                 <div className="w-full pt-4">
                     <div className="absolute -z-10 inset-0 pointer-events-none bg-[#141414]"></div>
                     {randomImage ? (

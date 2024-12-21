@@ -184,7 +184,7 @@ function Home() {
           </div>
         </div >
         {/* Mobile */}
-        <div div className='block xs:hidden w-[90%] mx-auto' >
+        <div div className='block xs:hidden w-[90%] mx-auto ' >
           <div className='w-full pt-4'>
             <div
               className="absolute -z-10 inset-0 pointer-events-none"

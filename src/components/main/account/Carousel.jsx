@@ -50,26 +50,26 @@ function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRi
                     </div>
                 </div>
             </div>
-                <div className='xs:hidden w-[90%] mx-auto text-white pt-4 px-2'>
-                    <p className='text-lg font-semibold'>{title}</p>
-                    <Swiper
-                        cssMode={true}
-                        modules={[Navigation, Keyboard]}
-                    >
-                        {items
-                            .filter((item) => item.genre_ids.includes(genreId))
-                            .map((item) => {
-                                return (
-                                    <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
-                                        <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
-                                            <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
-                                        </div>
-                                    </SwiperSlide>
-                                )
-                            })
-                        }
-                    </Swiper>
-                </div>
+            <div className='xs:hidden w-[90%] mx-auto text-white pt-4 px-2'>
+                <p className='text-lg font-semibold'>{title}</p>
+                <Swiper
+                    cssMode={true}
+                    modules={[Navigation, Keyboard]}
+                >
+                    {items
+                        .filter((item) => item.genre_ids.includes(genreId))
+                        .map((item) => {
+                            return (
+                                <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
+                                    <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                                        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+                </Swiper>
+            </div>
         </>
     )
 }

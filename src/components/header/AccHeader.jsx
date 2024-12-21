@@ -1,6 +1,6 @@
 import { BiArrowToBottom, BiSolidArrowToBottom, BiSolidVideos } from 'react-icons/bi'
 import logo from '../../assets/imgs/logo.png'
-import { FaRegBell } from 'react-icons/fa'
+import { FaCaretDown, FaRegBell } from 'react-icons/fa'
 import moneyH from '../../assets/imgs/moneyH.jpg'
 import avatar from '../../assets/imgs/avatar.jpg'
 import ringb from '../../assets/imgs/ringb.png'
@@ -8,7 +8,7 @@ import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
 import { IoPersonOutline, IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { GrEdit } from 'react-icons/gr'
@@ -27,6 +27,29 @@ function AccHeader({ bgColor, showHeader }) {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+    const [menu, setMenu] = useState(false)
+    function openList() {
+        setMenu(!menu)
+    }
+    const [search, setSearch] = useState(false)
+    function searchBar() {
+        setSearch(!search)
+    }
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const navigate = useNavigate();
+    function startSearch(e) {
+        const val = e.target.value;
+        setSearchTerm(val);
+        if (val) {
+            navigate('/searched', { state: { searchTerm: val } });
+        } else {
+            navigate('/browse');
+        }
+    }
+    function handleMobileSearch() {
+        navigate('/searched');
+    }
 
     return (
         <header>
@@ -40,9 +63,22 @@ function AccHeader({ bgColor, showHeader }) {
                                 <Link to={'/browse'} className='max-w-[130px]'>
                                     <img src={logo} alt="logo" />
                                 </Link>
-                                <ul className='flex justify-center items-center text-white lg:hidden'>
-                                    Browse
-                                </ul>
+                                <div onClick={openList} className='flex relative justify-center cursor-pointer gap-2 items-center text-white lg:hidden'>
+                                    Browse <FaCaretDown />
+                                    {menu &&
+                                        <ul className='absolute top-[60px] flex gap-5 flex-col items-center bg-[#000000cb] border-t-2 border-white w-[250px] py-[20px]'>
+                                            <Link to={'/browse'}>Home</Link>
+                                            <Link to={'/tvShows'}>Tv Shows
+                                            </Link>
+                                            <Link to={'/movies'}>Movies
+                                            </Link>
+                                            <Link to={'/latest'}>Latest
+                                            </Link>
+                                            <Link to={'/myList'}>My List
+                                            </Link>
+                                        </ul>
+                                    }
+                                </div>
                                 <ul className=' hidden lg:flex justify-center items-center text-white gap-4'>
                                     <Link to={'/browse'}>Home
                                     </Link>
@@ -54,12 +90,15 @@ function AccHeader({ bgColor, showHeader }) {
                                     </Link>
                                     <Link to={'/myList'}>My List
                                     </Link>
-                                    <Link>Browse By Language
-                                    </Link>
                                 </ul>
                             </div>
-                            <div className='flex items-center text-white text-2xl gap-4'>
-                                <IoSearchSharp />
+                            <div className='flex items-center text-white ml-2 text-2xl gap-4'>
+                                <div className={`${search ? 'w-[290px] bg-[#000000be] border pl-2 sm:static absolute top-[70px] right-[180px]' : ' justify-center w-[40px]'} h-[40px] sm:width sm:duration-300 ease-in-out flex items-center`}>
+                                    <IoSearchSharp onClick={searchBar} />
+                                    <input value={searchTerm} onChange={startSearch}
+                                        placeholder='Titles ...' type="text" className={`${search ? 'flex' : 'hidden'} outline-none bg-transparent text-sm pl-3`} />
+                                </div>
+
                                 <div className='relative p-2'
                                     onMouseLeave={() => setOnRingBell(false)}>
                                     <div
@@ -142,14 +181,14 @@ function AccHeader({ bgColor, showHeader }) {
                         </div>
                     </div>
                     {/* Mobile */}
-                    <nav className='h-full'>
+                    <nav className='h-full '>
                         <div className='block xs:hidden w-[90%] mx-auto sticky top-0'>
                             <div className='text-white py-3 text-xl flex justify-between items-center mx-auto'>
                                 <h1>For sabina</h1>
                                 <div className='flex gap-3'>
                                     <FaChromecast />
                                     <MdOutlineSaveAlt />
-                                    <IoSearch />
+                                    <IoSearch onClick={handleMobileSearch} />
                                 </div>
                             </div>
                             <div>

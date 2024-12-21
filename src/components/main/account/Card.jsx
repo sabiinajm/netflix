@@ -2,17 +2,19 @@ import { GoChevronDown } from "react-icons/go"
 import { AiOutlineLike } from "react-icons/ai"
 import { BsPlusLg } from "react-icons/bs"
 import { IoPlaySharp } from "react-icons/io5"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 function Card({type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
     const navigate = useNavigate()
     function openVideo() {
         navigate('/video');
       }
+      const location = useLocation();
+      const isSearched = location.pathname === "/searched";
     return (
-        <div onMouseEnter={() => handleMouseEnter(item.id)} onMouseLeave={handleMouseLeave} className="transition-all duration-500 h-full flex justify-center items-center">
+        <div onMouseEnter={() => handleMouseEnter(item.id)} onMouseLeave={handleMouseLeave} className="transition-all duration-500 h-full flex justify-center relative items-center">
             <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="movie" className="object-cover rounded-sm h-[130px] w-[234px]" />
             {hoveredCard === item.id && (
-                <div className="absolute top-[10px] rounded-md bg-[#141414] z-20 hover:scale-110 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]">
+                <div className={`absolute top-[10px] ${isSearched && 'top-[-10px]'} rounded-md bg-[#141414] z-20 hover:scale-110 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]`} >
                     <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="" className="rounded-t-md" />
                     <div className="flex justify-between pt-3 px-4">
                         <div className="flex gap-3 mb-4">

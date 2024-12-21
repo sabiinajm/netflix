@@ -2,12 +2,19 @@ import React, { useState } from 'react'
 import { BsCreditCard } from 'react-icons/bs'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Creditoption() {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
+    };
+    const handleClick = () => {
+        if (!isChecked) {
+            toast.error("Please check the checkbox to proceed.");
+        }
     };
     return (
         <main className="px-4 flex flex-col max-w-[1100px] mx-auto py-11">
@@ -54,11 +61,12 @@ function Creditoption() {
                         checked={isChecked}
                         onChange={handleCheckboxChange} />I agree.</label>
                 </div>
+                <ToastContainer />
                 {isChecked ?
                     <Link to={'/account'} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
                         Start Membership
                     </Link>
-                    : <span className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
+                    : <span onClick={handleClick} className=" w-full font-semibold mb-6 my-4 bg-red-600 hover:bg-red-500 h-[55px] text-white text-2xl flex justify-center items-center rounded-sm">
                         Start Membership
                     </span>
                 }
