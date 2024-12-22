@@ -4,8 +4,8 @@ import RandomImage from "./RandomImage"
 function TvShows() {
   return (
     <>
-      <RandomImage header="TV Shows"/>
-      <Media type="tvshows" />
+      <RandomImage type="tv shows" header="TV Shows"/>
+      <Media type="tv shows" />
     </>
   )
 }

@@ -64,9 +64,9 @@ function Media({ type }) {
 
     const carouselsData = [
         {
-            title: type === "movies" ? "Action Movies" : type === "tvshows" ? "TV Dramas" : "New on Netflix",
-            items: type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : [],
-            genreId: type === "movies" || type === "tvshows" ? 18 : 35,
+            title: type === "movies" ? "Action Movies" : type === "tv shows" ? "TV Dramas" : "New on Netflix",
+            items: type === "movies" ? topM : type === "tv shows" ? topTv : type === "data" ? data : [],
+            genreId: type === "movies" || type === "tv shows" ? 18 : 35,
             isSwipedRight: isSwipedRight,
             handleMouseEnter: handleMouseEnter,
             handleMouseLeave: handleMouseLeave,
@@ -75,9 +75,9 @@ function Media({ type }) {
             swipeRight: swipeRight,
         },
         {
-            title: type === "movies" ? "Comedy Movies" : type === "tvshows" ? "Fantasy TV Shows" : "Worth the Wait",
-            items: type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : [],
-            genreId: type === "movies" ? 14 : type === "tvshows" ? 35 : 14,
+            title: type === "movies" ? "Comedy Movies" : type === "tv shows" ? "Fantasy TV Shows" : "Worth the Wait",
+            items: type === "movies" ? topM : type === "tv shows" ? topTv : type === "data" ? data : [],
+            genreId: type === "movies" ? 14 : type === "tv shows" ? 35 : 14,
             isSwipedRight: isSwipedRight2,
             handleMouseEnter: handleMouseEnter2,
             handleMouseLeave: handleMouseLeave2,
@@ -86,9 +86,9 @@ function Media({ type }) {
             swipeRight: swipeRight2,
         },
         {
-            title: type === "movies" ? "Thriller Movies" : type === "tvshows" ? "Adventure TV Shows" : "Coming Next Week",
-            items: type === "movies" ? topM : type === "tvshows" ? topTv : type === "data" ? data : [],
-            genreId: type === "movies" ? 80 : type === "tvshows" ? 10765 : 16,
+            title: type === "movies" ? "Thriller Movies" : type === "tv shows" ? "Adventure TV Shows" : "Coming Next Week",
+            items: type === "movies" ? topM : type === "tv shows" ? topTv : type === "data" ? data : [],
+            genreId: type === "movies" ? 80 : type === "tv shows" ? 10765 : 16,
             isSwipedRight: isSwipedRight3,
             handleMouseEnter: handleMouseEnter3,
             handleMouseLeave: handleMouseLeave3,

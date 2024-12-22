@@ -3,29 +3,63 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 import Loading from "./Loading";
 import MoreInfo from "./MoreInfo";
-import { DATA } from "../../../context/DataContext";
+import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
 import Genres from "./Genres";
 import { useNavigate } from "react-router-dom";
 
-function RandomImage({ header }) {
-    const { data } = useContext(DATA)
+function RandomImage({ header, genreId, type }) {
+    const { data } = useContext(DATA);
+    const { topM } = useContext(TOPMOVIES);
+    const { topTv } = useContext(TOPTV);
+
+    let selectedData = [];
+    if (type === 'movies') {
+        selectedData = topM;
+    } else if (type === 'tv shows') {
+        selectedData = topTv;
+    } else {
+        selectedData = data;
+    }
+
     const [randomImage, setRandomImage] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [showMoreInfo, setShowMoreInfo] = useState(false);
+
     const handleShowMoreInfo = () => {
         setShowMoreInfo(!showMoreInfo);
     };
 
-    useEffect(() => {
-        if (data && data.length > 0) {
-            const randomIndex = Math.floor(Math.random() * data.length);
-            setRandomImage(data[randomIndex]);
-        }
-    }, [data]);
-
-    const navigate = useNavigate()
-    function openVideo() {
+    const navigate = useNavigate();
+    const openVideo = () => {
         navigate('/video');
+    };
+
+    useEffect(() => {
+        if (selectedData && selectedData.length > 0) {
+            setIsLoading(true);
+
+            const filteredData = genreId
+                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
+                : selectedData;
+
+            if (filteredData.length === 0) {
+                setRandomImage(null);
+                setIsLoading(false);
+                return;
+            }
+            const randomIndex = Math.floor(Math.random() * filteredData.length);
+            setTimeout(() => {
+                setRandomImage(filteredData[randomIndex]);
+                setIsLoading(false);
+            }, 1000);
+        }
+    }, [selectedData, genreId]);
+
+
+    if (isLoading) {
+        return <Loading />;
     }
+
     return (
         <>
             {randomImage ? (
@@ -46,16 +80,22 @@ function RandomImage({ header }) {
                                 <div className="transition-all duration-500 overflow-hidden">
                                     <div className="opacity-100 max-h-screen transition-opacity duration-500">
                                         <div className="h-[190px] items-start">
-                                            <Genres header={header} setRandomImage={setRandomImage} />
+                                            <Genres genreId={genreId} header={header} setRandomImage={setRandomImage} />
                                         </div>
                                         <p className='text-white text-sm my-4 font-semibold transition-all duration-500 ease-in-out opacity-100 max-h-[120px]'>
                                             {randomImage.overview}
                                         </p>
                                         <div className="flex flex-wrap gap-3 pt-2">
-                                            <button onClick={openVideo} className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'>
+                                            <button
+                                                onClick={openVideo}
+                                                className='w-[120px] h-[42px] rounded-md text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'
+                                            >
                                                 <IoPlaySharp className='text-3xl' /> Play
                                             </button>
-                                            <button onClick={handleShowMoreInfo} className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center">
+                                            <button
+                                                onClick={handleShowMoreInfo}
+                                                className="w-[150px] outline-none h-[45px] bg-[#888888a1] hover:bg-[#88888866] text-white font-semibold text-lg rounded-md flex justify-center gap-1 items-center"
+                                            >
                                                 <IoIosInformationCircleOutline className='text-3xl' /> More Info
                                             </button>
                                         </div>
@@ -63,22 +103,22 @@ function RandomImage({ header }) {
                                 </div>
                             </div>
                             {showMoreInfo && (
-                                <MoreInfo setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original${randomImage.backdrop_path}`} />
+                                <MoreInfo
+                                    setShowMoreInfo={setShowMoreInfo}
+                                    image={`https://image.tmdb.org/t/p/original${randomImage.backdrop_path}`}
+                                />
                             )}
                         </div>
                     </div >
                 </div>
-            ) : !randomImage ?
+            ) : (
                 <div className="h-[100px] bg-[#141414]">
                     <Genres header={header} setRandomImage={setRandomImage} />
                 </div>
-
-                : (
-                    <Loading />
-                )}
+            )}
 
             {/* Mobile Version */}
-            <div div className="block xs:hidden w-[90%] mx-auto " >
+            <div div className="block xs:hidden w-[90%] mx-auto" >
                 <div className="w-full pt-4">
                     <div className="absolute -z-10 inset-0 pointer-events-none bg-[#141414]"></div>
                     {randomImage ? (

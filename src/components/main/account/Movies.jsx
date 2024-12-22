@@ -4,7 +4,7 @@ import RandomImage from "./RandomImage"
 function Movies() {
   return (
     <>
-      <RandomImage header="Movies"/>
+      <RandomImage type="movies" header="Movies"/>
       <Media type="movies" />
     </>
   )

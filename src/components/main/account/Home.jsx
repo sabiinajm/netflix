@@ -154,7 +154,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} setModal={setModal} image={breakingB} />}
               {modal && selectedItem && <MoreInfo setModal={setModal} year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
                 overview={selectedItem.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
@@ -176,8 +175,8 @@ function Home() {
               <Media type={"data"} />
             </div>
           </div>
-          <div className='w-full translate-y-[740px] bg-[#141414] '>
-            <Media type={"tvshows"} />
+          <div className='w-full relative top-[760px] bg-[#141414] '>
+            <Media type={"tv shows"} />
           </div>
           <div className='w-full translate-y-[700px] bg-[#141414] '>
             <Media type={"movies"} />
