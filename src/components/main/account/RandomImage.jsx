@@ -7,20 +7,29 @@ import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
 import Genres from "./Genres";
 import { useNavigate } from "react-router-dom";
 
-function RandomImage({ header, genreId, type }) {
+function RandomImage({ header, genreId }) {
     const { data } = useContext(DATA);
     const { topM } = useContext(TOPMOVIES);
     const { topTv } = useContext(TOPTV);
 
     let selectedData = [];
-    if (type === 'movies') {
+    if (header === 'movies') {
         selectedData = topM;
-    } else if (type === 'tv shows') {
+    } else if (header === 'tv shows') {
         selectedData = topTv;
     } else {
         selectedData = data;
     }
+    useEffect(() => {
+        if (selectedData && selectedData.length > 0) {
+            const filteredData = genreId
+                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
+                : selectedData;
 
+            console.log('Filtered Data:', filteredData);
+        }
+    }, [selectedData, genreId]);
+   
     const [randomImage, setRandomImage] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [showMoreInfo, setShowMoreInfo] = useState(false);
@@ -80,7 +89,7 @@ function RandomImage({ header, genreId, type }) {
                                 <div className="transition-all duration-500 overflow-hidden">
                                     <div className="opacity-100 max-h-screen transition-opacity duration-500">
                                         <div className="h-[190px] items-start">
-                                            <Genres genreId={genreId} header={header} setRandomImage={setRandomImage} />
+                                            <Genres selectedData={selectedData} genreId={genreId} header={header} setRandomImage={setRandomImage} />
                                         </div>
                                         <p className='text-white text-sm my-4 font-semibold transition-all duration-500 ease-in-out opacity-100 max-h-[120px]'>
                                             {randomImage.overview}

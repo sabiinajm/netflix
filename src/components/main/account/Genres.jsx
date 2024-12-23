@@ -2,32 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { IoIosArrowRoundBack, IoMdArrowDropdown } from "react-icons/io";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { RxTextAlignLeft } from "react-icons/rx";
-import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
+import { DATA} from "../../../context/DataContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function Genres({ header, setRandomImage, genreId }) {
+function Genres({ header, setRandomImage, genreId, selectedData }) {
     const { data } = useContext(DATA);
-    const { topM } = useContext(TOPMOVIES);
-    const { topTv } = useContext(TOPTV);
-
-    let selectedData = [];
-    if (header === 'movies') {
-        selectedData = topM;
-    } else if (header === 'tv shows') {
-        selectedData = topTv;
-    } else {
-        selectedData = data;
-    }
-
-    useEffect(() => {
-        if (selectedData && selectedData.length > 0) {
-            const filteredData = genreId
-                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
-                : selectedData;
-
-            console.log('Filtered Data:', filteredData);
-        }
-    }, [selectedData, genreId]);
 
     const navigate = useNavigate();
     const { genreid } = useParams();
@@ -93,14 +72,13 @@ function Genres({ header, setRandomImage, genreId }) {
     }, []);
 
     const availableGenres = Object.entries(genreMap).filter(([genreId]) => {
-        return selectedData.some(item => item.genre_ids.includes(parseInt(genreId)));
+        return selectedData?.some(item => item.genre_ids.includes(parseInt(genreId)));
     });
-
     return (
         <div className={`w-full fixed left-0 top-[70px] p-6 z-50 transition-all duration-500 ${scroll > 5 ? 'bg-[#141414]' : ''}`}>
             <div className="max-w-[1450px] px-9 mx-auto flex items-center gap-6">
                 <div className="flex gap-4 items-end">
-                    <button onClick={() => navigate(-1)} style={{ textShadow: "3px 3px 6px rgba(0, 0, 0, 0.4)" }} className={`text-2xl font-bold text-[#ff00006c] items-center ${genreid ? 'flex' : 'hidden'}`}>
+                    <button onClick={() => navigate(-1)} style={{ textShadow: "3px 3px 6px rgba(0, 0, 0, 0.4)" }} className={`text-2xl font-bold text-[#ff00006c] items-center ${genreId ? 'flex' : 'hidden'}`}>
                         <IoIosArrowRoundBack />back
                     </button>
                     <p className="text-4xl font-bold text-white">{header}</p>
@@ -109,7 +87,7 @@ function Genres({ header, setRandomImage, genreId }) {
                     <div className="relative w-[80px] sm:w-[110px]">
                         <button
                             onClick={toggleDropdown}
-                            className={`w-full h-[28px] bg-black hover:bg-transparent ${isOpen ? 'bg-transparent' : ''} flex items-center justify-between text-white text-sm font-semibold border border-white outline-none px-2 pl-1 ${genreid ? 'hidden' : 'flex'}`}
+                            className={`w-full h-[28px] bg-black hover:bg-transparent ${isOpen ? 'bg-transparent' : ''} flex items-center justify-between text-white text-sm font-semibold border border-white outline-none px-2 pl-1 ${genreId ? 'hidden' : 'flex'}`}
                         >
                             {selectedGenre}
                             <IoMdArrowDropdown />

@@ -1,4 +1,4 @@
-import { BiArrowToBottom, BiSolidArrowToBottom, BiSolidVideos } from 'react-icons/bi'
+import { BiSolidVideos } from 'react-icons/bi'
 import logo from '../../assets/imgs/logo.png'
 import { FaCaretDown, FaRegBell } from 'react-icons/fa'
 import moneyH from '../../assets/imgs/moneyH.jpg'
@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { GrEdit } from 'react-icons/gr'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
+
 function AccHeader({ bgColor, showHeader }) {
     const [scroll, setScroll] = useState(0)
     const [onRingBell, setOnRingBell] = useState(false)
