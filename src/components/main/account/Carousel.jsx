@@ -2,9 +2,13 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import Card from "./Card"
 import { GoChevronLeft, GoChevronRight } from "react-icons/go"
 import { Keyboard, Navigation } from "swiper/modules"
+import { useNavigate } from "react-router-dom"
 
 function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRight, handleMouseEnter, handleMouseLeave, hoveredCard, customClass, swipeRight }) {
-
+    const navigate = useNavigate()
+    function openVideo() {
+        navigate('/video');
+    }
     return (
         <>
             <div className='hidden xs:block max-w-[1600px] mx-auto overflow-hidden '>
@@ -61,7 +65,7 @@ function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRi
                         .map((item) => {
                             return (
                                 <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
-                                    <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                                    <div onClick={openVideo} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                                     </div>
                                 </SwiperSlide>
