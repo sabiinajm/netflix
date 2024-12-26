@@ -21,7 +21,6 @@ import Media from './Media'
 function Home() {
   const { data } = useContext(DATA)
   const { tv } = useContext(TV)
-  // const { comingM } = useContext(COMINGM)
   const { topM } = useContext(TOPMOVIES)
   const { topTv } = useContext(TOPTV)
 
@@ -154,6 +153,7 @@ function Home() {
                   </div>
                 </div>
               </div>
+              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} setModal={setModal} image={breakingB} />}
               {modal && selectedItem && <MoreInfo setModal={setModal} year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
                 overview={selectedItem.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>

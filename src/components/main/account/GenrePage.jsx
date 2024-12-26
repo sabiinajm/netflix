@@ -6,8 +6,8 @@ function GenrePage() {
     const { header, genreId, genreName } = useParams();
     return (
         <div className="bg-[#141414]">
-            <RandomImage header={genreName} genreId={parseInt(genreId)} type={header} />
-            <FilteredCards header={genreName} genreId={parseInt(genreId)} />
+            <RandomImage header={header} genreId={parseInt(genreId)} type={header} genreName={genreName} />
+            <FilteredCards header={header} genreId={parseInt(genreId)} />
         </div>
     );
 }

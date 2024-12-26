@@ -50,7 +50,7 @@ function App() {
         <Route path="/browse" element={<Home />} />
         <Route path="/searched" element={<Searched />} />
         <Route path="/tvShows" element={<TvShows />} />
-        <Route path="/genre/:genreName/:genreId" element={<GenrePage />} />
+        <Route path="/:header/genre/:genreName/:genreId" element={<GenrePage />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/latest" element={<Latest />} />
         <Route path="/myList" element={<MyList />} />

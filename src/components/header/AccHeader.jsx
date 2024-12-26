@@ -8,13 +8,17 @@ import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
 import { IoPersonOutline, IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { GrEdit } from 'react-icons/gr'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
+import { PROFILES } from '../../context/ProfileContext'
+import Genres from '../main/account/Genres'
+import { DATA, TOPMOVIES, TOPTV } from '../../context/DataContext'
 
 function AccHeader({ bgColor, showHeader }) {
+    const { profiles } = useContext(PROFILES);
     const [scroll, setScroll] = useState(0)
     const [onRingBell, setOnRingBell] = useState(false)
     const [onProfile, setOnProfile] = useState(false)
@@ -51,6 +55,66 @@ function AccHeader({ bgColor, showHeader }) {
     function handleMobileSearch() {
         navigate('/searched');
     }
+    const [selectedImage, setSelectedImage] = useState('');
+
+    const handleProfileClick = (imageUrl) => {
+        setSelectedImage(imageUrl);
+    };
+    const [categMenu, setCategMenu] = useState(false);
+    function showCateg() {
+        setCategMenu(!categMenu)
+    }
+
+    const { header, genreId, genreName } = useParams();
+    const { data } = useContext(DATA);
+    const { topM } = useContext(TOPMOVIES);
+    const { topTv } = useContext(TOPTV);
+
+    let selectedData = [];
+    if (genreName === 'movies') {
+        selectedData = topM;
+    } else if (genreName === 'tv shows') {
+        selectedData = topTv;
+    } else {
+        selectedData = data;
+    }
+    useEffect(() => {
+        if (selectedData && selectedData.length > 0) {
+            const filteredData = genreId
+                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
+                : selectedData;
+
+            console.log('Filtered Data:', filteredData);
+        }
+    }, [selectedData, genreId]);
+
+    const [randomImage, setRandomImage] = useState(null);
+    const [showMoreInfo, setShowMoreInfo] = useState(false);
+
+    const handleShowMoreInfo = () => {
+        setShowMoreInfo(!showMoreInfo);
+    };
+    const openVideo = () => {
+        navigate('/video');
+    };
+
+    useEffect(() => {
+        if (selectedData && selectedData.length > 0) {
+
+            const filteredData = genreId
+                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
+                : selectedData;
+
+            if (filteredData.length === 0) {
+                setRandomImage(null);
+                return;
+            }
+            const randomIndex = Math.floor(Math.random() * filteredData.length);
+            setTimeout(() => {
+                setRandomImage(filteredData[randomIndex]);
+            }, 1000);
+        }
+    }, [selectedData, genreId]);
 
     return (
         <header>
@@ -143,26 +207,27 @@ function AccHeader({ bgColor, showHeader }) {
                                 </div>
                                 <div onMouseLeave={() => setOnProfile(false)} className='flex items-center'>
                                     <div className='relative flex items-center'>
-                                        <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
+                                        <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src={selectedImage || "https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff"}
+                                            alt="Selected Profile" />
                                         <IoMdArrowDropdown />
                                         {onProfile && (
                                             <div onMouseEnter={() => setOnProfile(true)} className='absolute top-[56px] right-0 mt-2 w-[230px] border-[1px] border-[#5f5f5f] text-white shadow-lg'>
-                                                <div className='p-2 group bg-black flex items-center gap-4'>
-                                                    <img className='h-[32px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="sabina" />
-                                                    <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Sabina</h4>
-                                                </div>
-                                                <div className='p-2 group bg-black flex items-center gap-4'>
-                                                    <img className='h-[32px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfjwXqIYd3kCEU6KWsiHSHvkft8VhZg0yyD50a_pHXku4dz9VgxWwfA2ontwogStpj1NE9NJMt7sCpSKFEY2zmgqqQfcw1FMWwB9.png?r=229" alt="ava1" />
-                                                    <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Good News</h4>
-                                                </div>
+                                                {profiles.map(profile => (
+                                                    <div key={profile.id} onClick={() => handleProfileClick(profile.avatar)} className="p-2 group bg-black flex items-center gap-4">
+                                                        <img
+                                                            className="h-[32px] rounded-md"
+                                                            src={profile.avatar}
+                                                            alt={profile.name}
+                                                        />
+                                                        <h4 className="text-[.8rem] group-hover:underline cursor-pointer">
+                                                            {profile.name}
+                                                        </h4>
+                                                    </div>
+                                                ))}
                                                 <Link to={'/ManageProfiles'} className='group p-2 bg-black flex items-center gap-4'>
                                                     <GrEdit className='pl-1' />
                                                     <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Manage Profiles</h4>
                                                 </Link>
-                                                {/* <div className='p-2 group bg-black flex items-center gap-4'>
-                                            <RiFolderTransferLine className='pl-1' />
-                                            <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Transfer Profile</h4>
-                                        </div> */}
                                                 <div className='p-2 group bg-black flex items-center gap-4'>
                                                     <IoPersonOutline className='pl-1' />
                                                     <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Account</h4>
@@ -197,12 +262,17 @@ function AccHeader({ bgColor, showHeader }) {
                                     <Link to={'/tvShows'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Tv Shows</Link>
                                     <Link to={'/movies'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Movies</Link>
                                     {/* Categories onclick should open popup */}
-                                    <li className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Categories</li>
+                                    <li onClick={showCateg} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Categories</li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                     <nav className='block xs:hidden fixed bottom-0 bg-[#141414] text-[#888] w-full z-50'>
+                        {categMenu && (
+                           <Genres selectedData={selectedData} genreId={genreId} header={header} setRandomImage={setRandomImage} />
+                        )
+
+                        }
                         <div className='w-[90%] mx-auto flex justify-between items-center h-[60px]'>
                             <Link to={'/browse'} className='flex flex-col items-center'>
                                 <HiMiniHome className='text-2xl' />

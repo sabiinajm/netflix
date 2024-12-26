@@ -3,15 +3,15 @@ import Card from "./Card";
 import MoreInfo from "./MoreInfo";
 import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
 
-function FilteredCards({ genreId , header}) {
+function FilteredCards({ genreId, header }) {
     const { data } = useContext(DATA);
     const { topM } = useContext(TOPMOVIES);
     const { topTv } = useContext(TOPTV);
 
     let selectedData = [];
-    if (header === 'movies') {
+    if (header === 'Movies') {
         selectedData = topM;
-    } else if (header === 'tv shows') {
+    } else if (header === 'TV Shows') {
         selectedData = topTv;
     } else {
         selectedData = data;
@@ -43,6 +43,27 @@ function FilteredCards({ genreId , header}) {
     const closeModal = () => {
         setModal(false);
         setSelectedItem(null);
+    };
+    const genreMap = {
+        28: "Action",
+        10759: "Adventure",
+        16: "Animation",
+        35: "Comedy",
+        80: "Crime",
+        10751: "Family",
+        99: "Documentary",
+        18: "Drama",
+        14: "Fantasy",
+        27: "Horror",
+        10402: "Musical",
+        9648: "Mystery",
+        10749: "Romance",
+        878: "Sci-Fi",
+        53: "Thriller",
+        37: "Western",
+    };
+    const filterDataByGenre = (data, genreId) => {
+        return genreId ? data.filter(item => item.genre_ids.includes(genreId)) : data;
     };
 
     return (

@@ -66,7 +66,7 @@ function Searched() {
             </div>
 
             {filteredResults.length > 0 ? (
-                <div className="grid grid-cols-1 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-[140px]">
+                <div className="grid grid-cols-1 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-[100px] xs:py-[150px]">
                     {filteredResults.map((item) => (
                         <div
                             onMouseEnter={() => handleMouseEnter(item.id)}
