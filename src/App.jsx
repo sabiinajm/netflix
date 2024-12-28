@@ -18,10 +18,10 @@ import Login from "./components/main/intoduction/Login"
 import TvShows from "./components/main/account/TvShows"
 import Movies from "./components/main/account/Movies"
 import Latest from "./components/main/account/Latest"
-import MyList from "./components/main/account/MyLIst"
 import VideoPlayer from "./components/main/VideoPlayer"
 import Searched from "./components/main/account/Searched"
 import GenrePage from "./components/main/account/GenrePage"
+import MyList from "./components/main/account/MyList"
 
 function App() {
   const { pathname } = useLocation()
@@ -49,9 +49,9 @@ function App() {
       <Route path="/" element={<AccLayout />}>
         <Route path="/browse" element={<Home />} />
         <Route path="/searched" element={<Searched />} />
-        <Route path="/tvShows" element={<TvShows />} />
+        <Route path="/TV Shows" element={<TvShows />} />
         <Route path="/:header/genre/:genreName/:genreId" element={<GenrePage />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/Movies" element={<Movies />} />
         <Route path="/latest" element={<Latest />} />
         <Route path="/myList" element={<MyList />} />
         <Route path="/video" element={<VideoPlayer />} />

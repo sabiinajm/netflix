@@ -7,14 +7,12 @@ function ProfileContext({ children }) {
         {
             id: 1,
             name: 'Sabina',
-            avatar: 'https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff',
-            language: 'English',
-            gameHandle: '',
+            avatar: 'https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff'
         },
     ]);
     const [editingProfileId, setEditingProfileId] = useState(null);
     const [addProfile, setAddProfile] = useState(false);
-    const [newProfile, setNewProfile] = useState({ name: '', language: 'English', gameHandle: '' });
+    const [newProfile, setNewProfile] = useState({ name: ''});
     const [edit, setEdit] = useState(false);
 
     const [originalProfile, setOriginalProfile] = useState(null);
@@ -63,7 +61,7 @@ function ProfileContext({ children }) {
                     avatar: 'https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfjwXqIYd3kCEU6KWsiHSHvkft8VhZg0yyD50a_pHXku4dz9VgxWwfA2ontwogStpj1NE9NJMt7sCpSKFEY2zmgqqQfcw1FMWwB9.png?r=229',
                 },
             ]);
-            setNewProfile({ name: '', language: 'English', gameHandle: '' });
+            setNewProfile({ name: ''});
             setAddProfile(false);
         }
     };

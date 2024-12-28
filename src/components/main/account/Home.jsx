@@ -77,23 +77,7 @@ function Home() {
     setShowMoreInfo(!showMoreInfo);
   }
 
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [modal, setModal] = useState(false);
-  function handleSlideMoreInfo(itemId, source) {
-    const sources = {
-      data,
-      tv,
-      topM,
-      topTv,
-    };
-
-    const selectedItem = sources[source]?.find((item) => item.id === itemId);
-
-    if (selectedItem) {
-      setSelectedItem(selectedItem);
-      setModal(!modal)
-    }
-  }
+  const [modal, setModal] = useState(false)
 
   const navigate = useNavigate()
   function openVideo() {
@@ -153,9 +137,9 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} setModal={setModal} image={breakingB} />}
-              {modal && selectedItem && <MoreInfo setModal={setModal} year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
-                overview={selectedItem.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
+              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} overview={`Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."`} setModal={setModal} image={breakingB} />}
+              {modal && <MoreInfo setModal={setModal} year={modal.release_date?.slice(0, 4) || modal.first_air_date?.slice(0, 4)}
+                overview={modal.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
               </div>
@@ -178,7 +162,7 @@ function Home() {
           <div className='w-full relative top-[760px] bg-[#141414] '>
             <Media type={"tv shows"} />
           </div>
-          <div className='w-full translate-y-[700px] bg-[#141414] '>
+          <div className='w-full relative top-[700px] bg-[#141414] '>
             <Media type={"movies"} />
           </div>
         </div >
@@ -200,7 +184,7 @@ function Home() {
               background: `linear-gradient(to top, black, ${dominantColor})`,
             }}
           ></div>
-          <div className='w-[90%] mx-auto  text-white pt-4 px-2'>
+          <div className='w-[90%] mx-auto  text-white pt-5 px-2'>
             <p className='text-lg font-semibold'>New on Netflix</p>
             <Swiper
               cssMode={true}
@@ -218,8 +202,8 @@ function Home() {
               }
             </Swiper>
           </div>
-          <div className='bg-black pb-12'>
-            <div className='w-[90%]  mx-auto text-white pt-4 px-2'>
+          <div className='bg-black py-4'>
+            <div className='w-[90%]  mx-auto text-white pt-5 px-2'>
               <p className='text-lg font-semibold'>Award-winning Period Pieces</p>
               <Swiper
                 cssMode={true}
@@ -237,9 +221,7 @@ function Home() {
                 }
               </Swiper>
             </div>
-          </div>
-          <div className='bg-black pb-12'>
-            <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+            <div className='w-[90%] mx-auto text-white pt-5 px-2'>
               <p className='text-lg font-semibold'>Top-rated Tv Shows</p>
               <Swiper
                 cssMode={true}
@@ -257,9 +239,7 @@ function Home() {
                 }
               </Swiper>
             </div>
-          </div>
-          <div className='bg-black pb-12'>
-            <div className='w-[90%] mx-auto text-white pt-4 px-2'>
+            <div className='w-[90%] mx-auto text-white pt-5 px-2'>
               <p className='text-lg font-semibold'>Top-rated Movies</p>
               <Swiper
                 cssMode={true}

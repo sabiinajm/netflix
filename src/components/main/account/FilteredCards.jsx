@@ -40,34 +40,8 @@ function FilteredCards({ genreId, header }) {
         }
     }
 
-    const closeModal = () => {
-        setModal(false);
-        setSelectedItem(null);
-    };
-    const genreMap = {
-        28: "Action",
-        10759: "Adventure",
-        16: "Animation",
-        35: "Comedy",
-        80: "Crime",
-        10751: "Family",
-        99: "Documentary",
-        18: "Drama",
-        14: "Fantasy",
-        27: "Horror",
-        10402: "Musical",
-        9648: "Mystery",
-        10749: "Romance",
-        878: "Sci-Fi",
-        53: "Thriller",
-        37: "Western",
-    };
-    const filterDataByGenre = (data, genreId) => {
-        return genreId ? data.filter(item => item.genre_ids.includes(genreId)) : data;
-    };
-
     return (
-        <div className="grid grid-cols-1 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-[140px]">
+        <div className="grid grid-cols-1 px-6 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-[140px]">
             {
                 selectedData
                     .filter(item => genreId ? item.genre_ids.includes(parseInt(genreId)) : true)

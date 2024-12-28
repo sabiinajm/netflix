@@ -30,7 +30,6 @@ function RandomImage({ header, genreId, genreName }) {
     const filterDataByGenre = (data, genreId) => {
         return genreId ? selectedData.filter(item => item.genre_ids.includes(genreId)) : data;
     };
-
     const setRandomImageFromData = (data, genreId) => {
         const filteredData = filterDataByGenre(data, genreId);
         if (filteredData.length === 0) {
@@ -104,6 +103,8 @@ function RandomImage({ header, genreId, genreName }) {
                             <MoreInfo
                                 setShowMoreInfo={setShowMoreInfo}
                                 image={`https://image.tmdb.org/t/p/original${randomImage.backdrop_path}`}
+                                overview={randomImage.overview}
+                                id={randomImage.id}
                             />
                         )}
                     </div>

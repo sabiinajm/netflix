@@ -6,7 +6,10 @@ import { AiOutlineLike } from "react-icons/ai"
 
 import { DATA } from '../../../context/DataContext'
 import { useContext } from "react"
-function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
+import { LIST } from "../../../context/MyListContext"
+import { IoMdCheckmark } from "react-icons/io"
+function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id }) {
+    const { myList, handleAddToList } = useContext(LIST);
     const { data } = useContext(DATA)
     const handleClose = () => {
         if (setShowMoreInfo) {
@@ -36,7 +39,16 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
                             src={image} alt="" />
                         <div className='absolute bottom-[20px] z-40 flex gap-3 justify-between pl-8'>
                             <button className='w-[120px] h-[42px] rounded-sm text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
-                            <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><BsPlusLg /></button>
+                            <button
+                                onClick={() => handleAddToList({ id, image, overview })}
+                                className="h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]"
+                            >
+                                {myList.some((item) => item.id === id) ? (
+                                    <IoMdCheckmark />
+                                ) : (
+                                    <BsPlusLg />
+                                )}
+                            </button>
                             <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'><AiOutlineLike /></button>
                         </div>
                         <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#141414]"></div>
@@ -85,8 +97,8 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
                                                 <p className='border-[1px] border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
                                                 <p className='text-[#999]'>{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                                             </div>
-                                            <button className='h-[40px] w-[40px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]'>
-                                                <BsPlusLg />
+                                            <button onClick={() => handleAddToList(item)} className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                                {myList.includes(item) ? <IoMdCheckmark /> : <BsPlusLg />}
                                             </button>
                                         </div>
                                         <p className='text-[#ddd] py-4 text-sm leading-6'>{truncateByWords(item.overview, 19)}</p>
@@ -98,7 +110,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview }) {
                 </div>
             </div>
         </div>
-        
+
     )
 }
 export default MoreInfo

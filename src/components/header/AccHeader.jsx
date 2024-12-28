@@ -61,60 +61,25 @@ function AccHeader({ bgColor, showHeader }) {
         setSelectedImage(imageUrl);
     };
     const [categMenu, setCategMenu] = useState(false);
-    function showCateg() {
+    function toggleCateg() {
         setCategMenu(!categMenu)
     }
 
-    const { header, genreId, genreName } = useParams();
+    const header = decodeURIComponent(window.location.pathname.split('/').filter(Boolean)[0]);
+
     const { data } = useContext(DATA);
     const { topM } = useContext(TOPMOVIES);
     const { topTv } = useContext(TOPTV);
-
+    console.log(header)
     let selectedData = [];
-    if (genreName === 'movies') {
+    if (header === 'Movies') {
         selectedData = topM;
-    } else if (genreName === 'tv shows') {
+    } else if (header === 'TV Shows') {
         selectedData = topTv;
     } else {
         selectedData = data;
     }
-    useEffect(() => {
-        if (selectedData && selectedData.length > 0) {
-            const filteredData = genreId
-                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
-                : selectedData;
 
-            console.log('Filtered Data:', filteredData);
-        }
-    }, [selectedData, genreId]);
-
-    const [randomImage, setRandomImage] = useState(null);
-    const [showMoreInfo, setShowMoreInfo] = useState(false);
-
-    const handleShowMoreInfo = () => {
-        setShowMoreInfo(!showMoreInfo);
-    };
-    const openVideo = () => {
-        navigate('/video');
-    };
-
-    useEffect(() => {
-        if (selectedData && selectedData.length > 0) {
-
-            const filteredData = genreId
-                ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
-                : selectedData;
-
-            if (filteredData.length === 0) {
-                setRandomImage(null);
-                return;
-            }
-            const randomIndex = Math.floor(Math.random() * filteredData.length);
-            setTimeout(() => {
-                setRandomImage(filteredData[randomIndex]);
-            }, 1000);
-        }
-    }, [selectedData, genreId]);
 
     return (
         <header>
@@ -133,7 +98,7 @@ function AccHeader({ bgColor, showHeader }) {
                                     {menu &&
                                         <ul className='absolute top-[60px] flex gap-5 flex-col items-center bg-[#000000cb] border-t-2 border-white w-[250px] py-[20px]'>
                                             <Link to={'/browse'}>Home</Link>
-                                            <Link to={'/tvShows'}>Tv Shows
+                                            <Link to={'/TV Shows'}>Tv Shows
                                             </Link>
                                             <Link to={'/movies'}>Movies
                                             </Link>
@@ -147,9 +112,9 @@ function AccHeader({ bgColor, showHeader }) {
                                 <ul className=' hidden lg:flex justify-center items-center text-white gap-4'>
                                     <Link to={'/browse'}>Home
                                     </Link>
-                                    <Link to={'/tvShows'}>Tv Shows
+                                    <Link to={'/TV Shows'}>Tv Shows
                                     </Link>
-                                    <Link to={'/movies'}>Movies
+                                    <Link to={'/Movies'}>Movies
                                     </Link>
                                     <Link to={'/latest'}>Latest
                                     </Link>
@@ -259,17 +224,16 @@ function AccHeader({ bgColor, showHeader }) {
                             </div>
                             <div>
                                 <ul className='flex gap-2 text-white'>
-                                    <Link to={'/tvShows'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Tv Shows</Link>
-                                    <Link to={'/movies'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Movies</Link>
-                                    {/* Categories onclick should open popup */}
-                                    <li onClick={showCateg} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Categories</li>
+                                    <Link to={'/TV Shows'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Tv Shows</Link>
+                                    <Link to={'/Movies'} className='w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Movies</Link>
+                                    <li onClick={toggleCateg} className='cursor-pointer w-[90px] h-[26px] hover:scale-95 transition-all duration-200 text-[#ddd] flex justify-center items-center text-sm border-[1px] rounded-full border-[#ffffff58]'>Categories</li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                     <nav className='block xs:hidden fixed bottom-0 bg-[#141414] text-[#888] w-full z-50'>
                         {categMenu && (
-                           <Genres selectedData={selectedData} genreId={genreId} header={header} setRandomImage={setRandomImage} />
+                            <Genres selectedData={selectedData} toggleCateg={toggleCateg} header={header} />
                         )
 
                         }

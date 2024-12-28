@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { IoIosArrowRoundBack, IoMdArrowDropdown } from "react-icons/io";
+import { IoIosArrowRoundBack, IoMdArrowDropdown, IoMdClose } from "react-icons/io";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { RxTextAlignLeft } from "react-icons/rx";
 import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
 import { Link, useNavigate } from "react-router-dom";
 
-function Genres({ header, setRandomImage, genreId, genreName }) {
+function Genres({ header, setRandomImage, genreId, genreName, toggleCateg }) {
     const { data } = useContext(DATA);
     const { topM } = useContext(TOPMOVIES);
     const { topTv } = useContext(TOPTV);
@@ -78,6 +78,7 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
     const handleSelect = (genreId) => {
         setSelectedGenre(genreMap[genreId]);
         setIsOpen(false);
+        toggleCateg(false)
     };
 
     const handleRandomClick = () => {
@@ -143,13 +144,14 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
 
             {/* Mobile View */}
             <div className="fixed top-0 left-0 h-screen w-full backdrop-blur-2xl xs:hidden">
-                <ul>
+                <IoMdClose onClick={toggleCateg} className="absolute right-4 top-4 text-2xl hover:text-white transition-none duration-150"/>
+                <ul className="flex flex-col justify-center w-full items-center h-full gap-5">
                     {availableGenres.map(([genreId, genreName]) => (
                         <Link
-                            to={`/genre/${genreName}/${genreId}`}
+                            to={`/${header}/genre/${genreName}/${genreId}`}
                             key={genreId}
                             onClick={() => handleSelect(genreId)}
-                            className="text-white cursor-pointer text-xs hover:underline p-1 rounded"
+                            className="text-white cursor-pointer text-md hover:underline rounded"
                         >
                             {genreName}
                         </Link>
