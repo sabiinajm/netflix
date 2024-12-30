@@ -107,28 +107,29 @@ function Media({ type }) {
                     image={`https://image.tmdb.org/t/p/original${selectedItem.backdrop_path}`}
                     year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
                     overview={selectedItem.overview}
+                    genres={selectedItem.genre_ids}
                 />
             )}
             <div className={`w-full py-3 ${isHome ? 'translate-y-[-180px]' : 'bg-[#141414] xs:pt-12'}`} >
-            {
-                carouselsData.map((carousel, index) => (
-                    <Carousel
-                        key={index}
-                        title={carousel.title}
-                        items={carousel.items}
-                        genreId={carousel.genreId}
-                        type={type}
-                        isSwipedRight={carousel.isSwipedRight}
-                        handleMouseEnter={carousel.handleMouseEnter}
-                        handleMouseLeave={carousel.handleMouseLeave}
-                        handleSlideMoreInfo={handleSlideMoreInfo}
-                        hoveredCard={carousel.hoveredCard}
-                        customClass={carousel.customClass}
-                        swipeRight={carousel.swipeRight}
-                    />
-                ))
-            }
-        </div>
+                {
+                    carouselsData.map((carousel, index) => (
+                        <Carousel
+                            key={index}
+                            title={carousel.title}
+                            items={carousel.items}
+                            genreId={carousel.genreId}
+                            type={type}
+                            isSwipedRight={carousel.isSwipedRight}
+                            handleMouseEnter={carousel.handleMouseEnter}
+                            handleMouseLeave={carousel.handleMouseLeave}
+                            handleSlideMoreInfo={handleSlideMoreInfo}
+                            hoveredCard={carousel.hoveredCard}
+                            customClass={carousel.customClass}
+                            swipeRight={carousel.swipeRight}
+                        />
+                    ))
+                }
+            </div>
 
         </main >
     )

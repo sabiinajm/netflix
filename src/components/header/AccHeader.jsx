@@ -69,8 +69,7 @@ function AccHeader({ bgColor, showHeader }) {
 
     const { data } = useContext(DATA);
     const { topM } = useContext(TOPMOVIES);
-    const { topTv } = useContext(TOPTV);
-    console.log(header)
+    const { topTv } = useContext(TOPTV)
     let selectedData = [];
     if (header === 'Movies') {
         selectedData = topM;

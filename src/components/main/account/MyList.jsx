@@ -45,7 +45,7 @@ function MyList() {
             setModal={setModal}
             image={selectedItem.image || `https://image.tmdb.org/t/p/original${selectedItem.backdrop_path}`}
             year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
-            overview={selectedItem.overview} />
+            overview={selectedItem.overview} genres={selectedItem.genre_ids} />
         )}
       </div>
     </main>

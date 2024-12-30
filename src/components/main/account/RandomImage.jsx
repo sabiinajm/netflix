@@ -105,6 +105,7 @@ function RandomImage({ header, genreId, genreName }) {
                                 image={`https://image.tmdb.org/t/p/original${randomImage.backdrop_path}`}
                                 overview={randomImage.overview}
                                 id={randomImage.id}
+                                genres={randomImage.genre_ids}
                             />
                         )}
                     </div>

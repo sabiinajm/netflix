@@ -1,9 +1,9 @@
 import { GoChevronDown } from "react-icons/go"
-import { AiOutlineLike } from "react-icons/ai"
+import { AiFillLike, AiOutlineLike } from "react-icons/ai"
 import { BsPlusLg } from "react-icons/bs"
 import { IoPlaySharp } from "react-icons/io5"
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 import { LIST } from "../../../context/MyListContext";
 function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
@@ -17,7 +17,7 @@ function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLe
         location.pathname === "/searched" ||
         matchPath("/:header/genre/:genreName/:genreId", location.pathname) ||
         location.pathname === "/myList";
-
+    const [like, setLike] = useState(false)
     return (
         <div
             onMouseEnter={() => handleMouseEnter(item.id)}
@@ -41,8 +41,9 @@ function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLe
                             <button onClick={() => handleAddToList(item)} className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                 {myList.includes(item) ? <IoMdCheckmark /> : <BsPlusLg />}
                             </button>
-                            <button className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
-                                <AiOutlineLike />
+                            <button onClick={() => setLike(!like)} className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                {like ? <AiFillLike /> : <AiOutlineLike />}
+
                             </button>
                         </div>
                         <button onClick={() => handleSlideMoreInfo(item.id, type === "tv shows" ? "topTv" : type === "movies" ? "topM" : type === "data" ? "data" : "")}
