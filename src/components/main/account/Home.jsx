@@ -10,7 +10,7 @@ import BreakingBvideo from '../../../assets/imgs/BreakingBvideo.mp4'
 import breakingBLogo from '../../../assets/imgs/breakingblogo.webp'
 import moneyH from '../../../assets/imgs/moneyH.jpg'
 
-import ColorThief from 'colorthief';
+import ColorThief from 'colorthief'
 
 
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../../context/DataContext'
@@ -24,72 +24,72 @@ function Home() {
   const { topM } = useContext(TOPMOVIES)
   const { topTv } = useContext(TOPTV)
 
-  const [dominantColor, setDominantColor] = useState('');
-  const imgRef = useRef();
+  const [dominantColor, setDominantColor] = useState('')
+  const imgRef = useRef()
 
   useEffect(() => {
     if (imgRef.current) {
-      const colorThief = new ColorThief();
+      const colorThief = new ColorThief()
 
       imgRef.current.onload = () => {
-        const color = colorThief.getColor(imgRef.current);
-        setDominantColor(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`);
-      };
+        const color = colorThief.getColor(imgRef.current)
+        setDominantColor(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`)
+      }
     }
-  }, []);
+  }, [])
 
-  const videoRef = useRef(null);
-  const [showImageBefore, setShowImageBefore] = useState(true);
+  const videoRef = useRef(null)
+  const [showImageBefore, setShowImageBefore] = useState(true)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowImageBefore(false);
-    }, 3000);
+      setShowImageBefore(false)
+    }, 3000)
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => clearTimeout(timer)
+  }, [])
 
   function handleVideoEnd() {
     setShowImageBefore(true)
   }
 
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
   const stopVideo = () => {
     if (videoRef.current) {
       if (isPlaying) {
-        videoRef.current.pause();
+        videoRef.current.pause()
       } else {
-        videoRef.current.play();
+        videoRef.current.play()
       }
       setIsPlaying(!isPlaying)
     }
-  };
+  }
   const toggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      videoRef.current.muted = !isMuted
+      setIsMuted(!isMuted)
     }
-  };
-  const [showMoreInfo, setShowMoreInfo] = useState(false);
+  }
+  const [showMoreInfo, setShowMoreInfo] = useState(false)
 
   const handleShowMoreInfo = () => {
-    setShowMoreInfo(!showMoreInfo);
+    setShowMoreInfo(!showMoreInfo)
   }
 
   const [modal, setModal] = useState(false)
 
   const navigate = useNavigate()
   function openVideo() {
-    navigate('/video');
+    navigate('/video')
   }
-  const [randomImage, setRandomImage] = useState(null);
+  const [randomImage, setRandomImage] = useState(null)
   useEffect(() => {
     if (data && data.length > 0) {
-      const randomIndex = Math.floor(Math.random() * data.length);
-      setRandomImage(data[randomIndex]);
+      const randomIndex = Math.floor(Math.random() * data.length)
+      setRandomImage(data[randomIndex])
     }
-  }, [data]);
+  }, [data])
   return (
     <>
       <main>

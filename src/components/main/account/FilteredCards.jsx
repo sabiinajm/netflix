@@ -1,42 +1,42 @@
-import { useContext, useEffect, useState } from "react";
-import Card from "./Card";
-import MoreInfo from "./MoreInfo";
-import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
+import { useContext, useEffect, useState } from "react"
+import Card from "./Card"
+import MoreInfo from "./MoreInfo"
+import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext"
 
 function FilteredCards({ genreId, header }) {
-    const { data } = useContext(DATA);
-    const { topM } = useContext(TOPMOVIES);
-    const { topTv } = useContext(TOPTV);
+    const { data } = useContext(DATA)
+    const { topM } = useContext(TOPMOVIES)
+    const { topTv } = useContext(TOPTV)
 
-    let selectedData = [];
+    let selectedData = []
     if (header === 'Movies') {
-        selectedData = topM;
+        selectedData = topM
     } else if (header === 'TV Shows') {
-        selectedData = topTv;
+        selectedData = topTv
     } else {
-        selectedData = data;
+        selectedData = data
     }
     useEffect(() => {
         if (selectedData && selectedData.length > 0) {
             const filteredData = genreId
                 ? selectedData.filter(item => item.genre_ids.includes(genreId)) // GenreId is parsed as number
-                : selectedData;
+                : selectedData
 
-            console.log('Filtered Data:', filteredData);
+            console.log('Filtered Data:', filteredData)
         }
-    }, [selectedData, genreId]);
-    const [hoveredCard, setHoveredCard] = useState(null);
-    const handleMouseEnter = (id) => setHoveredCard(id);
-    const handleMouseLeave = () => setHoveredCard(null);
+    }, [selectedData, genreId])
+    const [hoveredCard, setHoveredCard] = useState(null)
+    const handleMouseEnter = (id) => setHoveredCard(id)
+    const handleMouseLeave = () => setHoveredCard(null)
 
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [modal, setModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null)
+    const [modal, setModal] = useState(false)
 
     function handleSlideMoreInfo(itemId) {
-        const selectedItem = selectedData.find((item) => item.id === itemId);
+        const selectedItem = selectedData.find((item) => item.id === itemId)
         if (selectedItem) {
-            setSelectedItem(selectedItem);
-            setModal(!modal);
+            setSelectedItem(selectedItem)
+            setModal(!modal)
         }
     }
 

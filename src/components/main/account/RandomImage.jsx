@@ -8,59 +8,59 @@ import Genres from "./Genres";
 import { useNavigate } from "react-router-dom";
 
 function RandomImage({ header, genreId, genreName }) {
-    const { data } = useContext(DATA);
-    const { topM } = useContext(TOPMOVIES);
-    const { topTv } = useContext(TOPTV);
+    const { data } = useContext(DATA)
+    const { topM } = useContext(TOPMOVIES)
+    const { topTv } = useContext(TOPTV)
 
-    let selectedData = [];
+    let selectedData = []
     if (header === 'Movies') {
-        selectedData = topM;
+        selectedData = topM
     } else if (header === 'TV Shows') {
-        selectedData = topTv;
+        selectedData = topTv
     } else {
-        selectedData = data;
+        selectedData = data
     }
 
-    const [randomImage, setRandomImage] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [showMoreInfo, setShowMoreInfo] = useState(false);
+    const [randomImage, setRandomImage] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [showMoreInfo, setShowMoreInfo] = useState(false)
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const filterDataByGenre = (data, genreId) => {
-        return genreId ? selectedData.filter(item => item.genre_ids.includes(genreId)) : data;
-    };
+        return genreId ? selectedData.filter(item => item.genre_ids.includes(genreId)) : data
+    }
     const setRandomImageFromData = (data, genreId) => {
-        const filteredData = filterDataByGenre(data, genreId);
+        const filteredData = filterDataByGenre(data, genreId)
         if (filteredData.length === 0) {
-            setRandomImage(null);
-            setIsLoading(false);
-            return;
+            setRandomImage(null)
+            setIsLoading(false)
+            return
         }
 
-        const randomIndex = Math.floor(Math.random() * filteredData.length);
+        const randomIndex = Math.floor(Math.random() * filteredData.length)
         setTimeout(() => {
-            setRandomImage(filteredData[randomIndex]);
-            setIsLoading(false);
-        }, 1000);
-    };
+            setRandomImage(filteredData[randomIndex])
+            setIsLoading(false)
+        }, 1000)
+    }
 
     useEffect(() => {
         if (selectedData.length > 0) {
-            setIsLoading(true);
-            setRandomImageFromData(selectedData, genreId);
+            setIsLoading(true)
+            setRandomImageFromData(selectedData, genreId)
         }
-    }, [selectedData, genreId]);
+    }, [selectedData, genreId])
 
-    if (isLoading) return <Loading />;
+    if (isLoading) return <Loading />
 
     const openVideo = () => {
-        navigate('/video');
-    };
+        navigate('/video')
+    }
 
     const handleShowMoreInfo = () => {
-        setShowMoreInfo(prev => !prev);
-    };
+        setShowMoreInfo(prev => !prev)
+    }
 
     return (
         <>
@@ -127,7 +127,7 @@ function RandomImage({ header, genreId, genreName }) {
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default RandomImage;

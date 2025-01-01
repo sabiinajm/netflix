@@ -1,19 +1,23 @@
 import React from 'react'
-import { FaEdit } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { FaEdit } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
-function ProfileCards({ name, src, buttonLabel, onClick }) {
+function ProfileCards({ name, src, buttonLabel, onClick, profile }) {
+    const { id } = profile
     const navigate = useNavigate()
-    function startApp(){
+    function startApp() {
         navigate('/browse')
     }
     return (
-        <div  onClick={() => {
+        <div onClick={() => {
             if (buttonLabel === 'Done') {
-                onClick();
-            } else startApp();
+                onClick()
+            } else {
+                startApp()
+                onClick(id)
+            }
         }}
-        className="relative h-[84px] w-[84px] md:h-[130px] md:w-[130px] text-center hover:text-white md:text-xl">
+            className="relative h-[84px] w-[84px] md:h-[130px] md:w-[130px] text-center hover:text-white md:text-xl">
             <img
                 className="rounded-md hover:outline mb-2 w-full h-full object-cover"
                 src={src}
@@ -26,7 +30,7 @@ function ProfileCards({ name, src, buttonLabel, onClick }) {
             )}
             <p>{name}</p>
         </div>
-    );
+    )
 }
 
 export default ProfileCards

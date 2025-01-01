@@ -3,20 +3,20 @@ import show1 from '../../../assets/imgs/show1.webp'
 import show2 from '../../../assets/imgs/show2.jpg'
 import Mname from '../../../assets/imgs/movieName.png'
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import "swiper/css/effect-fade";
-import 'swiper/css/pagination';
-import { Navigation, Pagination, Autoplay, Keyboard, EffectFade } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import "swiper/css/effect-fade"
+import 'swiper/css/pagination'
+import { Navigation, Pagination, Autoplay, Keyboard, EffectFade } from 'swiper/modules'
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react'
 
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
-import { BsPlusLg } from 'react-icons/bs';
-import { RiCloseLargeFill } from 'react-icons/ri';
+import { BsPlusLg } from 'react-icons/bs'
+import { RiCloseLargeFill } from 'react-icons/ri'
 
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { DATA } from '../../../context/DataContext'
 
 function Main() {
@@ -33,22 +33,22 @@ function Main() {
   }, [openModel])
 
 
-  const [bgImage, setBgImage] = useState(homeBg);
+  const [bgImage, setBgImage] = useState(homeBg)
 
   function handleSlideChange(swiper) {
-    const currentSlide = swiper.slides[swiper.activeIndex];
-    const imgElement = currentSlide.querySelector("img");
-    setBgImage(imgElement.src);
-  };
+    const currentSlide = swiper.slides[swiper.activeIndex]
+    const imgElement = currentSlide.querySelector("img")
+    setBgImage(imgElement.src)
+  }
 
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const [email, setEmail] = useState("")
+  const [error, setError] = useState("")
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
 
   const handleInput = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-  };
+    const value = e.target.value
+    setEmail(value)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -58,14 +58,14 @@ function Main() {
     }
     if (!emailRegex.test(email)) {
       setError("Invalid email format.")
-      return;
+      return
     }
     setError("")
-  };
+  }
 
-  const isValid = !error && emailRegex.test(email);
+  const isValid = !error && emailRegex.test(email)
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null)
 
   return (
     <main className='bg-[#0f0f0f] '>

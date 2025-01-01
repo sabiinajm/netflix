@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRight, handleMouseEnter, handleMouseLeave, hoveredCard, customClass, swipeRight }) {
     const navigate = useNavigate()
     function openVideo() {
-        navigate('/video');
+        navigate('/video')
     }
     return (
         <>

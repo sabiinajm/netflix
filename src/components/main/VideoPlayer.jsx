@@ -9,213 +9,213 @@ function VideoPlayer() {
     function goBack() {
         navigate('/browse')
     }
-    const videoRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(true);
-    const [isMuted, setIsMuted] = useState(false);
+    const videoRef = useRef(null)
+    const [isPlaying, setIsPlaying] = useState(true)
+    const [isMuted, setIsMuted] = useState(false)
 
     const togglePlayPause = () => {
         if (videoRef.current) {
             if (isPlaying) {
-                videoRef.current.pause();
+                videoRef.current.pause()
             } else {
-                videoRef.current.play();
+                videoRef.current.play()
             }
-            setIsPlaying(!isPlaying);
+            setIsPlaying(!isPlaying)
         }
-    };
+    }
     const skipBackward = () => {
         if (videoRef.current) {
-            videoRef.current.currentTime = Math.max(videoRef.current.currentTime - 10, 0);
+            videoRef.current.currentTime = Math.max(videoRef.current.currentTime - 10, 0)
         }
-    };
+    }
 
     const skipForward = () => {
         if (videoRef.current) {
             videoRef.current.currentTime = Math.min(
                 videoRef.current.currentTime + 10,
                 videoRef.current.duration
-            );
+            )
         }
-    };
+    }
     const toggleMute = () => {
         if (videoRef.current) {
-            videoRef.current.muted = !isMuted;
-            setIsMuted(!isMuted);
+            videoRef.current.muted = !isMuted
+            setIsMuted(!isMuted)
         }
         setOpenVolume(!openVolume)
-    };
+    }
 
-    const [showSpeedMenu, setShowSpeedMenu] = useState(false);
-    const [playbackRate, setPlaybackRate] = useState(1);
+    const [showSpeedMenu, setShowSpeedMenu] = useState(false)
+    const [playbackRate, setPlaybackRate] = useState(1)
     const toggleSpeedMenu = () => {
-        setShowSpeedMenu((prev) => !prev);
-    };
+        setShowSpeedMenu((prev) => !prev)
+    }
     const changeSpeed = (rate) => {
-        setPlaybackRate(rate);
+        setPlaybackRate(rate)
         if (videoRef.current) {
-            videoRef.current.playbackRate = rate;
+            videoRef.current.playbackRate = rate
         }
-    };
+    }
     const toggleFullscreen = () => {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen?.();
+            document.documentElement.requestFullscreen?.()
         } else {
-            document.exitFullscreen?.();
+            document.exitFullscreen?.()
         }
-    };
+    }
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [isImageVisible, setIsImageVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(true)
+    const [isImageVisible, setIsImageVisible] = useState(false)
 
     useEffect(() => {
         const loadingTimeout = setTimeout(() => {
-            setIsLoading(false);
-            setIsImageVisible(true);
-        }, 2000);
+            setIsLoading(false)
+            setIsImageVisible(true)
+        }, 2000)
 
         const imageTimeout = setTimeout(() => {
-            setIsImageVisible(false);
-        }, 4000);
+            setIsImageVisible(false)
+        }, 4000)
 
         return () => {
-            clearTimeout(loadingTimeout);
-            clearTimeout(imageTimeout);
-        };
-    }, []);
+            clearTimeout(loadingTimeout)
+            clearTimeout(imageTimeout)
+        }
+    }, [])
 
-    const [progress, setProgress] = useState(0);
-    const [currentTime, setCurrentTime] = useState('00:00');
-    const [duration, setDuration] = useState('00:00');
-    const progressBarRef = useRef(null);
-    const [isSeeking, setIsSeeking] = useState(false);
+    const [progress, setProgress] = useState(0)
+    const [currentTime, setCurrentTime] = useState('00:00')
+    const [duration, setDuration] = useState('00:00')
+    const progressBarRef = useRef(null)
+    const [isSeeking, setIsSeeking] = useState(false)
     const formatTime = (timeInSeconds) => {
-        const minutes = Math.floor(timeInSeconds / 60);
-        const seconds = Math.floor(timeInSeconds % 60);
-        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    };
+        const minutes = Math.floor(timeInSeconds / 60)
+        const seconds = Math.floor(timeInSeconds % 60)
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+    }
 
     useEffect(() => {
-        const video = videoRef.current;
+        const video = videoRef.current
 
         const updateProgress = () => {
             if (video && video.duration && !isSeeking) {
-                const progressPercentage = (video.currentTime / video.duration) * 100;
-                setProgress(progressPercentage);
-                setCurrentTime(formatTime(video.currentTime));
-                setDuration(formatTime(video.duration));
+                const progressPercentage = (video.currentTime / video.duration) * 100
+                setProgress(progressPercentage)
+                setCurrentTime(formatTime(video.currentTime))
+                setDuration(formatTime(video.duration))
             }
-        };
+        }
 
-        video.addEventListener('timeupdate', updateProgress);
-        video.addEventListener('loadedmetadata', updateProgress);
+        video.addEventListener('timeupdate', updateProgress)
+        video.addEventListener('loadedmetadata', updateProgress)
 
         return () => {
-            video.removeEventListener('timeupdate', updateProgress);
-            video.removeEventListener('loadedmetadata', updateProgress);
-        };
-    }, [isSeeking]);
+            video.removeEventListener('timeupdate', updateProgress)
+            video.removeEventListener('loadedmetadata', updateProgress)
+        }
+    }, [isSeeking])
 
     const handleProgressBarClick = (e) => {
-        const video = videoRef.current;
-        const progressBar = progressBarRef.current;
-        const clickPosition = e.nativeEvent.offsetX;
-        const progressBarWidth = progressBar.offsetWidth;
-        const newProgress = (clickPosition / progressBarWidth) * 113;
+        const video = videoRef.current
+        const progressBar = progressBarRef.current
+        const clickPosition = e.nativeEvent.offsetX
+        const progressBarWidth = progressBar.offsetWidth
+        const newProgress = (clickPosition / progressBarWidth) * 113
 
-        setProgress(newProgress);
-        video.currentTime = (newProgress / 100) * video.duration;
-    };
+        setProgress(newProgress)
+        video.currentTime = (newProgress / 100) * video.duration
+    }
 
     const handleMouseDownVideo = () => {
-        setIsSeeking(true);
-    };
+        setIsSeeking(true)
+    }
 
     const handleMouseMoveVideo = (e) => {
         if (isSeeking) {
-            const video = videoRef.current;
-            const progressBar = progressBarRef.current;
-            const rect = progressBar.getBoundingClientRect();
-            const offsetX = e.clientX - rect.left;
-            const newProgress = Math.min(Math.max((offsetX / rect.width) * 113, 0), 113);
+            const video = videoRef.current
+            const progressBar = progressBarRef.current
+            const rect = progressBar.getBoundingClientRect()
+            const offsetX = e.clientX - rect.left
+            const newProgress = Math.min(Math.max((offsetX / rect.width) * 113, 0), 113)
 
-            setProgress(newProgress);
-            video.currentTime = (newProgress / 113) * video.duration;
+            setProgress(newProgress)
+            video.currentTime = (newProgress / 113) * video.duration
         }
-    };
+    }
 
     const handleMouseUpVideo = () => {
-        setIsSeeking(false);
-    };
+        setIsSeeking(false)
+    }
 
 
     useEffect(() => {
         const timer = setTimeout(() => {
             if (videoRef.current) {
-                videoRef.current.play();
-                setIsPlaying(isPlaying);
+                videoRef.current.play()
+                setIsPlaying(isPlaying)
             }
-        }, 4000);
+        }, 4000)
 
-        return () => clearTimeout(timer);
-    }, []);
-    const [openVolume, setOpenVolume] = useState(false);
+        return () => clearTimeout(timer)
+    }, [])
+    const [openVolume, setOpenVolume] = useState(false)
 
-    const [volume, setVolume] = useState(0.5);
-    const sliderRef = useRef(null);
+    const [volume, setVolume] = useState(0.5)
+    const sliderRef = useRef(null)
 
     const handleMouseDown = (e) => {
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-        updateVolume(e);
-    };
+        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mouseup', handleMouseUp)
+        updateVolume(e)
+    }
 
     const handleMouseMove = (e) => {
-        updateVolume(e);
-    };
+        updateVolume(e)
+    }
 
     const handleMouseUp = () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-    };
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+    }
 
     const updateVolume = (e) => {
-        if (!sliderRef.current) return;
+        if (!sliderRef.current) return
 
-        const boundingBox = sliderRef.current.getBoundingClientRect();
-        const clickY = e.clientY - boundingBox.top;
-        const height = boundingBox.height;
+        const boundingBox = sliderRef.current.getBoundingClientRect()
+        const clickY = e.clientY - boundingBox.top
+        const height = boundingBox.height
 
-        let newVolume = 1 - clickY / height;
-        newVolume = Math.max(0, Math.min(1, newVolume));
+        let newVolume = 1 - clickY / height
+        newVolume = Math.max(0, Math.min(1, newVolume))
 
-        setVolume(newVolume);
+        setVolume(newVolume)
         if (videoRef.current) {
-            videoRef.current.volume = newVolume;
-            setIsMuted(newVolume === 0);
+            videoRef.current.volume = newVolume
+            setIsMuted(newVolume === 0)
         }
-    };
-    const [showControls, setShowControls] = useState(true);
-    const timerRef = useRef(null);
+    }
+    const [showControls, setShowControls] = useState(true)
+    const timerRef = useRef(null)
 
     const resetControlsTimer = () => {
-        setShowControls(true);
+        setShowControls(true)
         if (timerRef.current) {
-            clearTimeout(timerRef.current);
+            clearTimeout(timerRef.current)
         }
         timerRef.current = setTimeout(() => {
-            setShowControls(false);
-        }, 3000);
-    };
+            setShowControls(false)
+        }, 3000)
+    }
     useEffect(() => {
-        document.addEventListener('mousemove', resetControlsTimer);
+        document.addEventListener('mousemove', resetControlsTimer)
 
         return () => {
-            document.removeEventListener('mousemove', resetControlsTimer);
+            document.removeEventListener('mousemove', resetControlsTimer)
             if (timerRef.current) {
-                clearTimeout(timerRef.current);
+                clearTimeout(timerRef.current)
             }
-        };
-    }, []);
+        }
+    }, [])
 
 
 
@@ -314,10 +314,10 @@ function VideoPlayer() {
                                 <div className='relative'>
                                     <button
                                         onMouseEnter={() => {
-                                            setOpenVolume(true);
+                                            setOpenVolume(true)
                                         }}
                                         onMouseLeave={() => {
-                                            setOpenVolume(false);
+                                            setOpenVolume(false)
                                         }}
                                         onClick={toggleMute}
                                         className="md:text-5xl hover:scale-[1.15] text-white"
@@ -381,10 +381,10 @@ function VideoPlayer() {
                                 <div className="relative">
                                     <button
                                         onMouseEnter={() => {
-                                            toggleSpeedMenu(true);
+                                            toggleSpeedMenu(true)
                                         }}
                                         onMouseLeave={() => {
-                                            toggleSpeedMenu(false);
+                                            toggleSpeedMenu(false)
                                         }}
                                         onClick={toggleSpeedMenu} className="cursor-pointer">
                                         <svg
@@ -405,10 +405,10 @@ function VideoPlayer() {
 
                                     {showSpeedMenu && (
                                         <div onMouseEnter={() => {
-                                            toggleSpeedMenu(true);
+                                            toggleSpeedMenu(true)
                                         }}
                                             onMouseLeave={() => {
-                                                toggleSpeedMenu(false);
+                                                toggleSpeedMenu(false)
                                             }}
                                             className="absolute p-4 rounded bg-[#262626] w-[300px] md:w-[500px] h-[150px] bottom-[48px] right-[-50px] md:right-[-80px] z-10">
                                             <h1 className="font-[500] text-[16px] tabl:text-[27px]">Playback Speed</h1>

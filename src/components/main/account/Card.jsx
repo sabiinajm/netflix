@@ -2,21 +2,21 @@ import { GoChevronDown } from "react-icons/go"
 import { AiFillLike, AiOutlineLike } from "react-icons/ai"
 import { BsPlusLg } from "react-icons/bs"
 import { IoPlaySharp } from "react-icons/io5"
-import { matchPath, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import { IoMdCheckmark } from "react-icons/io";
-import { LIST } from "../../../context/MyListContext";
+import { matchPath, useLocation, useNavigate } from "react-router-dom"
+import { useContext, useState } from "react"
+import { IoMdCheckmark } from "react-icons/io"
+import { LIST } from "../../../context/MyListContext"
 function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
-    const { myList, handleAddToList } = useContext(LIST);
+    const { myList, handleAddToList } = useContext(LIST)
     const navigate = useNavigate()
     function openVideo() {
-        navigate('/video');
+        navigate('/video')
     }
-    const location = useLocation();
+    const location = useLocation()
     const isSearched =
         location.pathname === "/searched" ||
         matchPath("/:header/genre/:genreName/:genreId", location.pathname) ||
-        location.pathname === "/myList";
+        location.pathname === "/myList"
     const [like, setLike] = useState(false)
     return (
         <div
@@ -59,6 +59,6 @@ function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLe
                 </div>
             )}
         </div>
-    );
+    )
 }
 export default Card

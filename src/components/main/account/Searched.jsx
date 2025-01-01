@@ -1,55 +1,55 @@
-import { useContext, useEffect, useState } from "react";
-import { DATA, TOPMOVIES, TOPTV, TV } from "../../../context/DataContext";
-import { useLocation } from "react-router-dom";
-import { IoSearchSharp } from "react-icons/io5";
-import Card from "./Card";
-import MoreInfo from "./MoreInfo";
+import { useContext, useEffect, useState } from "react"
+import { DATA, TOPMOVIES, TOPTV, TV } from "../../../context/DataContext"
+import { useLocation } from "react-router-dom"
+import { IoSearchSharp } from "react-icons/io5"
+import Card from "./Card"
+import MoreInfo from "./MoreInfo"
 
 function Searched() {
-    const { data } = useContext(DATA);
-    const { tv } = useContext(TV);
-    const { topM } = useContext(TOPMOVIES);
-    const { topTv } = useContext(TOPTV);
+    const { data } = useContext(DATA)
+    const { tv } = useContext(TV)
+    const { topM } = useContext(TOPMOVIES)
+    const { topTv } = useContext(TOPTV)
 
-    const combinedData = [...data, ...tv, ...topM, ...topTv];
-    const location = useLocation();
+    const combinedData = [...data, ...tv, ...topM, ...topTv]
+    const location = useLocation()
 
-    const initialSearchTerm = location.state?.searchTerm || "";
-    const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+    const initialSearchTerm = location.state?.searchTerm || ""
+    const [searchTerm, setSearchTerm] = useState(initialSearchTerm)
 
     const filteredResults = combinedData.filter((item) =>
         item.original_title?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    )
 
     useEffect(() => {
         if (initialSearchTerm) {
-            setSearchTerm(initialSearchTerm);
+            setSearchTerm(initialSearchTerm)
         }
-    }, [initialSearchTerm]);
+    }, [initialSearchTerm])
 
     const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
-    };
+        setSearchTerm(e.target.value)
+    }
 
-    const [hoveredCard, setHoveredCard] = useState(null);
-    const handleMouseEnter = (id) => setHoveredCard(id);
-    const handleMouseLeave = () => setHoveredCard(null);
+    const [hoveredCard, setHoveredCard] = useState(null)
+    const handleMouseEnter = (id) => setHoveredCard(id)
+    const handleMouseLeave = () => setHoveredCard(null)
 
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [modal, setModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null)
+    const [modal, setModal] = useState(false)
 
     function handleSlideMoreInfo(itemId) {
-        const selectedItem = combinedData.find((item) => item.id === itemId);
+        const selectedItem = combinedData.find((item) => item.id === itemId)
         if (selectedItem) {
-            setSelectedItem(selectedItem);
-            setModal(!modal);
+            setSelectedItem(selectedItem)
+            setModal(!modal)
         }
     }
 
     const closeModal = () => {
-        setModal(false);
-        setSelectedItem(null);
-    };
+        setModal(false)
+        setSelectedItem(null)
+    }
 
     return (
         <div className="h-full min-h-screen bg-[#141414]">
@@ -100,7 +100,7 @@ function Searched() {
                     genres={selectedItem.genre_ids} />
             )}
         </div>
-    );
+    )
 }
 
-export default Searched;
+export default Searched

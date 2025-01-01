@@ -133,4 +133,22 @@
         height: 530px;
     }
   }
-  
+
+@keyframes belanimate {
+  0% {
+    transform: rotate(0)
+  }
+  40% {
+    transform: rotate(20deg)
+  }
+  80% {
+    transform: rotate(-20deg)
+  }
+  100% {
+    transform: rotate(0)
+  }
+}
+
+.bell-animate {
+  animation: belanimate 1s ease-in-out ; 
+}

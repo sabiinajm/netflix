@@ -2,13 +2,13 @@ import { BiSolidVideos } from 'react-icons/bi'
 import logo from '../../assets/imgs/logo.png'
 import { FaCaretDown, FaRegBell } from 'react-icons/fa'
 import moneyH from '../../assets/imgs/moneyH.jpg'
-import avatar from '../../assets/imgs/avatar.jpg'
+
 import ringb from '../../assets/imgs/ringb.png'
 import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
 import { IoPersonOutline, IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, NavLink, useNavigate, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { GrEdit } from 'react-icons/gr'
@@ -18,20 +18,20 @@ import Genres from '../main/account/Genres'
 import { DATA, TOPMOVIES, TOPTV } from '../../context/DataContext'
 
 function AccHeader({ bgColor, showHeader }) {
-    const { profiles } = useContext(PROFILES);
+    const { profiles, selectedProfile, avatar } = useContext(PROFILES)
     const [scroll, setScroll] = useState(0)
     const [onRingBell, setOnRingBell] = useState(false)
     const [onProfile, setOnProfile] = useState(false)
     useEffect(() => {
         const handleScroll = () => {
-            setScroll(window.scrollY);
-        };
+            setScroll(window.scrollY)
+        }
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
     const [menu, setMenu] = useState(false)
     function openList() {
         setMenu(!menu)
@@ -40,43 +40,43 @@ function AccHeader({ bgColor, showHeader }) {
     function searchBar() {
         setSearch(!search)
     }
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('')
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     function startSearch(e) {
-        const val = e.target.value;
-        setSearchTerm(val);
+        const val = e.target.value
+        setSearchTerm(val)
         if (val) {
-            navigate('/searched', { state: { searchTerm: val } });
+            navigate('/searched', { state: { searchTerm: val } })
         } else {
-            navigate('/browse');
+            navigate('/browse')
         }
     }
     function handleMobileSearch() {
-        navigate('/searched');
+        navigate('/searched')
     }
-    const [selectedImage, setSelectedImage] = useState('');
+    const [selectedImage, setSelectedImage] = useState('')
 
     const handleProfileClick = (imageUrl) => {
-        setSelectedImage(imageUrl);
-    };
-    const [categMenu, setCategMenu] = useState(false);
+        setSelectedImage(imageUrl)
+    }
+    const [categMenu, setCategMenu] = useState(false)
     function toggleCateg() {
         setCategMenu(!categMenu)
     }
 
-    const header = decodeURIComponent(window.location.pathname.split('/').filter(Boolean)[0]);
+    const header = decodeURIComponent(window.location.pathname.split('/').filter(Boolean)[0])
 
-    const { data } = useContext(DATA);
-    const { topM } = useContext(TOPMOVIES);
+    const { data } = useContext(DATA)
+    const { topM } = useContext(TOPMOVIES)
     const { topTv } = useContext(TOPTV)
-    let selectedData = [];
+    let selectedData = []
     if (header === 'Movies') {
-        selectedData = topM;
+        selectedData = topM
     } else if (header === 'TV Shows') {
-        selectedData = topTv;
+        selectedData = topTv
     } else {
-        selectedData = data;
+        selectedData = data
     }
 
 
@@ -171,24 +171,28 @@ function AccHeader({ bgColor, showHeader }) {
                                 </div>
                                 <div onMouseLeave={() => setOnProfile(false)} className='flex items-center'>
                                     <div className='relative flex items-center'>
-                                        <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src={selectedImage || "https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff"}
+                                        <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src={selectedImage || selectedProfile}
                                             alt="Selected Profile" />
                                         <IoMdArrowDropdown />
                                         {onProfile && (
                                             <div onMouseEnter={() => setOnProfile(true)} className='absolute top-[56px] right-0 mt-2 w-[230px] border-[1px] border-[#5f5f5f] text-white shadow-lg'>
-                                                {profiles.map(profile => (
-                                                    <div key={profile.id} onClick={() => handleProfileClick(profile.avatar)} className="p-2 group bg-black flex items-center gap-4">
-                                                        <img
-                                                            className="h-[32px] rounded-md"
-                                                            src={profile.avatar}
-                                                            alt={profile.name}
-                                                        />
-                                                        <h4 className="text-[.8rem] group-hover:underline cursor-pointer">
-                                                            {profile.name}
-                                                        </h4>
-                                                    </div>
-                                                ))}
-                                                <Link to={'/ManageProfiles'} className='group p-2 bg-black flex items-center gap-4'>
+                                                {profiles
+                                                    .sort((a, b) =>
+                                                        (a.avatar === selectedProfile || a.avatar === selectedImage ? -1 : 1)  // Ensuring selected profiles come first
+                                                    )
+                                                    .map(profile => (
+                                                        <div key={profile.id} onClick={() => handleProfileClick(profile.avatar)} className="p-2 group bg-black flex items-center gap-4">
+                                                            <img
+                                                                className="h-[32px] rounded-md"
+                                                                src={profile.avatar}
+                                                                alt={profile.name}
+                                                            />
+                                                            <h4 className="text-[.8rem] group-hover:underline cursor-pointer">
+                                                                {profile.name}
+                                                            </h4>
+                                                        </div>
+                                                    ))}
+                                                <Link to={'/account'} className='group p-2 bg-black flex items-center gap-4'>
                                                     <GrEdit className='pl-1' />
                                                     <h4 className='text-[.8rem] group-hover:underline cursor-pointer'>Manage Profiles</h4>
                                                 </Link>
@@ -237,14 +241,20 @@ function AccHeader({ bgColor, showHeader }) {
 
                         }
                         <div className='w-[90%] mx-auto flex justify-between items-center h-[60px]'>
-                            <Link to={'/browse'} className='flex flex-col items-center'>
+                            <NavLink to={'/browse'} className={({ isActive }) =>
+                                `flex flex-col items-center ${isActive ? 'text-white' : 'text-gray-500'
+                                }`
+                            }>
                                 <HiMiniHome className='text-2xl' />
                                 <p className='text-[.6rem]'>Home</p>
-                            </Link>
-                            <div className='flex flex-col items-center'>
+                            </NavLink>
+                            <NavLink to={'/news'} className={({ isActive }) =>
+                                `flex flex-col items-center ${isActive ? 'text-white' : 'text-gray-500'
+                                }`
+                            }>
                                 <BiSolidVideos className='text-2xl' />
                                 <p className='text-[.6rem]'>News & Hot</p>
-                            </div>
+                            </NavLink>
                             <div className='flex flex-col items-center'>
                                 <img className='h-[25px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="" />
                                 <p className='text-[.6rem]'>My Netflix</p>
@@ -252,8 +262,9 @@ function AccHeader({ bgColor, showHeader }) {
                         </div>
                     </nav>
                 </>
-            )}
-        </header>
+            )
+            }
+        </header >
     )
 }
 export default AccHeader

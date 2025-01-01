@@ -1,24 +1,24 @@
-import { useContext, useState } from "react";
-import { LIST } from "../../../context/MyListContext";
-import Card from "./Card";
-import MoreInfo from "./MoreInfo";
+import { useContext, useState } from "react"
+import { LIST } from "../../../context/MyListContext"
+import Card from "./Card"
+import MoreInfo from "./MoreInfo"
 
 function MyList() {
-  const { myList } = useContext(LIST);
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [modal, setModal] = useState(false);
+  const { myList } = useContext(LIST)
+  const [hoveredCard, setHoveredCard] = useState(null)
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [modal, setModal] = useState(false)
 
-  const handleMouseEnter = (id) => setHoveredCard(id);
-  const handleMouseLeave = () => setHoveredCard(null);
+  const handleMouseEnter = (id) => setHoveredCard(id)
+  const handleMouseLeave = () => setHoveredCard(null)
 
   const handleSlideMoreInfo = (itemId) => {
-    const selectedItem = myList.find((item) => item.id === itemId);
+    const selectedItem = myList.find((item) => item.id === itemId)
     if (selectedItem) {
-      setSelectedItem(selectedItem);
-      setModal(true);
+      setSelectedItem(selectedItem)
+      setModal(true)
     }
-  };
+  }
 
   return (
     <main className="min-h-screen bg-[#141414]">
@@ -49,7 +49,7 @@ function MyList() {
         )}
       </div>
     </main>
-  );
+  )
 }
 
-export default MyList;
+export default MyList

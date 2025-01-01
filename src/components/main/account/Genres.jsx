@@ -1,23 +1,23 @@
-import { useContext, useEffect, useState } from "react";
-import { IoIosArrowRoundBack, IoMdArrowDropdown, IoMdClose } from "react-icons/io";
-import { RiLayoutGridFill } from "react-icons/ri";
-import { RxTextAlignLeft } from "react-icons/rx";
-import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react"
+import { IoIosArrowRoundBack, IoMdArrowDropdown, IoMdClose } from "react-icons/io"
+import { RiLayoutGridFill } from "react-icons/ri"
+import { RxTextAlignLeft } from "react-icons/rx"
+import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext"
+import { Link, useNavigate } from "react-router-dom"
 
 function Genres({ header, setRandomImage, genreId, genreName, toggleCateg }) {
-    const { data } = useContext(DATA);
-    const { topM } = useContext(TOPMOVIES);
-    const { topTv } = useContext(TOPTV);
+    const { data } = useContext(DATA)
+    const { topM } = useContext(TOPMOVIES)
+    const { topTv } = useContext(TOPTV)
 
-    const navigate = useNavigate();
-    let selectedData = [];
+    const navigate = useNavigate()
+    let selectedData = []
     if (header === 'Movies') {
-        selectedData = topM;
+        selectedData = topM
     } else if (header === 'TV Shows') {
-        selectedData = topTv;
+        selectedData = topTv
     } else {
-        selectedData = data;
+        selectedData = data
     }
 
     const genreMap = {
@@ -37,57 +37,57 @@ function Genres({ header, setRandomImage, genreId, genreName, toggleCateg }) {
         878: "Sci-Fi",
         53: "Thriller",
         37: "Western",
-    };
+    }
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedGenre, setSelectedGenre] = useState(null);
-    const [scroll, setScroll] = useState(0);
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedGenre, setSelectedGenre] = useState(null)
+    const [scroll, setScroll] = useState(0)
 
     useEffect(() => {
-        const handleScroll = () => setScroll(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        const handleScroll = () => setScroll(window.scrollY)
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const filterDataByGenre = (data, genreId) => {
-        return genreId ? data.filter(item => item.genre_ids.includes(genreId)) : data;
-    };
+        return genreId ? data.filter(item => item.genre_ids.includes(genreId)) : data
+    }
 
     const setRandomImageFromData = (selectedData, genreId) => {
-        const filteredData = filterDataByGenre(selectedData, genreId);
+        const filteredData = filterDataByGenre(selectedData, genreId)
         if (filteredData.length > 0) {
-            const randomIndex = Math.floor(Math.random() * filteredData.length);
-            setRandomImage(filteredData[randomIndex]);
+            const randomIndex = Math.floor(Math.random() * filteredData.length)
+            setRandomImage(filteredData[randomIndex])
         } else {
-            setRandomImage(null);
+            setRandomImage(null)
         }
-    };
+    }
 
     useEffect(() => {
         if (genreId) {
-            setSelectedGenre(genreMap[genreId]);
+            setSelectedGenre(genreMap[genreId])
         }
-    }, [genreId]);
+    }, [genreId])
 
     const availableGenres = Object.entries(genreMap).filter(([genreId]) =>
         selectedData?.some(item => item.genre_ids.includes(parseInt(genreId)))
-    );
+    )
 
-    const toggleDropdown = () => setIsOpen(prev => !prev);
+    const toggleDropdown = () => setIsOpen(prev => !prev)
 
     const handleSelect = (genreId) => {
-        setSelectedGenre(genreMap[genreId]);
-        setIsOpen(false);
+        setSelectedGenre(genreMap[genreId])
+        setIsOpen(false)
         toggleCateg(false)
-    };
+    }
 
     const handleRandomClick = () => {
-        setRandomImageFromData(selectedData, genreId);
-    };
+        setRandomImageFromData(selectedData, genreId)
+    }
 
     const handleGrid = () => {
-        setRandomImage(null);
-    };
+        setRandomImage(null)
+    }
 
     return (
         <>
@@ -159,7 +159,7 @@ function Genres({ header, setRandomImage, genreId, genreName, toggleCateg }) {
                 </ul>
             </div>
         </>
-    );
+    )
 }
 
-export default Genres;
+export default Genres

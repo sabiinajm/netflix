@@ -1,39 +1,39 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import homeBg from '../../../assets/imgs/home-bg.jpg'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
 
   const handleInput = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-  };
+    const value = e.target.value
+    setEmail(value)
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!email && !password) {
-      setError('Both fields are required.');
-      return;
+      setError('Both fields are required.')
+      return
     }
 
     if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address.');
-      return;
+      setError('Please enter a valid email address.')
+      return
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters.');
-      return;
+      setError('Password must be at least 6 characters.')
+      return
     }
-    setError('');
-  };
-  const isValid = !error && emailRegex.test(email) && password;
+    setError('')
+  }
+  const isValid = !error && emailRegex.test(email) && password
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null)
 
   return (
     <main>
