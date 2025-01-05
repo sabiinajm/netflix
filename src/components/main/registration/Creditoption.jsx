@@ -17,7 +17,7 @@ function Creditoption() {
         }
     };
     return (
-        <main className="px-4 flex flex-col max-w-[1100px] mx-auto py-11">
+        <main className="px-4 flex flex-col max-w-[1100px] mx-auto justify-center items-center min-h-[900px]">
             <div className="max-w-[600px] mx-auto py-8 text-start ">
                 <p className="uppercase text-sm">step <span className="font-semibold"> 3 </span> of <span className="font-semibold">3</span></p>
                 <h1 className="text-3xl font-semibold text-[#333]">Set up your credit or debit card</h1>

@@ -38,7 +38,7 @@ function Step1() {
     const isFormValid = email && password && !emailError && !passwordError;
 
     return (
-        <main className="px-4 max-w-[1100px] mx-auto">
+        <main className="px-4 max-w-[1100px] mx-auto flex justify-center items-center min-h-[700px]">
             <div className="max-w-[500px] mx-auto py-8">
                 <p className="uppercase text-sm">step <span className="font-semibold"> 1 </span> of <span className="font-semibold">3</span></p>
                 <h1 className="text-3xl font-semibold text-[#333]">Create a password to start your membership</h1>

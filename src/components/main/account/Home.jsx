@@ -9,6 +9,7 @@ import breakingB from '../../../assets/imgs/breakingb.webp'
 import BreakingBvideo from '../../../assets/imgs/BreakingBvideo.mp4'
 import breakingBLogo from '../../../assets/imgs/breakingblogo.webp'
 import moneyH from '../../../assets/imgs/moneyH.jpg'
+import Spinner from '../../../assets/imgs/loadSpinner.png'
 
 import ColorThief from 'colorthief'
 
@@ -17,12 +18,14 @@ import { DATA, TOPMOVIES, TOPTV, TV } from '../../../context/DataContext'
 import MoreInfo from './MoreInfo'
 import { useNavigate } from 'react-router-dom'
 import Media from './Media'
+import { PROFILES } from '../../../context/ProfileContext'
 
 function Home() {
   const { data } = useContext(DATA)
   const { tv } = useContext(TV)
   const { topM } = useContext(TOPMOVIES)
   const { topTv } = useContext(TOPTV)
+  const { loading, selectedProfile, timeRemaining } = useContext(PROFILES)
 
   const [dominantColor, setDominantColor] = useState('')
   const imgRef = useRef()
@@ -94,6 +97,13 @@ function Home() {
     <>
       <main>
         <div className='hidden xs:block '>
+          {loading && <div className="absolute inset-0 flex flex-col gap-3 items-center justify-center bg-black z-[999]">
+            <img
+              className={`h-[85px] my-4 rounded-md transform transition-transform ${timeRemaining <= 1 ? 'animate-full-top-right' : ''
+                }`} src={selectedProfile}
+              alt="Selected Profile" />
+            <img src={Spinner} alt="" className='spinner w-[30px] mt-3' />
+          </div>}
           <div className="absolute top-0 h-[730px] w-full bg-black">
             {showImageBefore ? (
               <img
@@ -137,7 +147,7 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} overview={`Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."`} setModal={setModal} image={breakingB} genres={'violance, nudity'}/>}
+              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} overview={`Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."`} setModal={setModal} image={breakingB} genres={['violance, nudity']} />}
               {modal && <MoreInfo setModal={setModal} year={modal.release_date?.slice(0, 4) || modal.first_air_date?.slice(0, 4)}
                 overview={modal.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>

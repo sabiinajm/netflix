@@ -4,7 +4,6 @@ import { RiCloseLargeFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import ProfileCards from './ProfileCards'
 import { PROFILES } from '../../../context/ProfileContext'
-import user from '../../../assets/imgs/user.png'
 import user1 from '../../../assets/imgs/user1.png'
 import user2 from '../../../assets/imgs/user2.jpg'
 import user3 from '../../../assets/imgs/user3.png'
@@ -33,7 +32,7 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
         handleAddNewProfile,
         handleDeleteProfile
     } = useContext(PROFILES)
-    const [selectedAvatar, setSelectedAvatar] = useState(user)
+    const [selectedAvatar, setSelectedAvatar] = useState(user1)
     const [showAvatarOptions, setShowAvatarOptions] = useState(false)
     const [showAvatarOptionsEdit, setShowAvatarOptionsEdit] = useState(false)
 
@@ -53,8 +52,8 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
         setShowAvatarOptions(false)
         setShowAvatarOptionsEdit(false)
     }
-    
-    
+
+
     return (
         <div className='bg-[#141414] h-screen w-full'>
             <div className='md:w-[600px] px-3 mx-auto h-full flex flex-col justify-center items-center'>

@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { LIST } from "../../../context/MyListContext"
 import Card from "./Card"
 import MoreInfo from "./MoreInfo"
+import Loading from "./Loading"
 
 function MyList() {
   const { myList } = useContext(LIST)
@@ -23,6 +24,7 @@ function MyList() {
   return (
     <main className="min-h-screen bg-[#141414]">
       <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-center items-center'>
+
         {myList.length > 0 ? (
           <div className="grid grid-cols-1 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-[180px] ">
             {myList.map((item) => (
@@ -47,6 +49,7 @@ function MyList() {
             year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
             overview={selectedItem.overview} genres={selectedItem.genre_ids} />
         )}
+        {!myList && <Loading />}
       </div>
     </main>
   )

@@ -10,57 +10,56 @@ function Media({ type }) {
     const { topM } = useContext(TOPMOVIES)
     const { topTv } = useContext(TOPTV)
 
-
-    const [isSwipedRight, setIsSwipedRight] = useState(false);
-    const [isSwipedRight2, setIsSwipedRight2] = useState(false);
-    const [isSwipedRight3, setIsSwipedRight3] = useState(false);
+    const [isSwipedRight, setIsSwipedRight] = useState(false)
+    const [isSwipedRight2, setIsSwipedRight2] = useState(false)
+    const [isSwipedRight3, setIsSwipedRight3] = useState(false)
     const swipeRight = () => {
-        setIsSwipedRight(true);
+        setIsSwipedRight(true)
     }
     const swipeRight2 = () => {
-        setIsSwipedRight2(true);
+        setIsSwipedRight2(true)
     }
     const swipeRight3 = () => {
-        setIsSwipedRight3(true);
+        setIsSwipedRight3(true)
     }
-    const [hoveredCard, setHoveredCard] = useState(null);
-    const [hoveredCard2, setHoveredCard2] = useState(null);
-    const [hoveredCard3, setHoveredCard3] = useState(null);
+    const [hoveredCard, setHoveredCard] = useState(null)
+    const [hoveredCard2, setHoveredCard2] = useState(null)
+    const [hoveredCard3, setHoveredCard3] = useState(null)
 
     const handleMouseEnter = (id) => {
-        setHoveredCard(id);
-    };
+        setHoveredCard(id)
+    }
     const handleMouseEnter2 = (id) => {
-        setHoveredCard2(id);
-    };
+        setHoveredCard2(id)
+    }
     const handleMouseEnter3 = (id) => {
-        setHoveredCard3(id);
-    };
+        setHoveredCard3(id)
+    }
 
     const handleMouseLeave = () => {
-        setHoveredCard(null);
-    };
+        setHoveredCard(null)
+    }
     const handleMouseLeave2 = () => {
-        setHoveredCard2(null);
-    };
+        setHoveredCard2(null)
+    }
     const handleMouseLeave3 = () => {
-        setHoveredCard3(null);
-    };
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [modal, setModal] = useState(false);
+        setHoveredCard3(null)
+    }
+    const [selectedItem, setSelectedItem] = useState(null)
+    const [modal, setModal] = useState(false)
     const handleSlideMoreInfo = (id, source) => {
         const sources = {
             data,
             tv,
             topM,
             topTv,
-        };
-        const selectedItem = sources[source]?.find((item) => item.id === id);
-        if (selectedItem) {
-            setSelectedItem(selectedItem);
-            setModal(true);
         }
-    };
+        const selectedItem = sources[source]?.find((item) => item.id === id)
+        if (selectedItem) {
+            setSelectedItem(selectedItem)
+            setModal(true)
+        }
+    }
 
     const carouselsData = [
         {
@@ -96,9 +95,9 @@ function Media({ type }) {
             customClass: "3",
             swipeRight: swipeRight3,
         },
-    ];
-    const location = useLocation();
-    const isHome = location.pathname === '/browse';
+    ]
+    const location = useLocation()
+    const isHome = location.pathname === '/browse'
     return (
         <main>
             {modal && selectedItem && (

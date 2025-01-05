@@ -5,7 +5,7 @@ import AccFooter from "../components/footer/AccFooter"
 
 function AccLayout() {
     const location = useLocation()
-    const isHomePage = location.pathname === "/browse" 
+    const isHomePage = location.pathname === "/browse"
     const [showHeader, setShowHeader] = useState(true)
     const [showFooter, setShowFooter] = useState(true)
     useEffect(() => {

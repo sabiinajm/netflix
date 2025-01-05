@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import user from '../assets/imgs/user.png'
 import user1 from '../assets/imgs/user1.png'
 export const PROFILES = createContext(null)
@@ -44,7 +44,7 @@ function ProfileContext({ children }) {
         setEditingProfileId(null)
         setOriginalProfile(null)
     }
-    
+
     const handleAddNewProfile = () => {
         if (newProfile.name.trim()) {
             setProfiles([
@@ -56,7 +56,7 @@ function ProfileContext({ children }) {
                 },
             ])
             setNewProfile({ name: '', avatar: user1 })
-            setAddProfile(false) 
+            setAddProfile(false)
         }
     }
 
@@ -65,35 +65,55 @@ function ProfileContext({ children }) {
         setEdit(false)
         setEditingProfileId(null)
     }
-    
+
     const [selectedProfile, setSelectedProfile] = useState(profiles[0]?.avatar || null)
+    const [loading, setLoading] = useState(false)
+    const [timeRemaining, setTimeRemaining] = useState(5);
 
     const handleProfileImageClick = (profileId) => {
         const selectedProf = profiles.find(profile => profile.id === profileId)
-        setSelectedProfile(selectedProf?.avatar) 
-        setOriginalProfile({...selectedProf})
+        setSelectedProfile(selectedProf?.avatar)
+        setOriginalProfile({ ...selectedProf })
         setEdit(true)
         setEditingProfileId(profileId)
+
+        setLoading(true);
+        setTimeRemaining(2);
     }
+
+    useEffect(() => {
+        let timer;
+        if (loading && timeRemaining > 0) {
+            timer = setInterval(() => {
+                setTimeRemaining(prev => prev - 1);
+            }, 1000);
+        } else if (timeRemaining === 0) {
+            setLoading(false);
+        }
+        return () => clearInterval(timer);
+    }, [loading, timeRemaining]);
     return (
-        <PROFILES.Provider 
-        value={{
-            profiles,
-            addProfile,
-            setProfiles,
-            setAddProfile,
-            newProfile,
-            setNewProfile,
-            editingProfileId,
-            edit,
-            handleProfileChange,
-            handleSaveChanges,
-            handleAddNewProfile,
-            selectedProfile,
-            handleDeleteProfile,
-            handleProfileImageClick,
-            handleCancel,
-        }}>
+        <PROFILES.Provider
+            value={{
+                profiles,
+                addProfile,
+                setProfiles,
+                setAddProfile,
+                newProfile,
+                setNewProfile,
+                loading,
+                timeRemaining,
+                editingProfileId,
+                edit,
+                handleProfileChange,
+                handleSaveChanges,
+                handleAddNewProfile,
+                selectedProfile,
+                setSelectedProfile,
+                handleDeleteProfile,
+                handleProfileImageClick,
+                handleCancel,
+            }}>
             {children}
         </PROFILES.Provider>
     )

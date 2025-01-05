@@ -2,7 +2,7 @@ import { BiSolidVideos } from 'react-icons/bi'
 import logo from '../../assets/imgs/logo.png'
 import { FaCaretDown, FaRegBell } from 'react-icons/fa'
 import moneyH from '../../assets/imgs/moneyH.jpg'
-
+import avatarImg from '../../assets/imgs/avatar.jpg'
 import ringb from '../../assets/imgs/ringb.png'
 import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
@@ -18,7 +18,7 @@ import Genres from '../main/account/Genres'
 import { DATA, TOPMOVIES, TOPTV } from '../../context/DataContext'
 
 function AccHeader({ bgColor, showHeader }) {
-    const { profiles, selectedProfile, avatar } = useContext(PROFILES)
+    const { profiles, selectedProfile, setSelectedProfile, avatar } = useContext(PROFILES)
     const [scroll, setScroll] = useState(0)
     const [onRingBell, setOnRingBell] = useState(false)
     const [onProfile, setOnProfile] = useState(false)
@@ -55,10 +55,9 @@ function AccHeader({ bgColor, showHeader }) {
     function handleMobileSearch() {
         navigate('/searched')
     }
-    const [selectedImage, setSelectedImage] = useState('')
 
     const handleProfileClick = (imageUrl) => {
-        setSelectedImage(imageUrl)
+        setSelectedProfile(imageUrl)
     }
     const [categMenu, setCategMenu] = useState(false)
     function toggleCateg() {
@@ -159,7 +158,7 @@ function AccHeader({ bgColor, showHeader }) {
                                             </div>
                                             <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
                                                 <div className='flex w-full justify-between px-3 cursor-pointer'>
-                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={avatar} alt="" />
+                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={avatarImg} alt="" />
                                                     <div className='w-[250px] pl-3'>
                                                         <h4 className='text-[.9rem] leading-5'>Suggestions for tonight <br /> Explore personalized picks.</h4>
                                                         <p className='text-xs text-[#888]'>2 days ago</p>
@@ -171,14 +170,14 @@ function AccHeader({ bgColor, showHeader }) {
                                 </div>
                                 <div onMouseLeave={() => setOnProfile(false)} className='flex items-center'>
                                     <div className='relative flex items-center'>
-                                        <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src={selectedImage || selectedProfile}
+                                        <img onMouseEnter={() => setOnProfile(true)} className='h-[35px] my-4 rounded-md' src={selectedProfile}
                                             alt="Selected Profile" />
                                         <IoMdArrowDropdown />
                                         {onProfile && (
                                             <div onMouseEnter={() => setOnProfile(true)} className='absolute top-[56px] right-0 mt-2 w-[230px] border-[1px] border-[#5f5f5f] text-white shadow-lg'>
                                                 {profiles
                                                     .sort((a, b) =>
-                                                        (a.avatar === selectedProfile || a.avatar === selectedImage ? -1 : 1)  // Ensuring selected profiles come first
+                                                        (a.avatar === selectedProfile ? -1 : 1)
                                                     )
                                                     .map(profile => (
                                                         <div key={profile.id} onClick={() => handleProfileClick(profile.avatar)} className="p-2 group bg-black flex items-center gap-4">
@@ -187,7 +186,10 @@ function AccHeader({ bgColor, showHeader }) {
                                                                 src={profile.avatar}
                                                                 alt={profile.name}
                                                             />
-                                                            <h4 className="text-[.8rem] group-hover:underline cursor-pointer">
+                                                            <h4 className={`text-[.8rem] ${profile.avatar === selectedProfile ?
+                                                                'group-hover:no-underline cursor-default'
+                                                                : 'group-hover:underline cursor-pointer'
+                                                                }`}>
                                                                 {profile.name}
                                                             </h4>
                                                         </div>
@@ -215,7 +217,7 @@ function AccHeader({ bgColor, showHeader }) {
                         </div>
                     </div>
                     {/* Mobile */}
-                    <nav className='h-full '>
+                    <nav className='h-full'>
                         <div className='block xs:hidden w-[90%] mx-auto sticky top-0'>
                             <div className='text-white py-3 text-xl flex justify-between items-center mx-auto'>
                                 <h1>For sabina</h1>
@@ -255,15 +257,16 @@ function AccHeader({ bgColor, showHeader }) {
                                 <BiSolidVideos className='text-2xl' />
                                 <p className='text-[.6rem]'>News & Hot</p>
                             </NavLink>
-                            <div className='flex flex-col items-center'>
-                                <img className='h-[25px] rounded-md' src="https://occ-0-7292-3466.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABbFO1ZI9WDUXXCyi_QCEMIen2X1ICb04kRxJmp1mxZTKU6yF0NlEU3xBPMzvqHaturIrsjSS_S5JocdleY1N8-BYgDqy23sydeqH.png?r=8ff" alt="" />
+                            <NavLink to={'/myNetflix'} className={({ isActive }) => `  ${isActive ? 'text-white' : 'text-gray-500'} flex flex-col items-center`} >
+                                <img onMouseEnter={() => setOnProfile(true)} className='h-[25px] rounded-md' src={selectedProfile}
+                                    alt="Selected Profile" />
                                 <p className='text-[.6rem]'>My Netflix</p>
-                            </div>
-                        </div>
-                    </nav>
-                </>
-            )
-            }
+                            </NavLink>
+                    </div>
+                </nav>
+        </>
+    )
+}
         </header >
     )
 }

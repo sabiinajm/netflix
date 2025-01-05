@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function Registration() {
     return (
-        <main className="px-4 flex flex-col max-w-[1100px] mx-auto py-11">
+        <main className="px-4 flex flex-col max-w-[1100px] mx-auto justify-center items-center min-h-[700px]">
             <div className="max-w-[500px] min-w-[150px] mx-auto flex justify-center flex-col items-center py-8 text-center ">
                 <img className="xs:w-[260px] w-[180px] py-6" src="https://assets.nflxext.com/ffe/siteui/acquisition/simplicity/Devices.png" alt="" />
                 <p className="uppercase text-sm pt-4">step <span className="font-semibold"> 1 </span> of <span className="font-semibold">3</span></p>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function Step3() {
     return (
-        <main className="px-4 flex flex-col max-w-[1100px] mx-auto py-11">
+        <main className="px-4 flex flex-col max-w-[1100px] mx-auto justify-center items-center min-h-[700px]">
             <div className="max-w-[600px] mx-auto py-8 text-center ">
                 <PiLockKey className="text-red-600 text-5xl w-full my-6" />
                 <p className="uppercase text-sm">step <span className="font-semibold"> 3 </span> of <span className="font-semibold">3</span></p>
@@ -13,11 +13,13 @@ function Step3() {
                 <p className="font-semibold text-lg">Secure for peace of mind. <br />
                     Cancel easily online.</p>
                 <Link to={'/signup/creditoption'} className="flex items-center min-h-[60px] rounded-md w-[90%] mx-auto justify-between px-8 border-2 border-[#c5c5c5] my-8 ">
-                    <div className="flex items-center flex-wrap gap-3">
+                    <div className="flex items-center flex-col sm:flex-row gap-3 py-2">
                         <p>Credit or Denit Card</p>
-                        <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="" />
-                        <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="" />
-                        <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/AMEX.png" alt="" />
+                        <div className="flex gap-3">
+                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="" />
+                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="" />
+                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/AMEX.png" alt="" />
+                        </div>
                     </div>
                     <IoIosArrowForward className="text-2xl" />
                 </Link>

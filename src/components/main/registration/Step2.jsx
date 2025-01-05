@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function Step2() {
     return (
-        <main className="px-4 flex flex-col max-w-[1100px] mx-auto py-11">
+        <main className="px-4 flex flex-col max-w-[1100px] mx-auto justify-center items-center min-h-[700px] ">
             <div className="max-w-[600px] mx-auto py-8 text-center ">
                 <GoCheckCircle className="text-red-600 text-5xl w-full my-6" />
                 <p className="uppercase text-sm">step <span className="font-semibold"> 2 </span> of <span className="font-semibold">3</span></p>
