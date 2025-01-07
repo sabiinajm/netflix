@@ -67,12 +67,15 @@ function ProfileContext({ children }) {
     }
 
     const [selectedProfile, setSelectedProfile] = useState(profiles[0]?.avatar || null)
+    const [selectedProfileName, setSelectedProfileName] = useState(profiles[0]?.name || null)
     const [loading, setLoading] = useState(false)
     const [timeRemaining, setTimeRemaining] = useState(5);
 
     const handleProfileImageClick = (profileId) => {
         const selectedProf = profiles.find(profile => profile.id === profileId)
         setSelectedProfile(selectedProf?.avatar)
+        setSelectedProfileName(selectedProf?.name)
+        
         setOriginalProfile({ ...selectedProf })
         setEdit(true)
         setEditingProfileId(profileId)
@@ -110,6 +113,7 @@ function ProfileContext({ children }) {
                 handleAddNewProfile,
                 selectedProfile,
                 setSelectedProfile,
+                selectedProfileName,
                 handleDeleteProfile,
                 handleProfileImageClick,
                 handleCancel,

@@ -8,7 +8,7 @@ import { FaChromecast } from 'react-icons/fa6'
 import { HiMiniHome } from 'react-icons/hi2'
 import { IoPersonOutline, IoSearch, IoSearchSharp } from 'react-icons/io5'
 import { MdOutlineSaveAlt } from 'react-icons/md'
-import { Link, NavLink, useNavigate, useParams } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { GrEdit } from 'react-icons/gr'
@@ -18,7 +18,7 @@ import Genres from '../main/account/Genres'
 import { DATA, TOPMOVIES, TOPTV } from '../../context/DataContext'
 
 function AccHeader({ bgColor, showHeader }) {
-    const { profiles, selectedProfile, setSelectedProfile, avatar } = useContext(PROFILES)
+    const { profiles, selectedProfile, setSelectedProfile } = useContext(PROFILES)
     const [scroll, setScroll] = useState(0)
     const [onRingBell, setOnRingBell] = useState(false)
     const [onProfile, setOnProfile] = useState(false)
@@ -77,16 +77,14 @@ function AccHeader({ bgColor, showHeader }) {
     } else {
         selectedData = data
     }
-
-
     return (
         <header>
             {showHeader && (
                 <>
                     <div
                         className={`hidden xs:flex h-[70px] fixed z-[65] top-0 w-full ${bgColor} bg-gradient-to-b from-[#060606] to-transparent  transition-all duration-500 ${scroll > 5 ? 'bg-[#141414]' : ''
-                            }`}
-                    >     <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-between items-center'>
+                            }`}>
+                        <div className='max-w-[1450px] w-full mx-auto  px-8 pt-2 flex justify-between items-center'>
                             <div className='flex gap-3'>
                                 <Link to={'/browse'} className='max-w-[130px]'>
                                     <img src={logo} alt="logo" />
@@ -126,7 +124,6 @@ function AccHeader({ bgColor, showHeader }) {
                                     <input value={searchTerm} onChange={startSearch}
                                         placeholder='Titles ...' type="text" className={`${search ? 'flex' : 'hidden'} outline-none bg-transparent text-sm pl-3`} />
                                 </div>
-
                                 <div className='relative p-2'
                                     onMouseLeave={() => setOnRingBell(false)}>
                                     <div
@@ -140,7 +137,7 @@ function AccHeader({ bgColor, showHeader }) {
                                         <div onMouseEnter={() => setOnRingBell(true)} className='absolute overflow-y-scroll h-[250px] right-0 mt-2 w-[350px] md:w-[400px] border-x-[1px] border-t-2 border-t-white border-x-[#5f5f5f] text-white shadow-lg z-10'>
                                             <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
                                                 <div className='flex w-full justify-between px-3 cursor-pointer'>
-                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={moneyH} alt="" />
+                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={moneyH} alt="moneyheist" />
                                                     <div className='w-[250px] pl-3'>
                                                         <h4 className='text-[.9rem] leading-5'>Rewatch your favorite moments <br /> See what you've watched</h4>
                                                         <p className='text-xs text-[#888]'>2 days ago</p>
@@ -149,7 +146,7 @@ function AccHeader({ bgColor, showHeader }) {
                                             </div>
                                             <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
                                                 <Link to={'/latest'} className='flex w-full justify-between px-3 cursor-pointer'>
-                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={ringb} alt="" />
+                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={ringb} alt="Img" />
                                                     <div className='w-[250px] pl-3'>
                                                         <h4 className='text-[.9rem] leading-5'>Netflex Lookahead <br /> Explore what's coming soon.</h4>
                                                         <p className='text-xs text-[#888]'>3 days ago</p>
@@ -158,7 +155,7 @@ function AccHeader({ bgColor, showHeader }) {
                                             </div>
                                             <div className='p-4 border-b-[1px] border-[#444] bg-[#000000c1] hover:bg-black transition-all duration-200'>
                                                 <div className='flex w-full justify-between px-3 cursor-pointer'>
-                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={avatarImg} alt="" />
+                                                    <img className='w-[100px] h-[60px] object-cover rounded-md' src={avatarImg} alt="Avatar" />
                                                     <div className='w-[250px] pl-3'>
                                                         <h4 className='text-[.9rem] leading-5'>Suggestions for tonight <br /> Explore personalized picks.</h4>
                                                         <p className='text-xs text-[#888]'>2 days ago</p>
@@ -239,9 +236,7 @@ function AccHeader({ bgColor, showHeader }) {
                     <nav className='block xs:hidden fixed bottom-0 bg-[#141414] text-[#888] w-full z-50'>
                         {categMenu && (
                             <Genres selectedData={selectedData} toggleCateg={toggleCateg} header={header} />
-                        )
-
-                        }
+                        )}
                         <div className='w-[90%] mx-auto flex justify-between items-center h-[60px]'>
                             <NavLink to={'/browse'} className={({ isActive }) =>
                                 `flex flex-col items-center ${isActive ? 'text-white' : 'text-gray-500'
@@ -257,16 +252,16 @@ function AccHeader({ bgColor, showHeader }) {
                                 <BiSolidVideos className='text-2xl' />
                                 <p className='text-[.6rem]'>News & Hot</p>
                             </NavLink>
-                            <NavLink to={'/myNetflix'} className={({ isActive }) => `  ${isActive ? 'text-white' : 'text-gray-500'} flex flex-col items-center`} >
+                            <NavLink to={'/myList'} className={({ isActive }) => `  ${isActive ? 'text-white' : 'text-gray-500'} flex flex-col items-center`} >
                                 <img onMouseEnter={() => setOnProfile(true)} className='h-[25px] rounded-md' src={selectedProfile}
                                     alt="Selected Profile" />
                                 <p className='text-[.6rem]'>My Netflix</p>
                             </NavLink>
-                    </div>
-                </nav>
-        </>
-    )
-}
+                        </div>
+                    </nav>
+                </>
+            )
+            }
         </header >
     )
 }

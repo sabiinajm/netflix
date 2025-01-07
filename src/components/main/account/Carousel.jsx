@@ -2,13 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import Card from "./Card"
 import { GoChevronLeft, GoChevronRight } from "react-icons/go"
 import { Keyboard, Navigation } from "swiper/modules"
-import { useNavigate } from "react-router-dom"
 
 function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRight, handleMouseEnter, handleMouseLeave, hoveredCard, customClass, swipeRight }) {
-    const navigate = useNavigate()
-    function openVideo() {
-        navigate('/video')
-    }
     return (
         <>
             <div className='hidden xs:block max-w-[1600px] mx-auto overflow-hidden '>
@@ -54,6 +49,7 @@ function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRi
                     </div>
                 </div>
             </div>
+            {/* Mobile */}
             <div className='xs:hidden w-[90%] mx-auto text-white pt-4 px-2'>
                 <p className='text-lg font-semibold'>{title}</p>
                 <Swiper
@@ -65,12 +61,13 @@ function Carousel({ type, title, items, genreId, handleSlideMoreInfo, isSwipedRi
                         .map((item) => {
                             return (
                                 <SwiperSlide key={item.id} className='swiper-slide-trend cursor-pointer'>
-                                    <div onClick={openVideo} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
+                                    <div onClick={() => handleSlideMoreInfo(item.id, type === "tv shows" ? "topTv" : type === "movies" ? "topM" : type === "data" ? "data" : "")} className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                                     </div>
                                 </SwiperSlide>
                             )
                         })
+                        
                     }
                 </Swiper>
             </div>

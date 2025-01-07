@@ -52,8 +52,8 @@ function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLe
             />
 
             {hoveredCard === item.id && (
-                <div className={`absolute top-[10px] ${isSearched && 'top-[-35px]'} rounded-md bg-[#141414] z-20 hover:scale-105 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]`}>
-                    <img src={item.image ? item.image : `https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="" className="rounded-t-md" />
+                <div className={`absolute top-[-10pxpx] ${isSearched && 'top-[-38px]'} rounded-md bg-[#141414] z-20 hover:scale-105 transition-all duration-300 delay-200 shadow-md shadow-[#000000b6]`}>
+                    <img src={item.image ? item.image : `https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="img" className="rounded-t-md" />
                     <div className="flex justify-between pt-3 px-4">
                         <div className="flex gap-3 mb-4">
                             <button onClick={openVideo} className="w-[30px] h-[30px] rounded-full text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center items-center">

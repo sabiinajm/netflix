@@ -16,9 +16,9 @@ function Step3() {
                     <div className="flex items-center flex-col sm:flex-row gap-3 py-2">
                         <p>Credit or Denit Card</p>
                         <div className="flex gap-3">
-                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="" />
-                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="" />
-                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/AMEX.png" alt="" />
+                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="visa" />
+                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="mastercard" />
+                        <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/AMEX.png" alt="amex" />
                         </div>
                     </div>
                     <IoIosArrowForward className="text-2xl" />

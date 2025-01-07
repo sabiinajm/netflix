@@ -23,7 +23,6 @@ import Searched from "./components/main/account/Searched"
 import GenrePage from "./components/main/account/GenrePage"
 import MyList from "./components/main/account/MyList"
 import News from "./components/main/account/News"
-import MyNetflix from "./components/main/account/MyNetflix"
 
 function App() {
   const { pathname } = useLocation()
@@ -51,7 +50,6 @@ function App() {
       <Route path="/" element={<AccLayout />}>
         <Route path="/browse" element={<Home />} />
         <Route path="/news" element={<News />} />
-        <Route path="/myNetflix" element={<MyNetflix />} />
         <Route path="/searched" element={<Searched />} />
         <Route path="/TV Shows" element={<TvShows />} />
         <Route path="/:header/genre/:genreName/:genreId" element={<GenrePage />} />

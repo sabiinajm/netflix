@@ -143,7 +143,7 @@ function Genres({ header, setRandomImage, genreId, genreName, toggleCateg }) {
             </div>
 
             {/* Mobile View */}
-            <div className="fixed top-0 left-0 h-screen w-full backdrop-blur-2xl xs:hidden">
+            <div className="fixed top-0 left-0 h-screen w-full backdrop-blur-2xl xs:hidden z-[999]">
                 <IoMdClose onClick={toggleCateg} className="absolute right-4 top-4 text-2xl hover:text-white transition-none duration-150"/>
                 <ul className="flex flex-col justify-center w-full items-center h-full gap-5">
                     {availableGenres.map(([genreId, genreName]) => (

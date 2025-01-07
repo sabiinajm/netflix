@@ -113,7 +113,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
     const [showEpisodes, setShowEpisodes] = useState(false)
 
     useEffect(() => {
-       if (decodeURIComponent(location.pathname).includes("TV Shows") || year === 2008) {
+        if (decodeURIComponent(location.pathname).includes("TV Shows") || year === 2008) {
             setShowEpisodes(true);
         } else {
             setShowEpisodes(false);
@@ -123,7 +123,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
     return (
         <div
             onClick={handleClose}
-            className=" w-full h-full fixed top-0 left-0 bg-[#0000006e] z-[100]"
+            className=" z-[999] w-full h-full fixed top-0 left-0 bg-[#0000006e]"
         >
             <div className="w-full h-full flex justify-center">
                 <div
@@ -133,7 +133,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                 >
                     <div className="relative top-0 w-full rounded-lg">
                         <img className="object-cover rounded-t-lg min-h-[160px] max-h-[450px] w-full bg-[#141414]"
-                            src={image} alt="" />
+                            src={image} alt="image" />
                         <div className='absolute bottom-[20px] z-40 flex gap-3 justify-between px-4 xs:pl-8'>
                             <button onClick={() => navigate(`/video`)} className='w-[90px] xs:w-[120px] h-[42px] rounded-sm text-lg font-semibold bg-white transition-all duration-200 hover:bg-[#ddd] text-black flex justify-center gap-1 items-center'><IoPlaySharp className='text-3xl' /> Play</button>
                             <button
@@ -198,7 +198,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                                 {episodes.map((episode) => (
                                     <div onClick={() => navigate(`/video`)}
                                         key={episode.id}
-                                        className="text-white cursor-pointer border-b border-[#444] hover:bg-[#333] flex flex-col xs:flex-row items-center py-6"
+                                        className="text-white cursor-pointer border-b border-[#444] hover:bg-[#333] flex flex-col gap-4 xs:flex-row items-center py-6"
                                     >
                                         <p className="text-3xl p-3">{episode.id}</p>
                                         <img
@@ -229,7 +229,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                                                 <IoPlaySharp className="text-white bg-[#0000006c] text-5xl rounded-full p-2" />
                                             </div>
                                         )}
-                                        <img src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`} alt='' className='rounded-t-md' />
+                                        <img src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`} alt='image' className='rounded-t-md' />
                                         <p className='text-white z-10 absolute top-1 right-1'>4 seasons</p>
                                         <div className="bg-gradient-to-tr rounded-md from-transparent via-transparent to-black/85 w-full h-full absolute top-0 right-0"></div>
                                         <div className='flex justify-center items-center absolute bottom-0 w-full'>
@@ -243,7 +243,10 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                                                 <p className='border-[1px] border-[#999] text-[#ddd] text-xs text-center rounded-[3px] w-[30px] h-[17px]'>HD</p>
                                                 <p className='text-[#999]'>{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                                             </div>
-                                            <button onClick={() => handleAddToList(item)} className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
+                                            <button onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleAddToList(item);
+                                            }} className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                                 {myList.includes(item) ? <IoMdCheckmark /> : <BsPlusLg />}
                                             </button>
                                         </div>

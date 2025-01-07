@@ -48,7 +48,7 @@ function News() {
                     >
                         {link ? (
                             <Link to={link} className="flex flex-col items-start cursor-pointer">
-                                <img src={img} alt="" className="w-full h-[240px] object-cover rounded-t-md" />
+                                <img src={img} alt="image" className="w-full h-[240px] object-cover rounded-t-md" />
                                 <div className="w-[90%] pl-3">
                                     <h4 className="text-[.7rem] leading-5 py-2">{title} <br /> {description}</h4>
                                     <p className="text-xs text-[#888]">{time}</p>
@@ -56,7 +56,7 @@ function News() {
                             </Link>
                         ) : (
                             <div className="flex flex-col items-start cursor-pointer">
-                                <img src={img} alt="" className="w-full h-[240px] object-cover rounded-t-md" />
+                                <img src={img} alt="image" className="w-full h-[240px] object-cover rounded-t-md" />
                                 <div className="w-[90%] pl-3">
                                     <h4 className="text-[.7rem] leading-5 py-2">{title} <br /> {description}</h4>
                                     <p className="text-xs text-[#888]">{time}</p>

@@ -22,9 +22,9 @@ function Creditoption() {
                 <p className="uppercase text-sm">step <span className="font-semibold"> 3 </span> of <span className="font-semibold">3</span></p>
                 <h1 className="text-3xl font-semibold text-[#333]">Set up your credit or debit card</h1>
                 <div className='flex py-3'>
-                    <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="" />
-                    <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="" />
-                    <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/AMEX.png" alt="" />
+                    <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="visa" />
+                    <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="mastercard" />
+                    <img className="w-[40px] h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/AMEX.png" alt="amex" />
                 </div>
                 <div className='relative'>
                     <input type="text"

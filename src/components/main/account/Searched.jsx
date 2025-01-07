@@ -46,11 +46,6 @@ function Searched() {
         }
     }
 
-    const closeModal = () => {
-        setModal(false)
-        setSelectedItem(null)
-    }
-
     return (
         <div className="h-full min-h-screen bg-[#141414]">
             <div className="absolute -z-10 inset-0 pointer-events-none bg-[#141414]"></div>
@@ -66,23 +61,38 @@ function Searched() {
             </div>
 
             {filteredResults.length > 0 ? (
-                <div className="grid grid-cols-1 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-[100px] xs:py-[150px]">
+                <div className="grid grid-cols-2 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-[100px] xs:py-[150px]">
                     {filteredResults.map((item) => (
-                        <div
-                            onMouseEnter={() => handleMouseEnter(item.id)}
-                            onMouseLeave={handleMouseLeave}
-                            key={item.id}
-                            className="text-white"
-                        >
-                            <Card
-                                type={combinedData}
-                                item={item}
-                                handleSlideMoreInfo={handleSlideMoreInfo}
-                                handleMouseEnter={handleMouseEnter}
-                                handleMouseLeave={handleMouseLeave}
-                                hoveredCard={hoveredCard}
-                            />
+                        <div>
+                            <div
+                                onMouseEnter={() => handleMouseEnter(item.id)}
+                                onMouseLeave={handleMouseLeave}
+                                key={item.id}
+                                className="text-white hidden xs:flex"
+                            >
+                                <Card
+                                    type={combinedData}
+                                    item={item}
+                                    handleSlideMoreInfo={handleSlideMoreInfo}
+                                    handleMouseEnter={handleMouseEnter}
+                                    handleMouseLeave={handleMouseLeave}
+                                    hoveredCard={hoveredCard}
+                                />
+                            </div>
+                            <div
+                                onClick={() =>
+                                    handleSlideMoreInfo(item.id)
+                                }
+                                className="xs:hidden scale-[.94] hover:scale-[.98] transition-all duration-500"
+                            >
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                                    alt={item.title}
+                                    className="rounded-lg h-[190px] min-w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]"
+                                />
+                            </div>
                         </div>
+
                     ))}
                 </div>
             ) : (

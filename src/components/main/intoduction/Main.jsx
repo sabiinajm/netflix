@@ -112,12 +112,12 @@ function Main() {
             </SwiperSlide>
             <SwiperSlide>
               <div className='relative'>
-                <img src={show1} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <img src={show1} alt="show1" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
                 <div className='gradientSwiper'></div>
                 <div className='gradientSwiper2'></div>
                 <div className='text-xs absolute bottom-[40px] z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
-                  <img className='w-[90px] h-[20px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABbckRek5GWN0qQdhLaxG6diy5-ukGQt4JnzaE_TWBbLm3m6Jdi_0FkI98D2-70dXtSXyrpZ3zOvSDVUA0vZcvIgZQjj478FZ.webp?r=9d7" alt="" />
-                  <img className='w-[170px] h-[25px] md:w-[300px] md:h-[50px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABaCuXIY1JChR69J3kc2j9zSl-pt8C1bF4B8-Hx1nJrYtCBtlqQgxFWspu87aSyDTd20c8tpmLZF1LY7o0g4aH_B8x5PwGRVUIA.webp?r=ea7" alt="" />
+                  <img className='w-[90px] h-[20px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABbckRek5GWN0qQdhLaxG6diy5-ukGQt4JnzaE_TWBbLm3m6Jdi_0FkI98D2-70dXtSXyrpZ3zOvSDVUA0vZcvIgZQjj478FZ.webp?r=9d7" alt="pfp" />
+                  <img className='w-[170px] h-[25px] md:w-[300px] md:h-[50px]' src="https://occ-0-7292-3467.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABaCuXIY1JChR69J3kc2j9zSl-pt8C1bF4B8-Hx1nJrYtCBtlqQgxFWspu87aSyDTd20c8tpmLZF1LY7o0g4aH_B8x5PwGRVUIA.webp?r=ea7" alt="pfp" />
                   <ul className='flex gap-6 list-disc'>
                     <li>2024</li>
                     <li>16+</li>
@@ -129,11 +129,11 @@ function Main() {
             </SwiperSlide>
             <SwiperSlide>
               <div className='relative'>
-                <img src={show2} alt="" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
+                <img src={show2} alt="show2" className='object-cover object-top w-full mx-auto h-[400px] lg:h-[530px] rounded-2xl border-l-2 border-t-2 border-white' />
                 <div className='gradientSwiper'></div>
                 <div className='gradientSwiper2'></div>
                 <div className='text-xs absolute bottom-[40px] z-10  text-white font-semibold flex gap-4 flex-col items-center w-full pb-8'>
-                  <img className='w-[190px] h-[55px] md:w-[240px] md-[65px]' src={Mname} alt="" />
+                  <img className='w-[190px] h-[55px] md:w-[240px] md-[65px]' src={Mname} alt="image" />
                 </div>
               </div>
             </SwiperSlide>
@@ -229,13 +229,13 @@ function Main() {
                     <img
                       className="object-cover rounded-t-lg min-h-[160px] max-h-[270px] w-full"
                       src={`https://image.tmdb.org/t/p/w500/${selectedItem.backdrop_path}`}
-                      alt=""
+                      alt="selectedImg"
                     />
                     <div className="absolute top-0 min-h-[160px] h-full w-full bg-gradient-to-b from-transparent z-20 to-[#161616]"></div>
                     <img
                       className="min-w-[170px] w-[50%] absolute bottom-0 z-20 p-2"
                       src="https://occ-0-7292-2774.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYKpip_lfUOhGieAWfBmXrNhJLdgEGbksbqTehyeyiFAvEhto4MtOiWMgf_cqU1rde4rLr6JTKft2qvZ_Ukwy9atvKjcsEQRjg.webp?r=7c6"
-                      alt=""
+                      alt="img"
                     />
                     <div
                       className="absolute top-5 right-5 rounded-full cursor-pointer flex items-center justify-center h-[35px] w-[35px]  z-30  hover:bg-[#ffffff46] transition-all duration-300"

@@ -80,8 +80,6 @@ function Home() {
     setShowMoreInfo(!showMoreInfo)
   }
 
-  const [modal, setModal] = useState(false)
-
   const navigate = useNavigate()
   function openVideo() {
     navigate('/video')
@@ -93,16 +91,40 @@ function Home() {
       setRandomImage(data[randomIndex])
     }
   }, [data])
+  const [selectedItem, setSelectedItem] = useState(null)
+  const handleSlideMoreInfo = (id, source) => {
+    const sources = {
+      data,
+      tv,
+      topM,
+      topTv,
+    }
+    const selectedItem = sources[source]?.find((item) => item.id === id)
+    if (selectedItem) {
+      setSelectedItem(selectedItem)
+      setShowMoreInfo(!showMoreInfo)
+    }
+  }
   return (
     <>
       <main>
+        {showMoreInfo && (
+          <MoreInfo
+            setShowMoreInfo={setShowMoreInfo}
+            overview={selectedItem?.overview || 'Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."'}
+            image={selectedItem?.backdrop_path ? `https://image.tmdb.org/t/p/original${selectedItem?.backdrop_path}` : breakingB}
+            year={selectedItem?.release_date?.slice(0, 4) || selectedItem?.first_air_date?.slice(0, 4) || 2008}
+            genres={selectedItem?.genre_ids || ['violence', 'nudity']}
+          />
+        )}
+
         <div className='hidden xs:block '>
           {loading && <div className="absolute inset-0 flex flex-col gap-3 items-center justify-center bg-black z-[999]">
             <img
               className={`h-[85px] my-4 rounded-md transform transition-transform ${timeRemaining <= 1 ? 'animate-full-top-right' : ''
                 }`} src={selectedProfile}
               alt="Selected Profile" />
-            <img src={Spinner} alt="" className='spinner w-[30px] mt-3' />
+            <img src={Spinner} alt="spinner" className='spinner w-[30px] mt-3' />
           </div>}
           <div className="absolute top-0 h-[730px] w-full bg-black">
             {showImageBefore ? (
@@ -131,7 +153,7 @@ function Home() {
                 <div className="transition-all duration-500 overflow-hidden">
                   <div className="opacity-100 max-h-screen transition-opacity duration-500">
                     <img className={`object-cover  transition-all duration-500 ease-in-out ${showImageBefore ? "scale-100" : "scale-75 translate-y-6 -translate-x-14"
-                      }`} src={breakingBLogo} alt="" />
+                      }`} src={breakingBLogo} alt="breakingBadLogo" />
                     <p
                       className={`text-white text-sm my-4 font-semibold transition-all duration-500 ease-in-out ${showImageBefore ? "opacity-100 max-h-[100px]" : "opacity-0 max-h-0"
                         }`}
@@ -147,9 +169,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {showMoreInfo && <MoreInfo setShowMoreInfo={setShowMoreInfo} year={2008} overview={`Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."`} setModal={setModal} image={breakingB} genres={['violance, nudity']} />}
-              {modal && <MoreInfo setModal={setModal} year={modal.release_date?.slice(0, 4) || modal.first_air_date?.slice(0, 4)}
-                overview={modal.overview} setShowMoreInfo={setShowMoreInfo} image={`https://image.tmdb.org/t/p/original` + selectedItem.backdrop_path} />}
               <div className='bg-[#14141488] w-[110px] h-[40px] flex pl-4 text-xl items-center bottom-[320px] absolute right-0 text-white border-l-[3px] border-white'>
                 <p>+18</p>
               </div>
@@ -180,11 +199,11 @@ function Home() {
         <div div className='block xs:hidden w-[90%] mx-auto ' >
           <div className='w-full pt-4'>
             <div
-              className="absolute -z-10 inset-0 pointer-events-none"
+              className="absolute -z-10 inset-0 pointer-events-none bg-[#141414]"
               style={{ backgroundColor: dominantColor }}
             ></div>
 
-            <img ref={imgRef} className='object-cover min-h-[440px] w-full h-[490px] rounded-xl' src={moneyH} alt="" />
+            <img ref={imgRef} className='object-cover min-h-[440px] w-full h-[490px] rounded-xl' src={moneyH} alt="refcolor" />
           </div>
         </div >
         <div className='block xs:hidden w-full relative'>
@@ -202,7 +221,7 @@ function Home() {
             >
               {data && data.map((item) => {
                 return (
-                  <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
+                  <SwiperSlide onClick={() => handleSlideMoreInfo(item.id, "data")} key={item.id} className='swiper-slide-trend cursor-pointer'>
                     <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                       <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                     </div>
@@ -221,7 +240,7 @@ function Home() {
               >
                 {tv && tv.map((item) => {
                   return (
-                    <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide onClick={() => handleSlideMoreInfo(item.id, "tv")} key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
@@ -239,7 +258,7 @@ function Home() {
               >
                 {topTv && topTv.map((item) => {
                   return (
-                    <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide onClick={() => handleSlideMoreInfo(item.id, "topTv")} key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>
@@ -257,7 +276,7 @@ function Home() {
               >
                 {topM && topM.map((item) => {
                   return (
-                    <SwiperSlide onClick={openVideo} key={item.id} className='swiper-slide-trend cursor-pointer'>
+                    <SwiperSlide onClick={() => handleSlideMoreInfo(item.id, "topM")} key={item.id} className='swiper-slide-trend cursor-pointer'>
                       <div className='scale-[.94] hover:scale-[.98] transition-all duration-500'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} className='rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]' />
                       </div>

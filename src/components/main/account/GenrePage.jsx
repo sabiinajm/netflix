@@ -7,7 +7,7 @@ function GenrePage() {
     return (
         <div className="bg-[#141414]">
             <RandomImage header={header} genreId={parseInt(genreId)} type={header} genreName={genreName} />
-            <FilteredCards header={header} genreId={parseInt(genreId)} />
+            <FilteredCards header={header} genreId={parseInt(genreId)} genreName={genreName}/>
         </div>
     );
 }

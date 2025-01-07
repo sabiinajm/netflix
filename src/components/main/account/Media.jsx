@@ -100,7 +100,7 @@ function Media({ type }) {
     const isHome = location.pathname === '/browse'
     return (
         <main>
-            {modal && selectedItem && (
+            {modal  && (
                 <MoreInfo
                     setModal={setModal}
                     image={`https://image.tmdb.org/t/p/original${selectedItem.backdrop_path}`}

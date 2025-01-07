@@ -224,7 +224,7 @@ function VideoPlayer() {
             <div className='h-screen bg-black'>
                 {isLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black z-[999]">
-                        <img src={Spinner} alt="" className='spinner w-[50px] sm:w-auto' />
+                        <img src={Spinner} alt="spinner" className='spinner w-[50px] sm:w-auto' />
                     </div>
                 )}
                 {isImageVisible && (
