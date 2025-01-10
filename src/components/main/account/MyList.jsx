@@ -17,6 +17,7 @@ function MyList() {
   const handleMouseLeave = () => setHoveredCard(null)
 
   const handleSlideMoreInfo = (itemId) => {
+   
     const selectedItem = myList.find((item) => item.id === itemId)
     if (selectedItem) {
       setSelectedItem(selectedItem)
@@ -27,12 +28,14 @@ function MyList() {
   return (
     <main className="min-h-screen bg-[#141414]">
       <div className='max-w-[1450px] w-full mx-auto px-8 pt-2 flex justify-center items-center'>
-        <div className="grid grid-cols-1 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-4 xs:py-[110px]">
+        <div className={` ${myList.length === 0 ? "flex justify-center items-center" : "grid"
+          } pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-4 xs:py-[110px]`}
+        >
           {myList.length > 0 ? (
             myList.map((item) => (
-              <div className="hidden xs:flex">
+              <div 
+              key={item.id || Math.random()} className="hidden xs:flex">
                 <Card
-                  key={item.id || Math.random()}
                   type="myList"
                   item={item}
                   handleSlideMoreInfo={handleSlideMoreInfo}
@@ -44,7 +47,7 @@ function MyList() {
               </div>
             ))
           ) : (
-            <p className="text-white mx-auto pt-[120px]">Your list is empty.</p>
+            <p className="text-[#7c7c7cbd] text-center flex justify-center w-full pt-[120px]">You haven't added any titles to your list yet.</p>
           )}
         </div>
         {/* Mobile */}
@@ -65,9 +68,10 @@ function MyList() {
               cssMode={true}
               modules={[Navigation, Keyboard]}
             >
+              
               {myList.length > 0 ? (
                 myList.map((item) => (
-                  <SwiperSlide key={item.id} className="swiper-slide-trend cursor-pointer">
+                  <SwiperSlide key={item.id || Math.random()}  className="swiper-slide-trend cursor-pointer">
                     <div
                       onClick={() =>
                         handleSlideMoreInfo(item.id)
@@ -75,15 +79,15 @@ function MyList() {
                       className="scale-[.94] hover:scale-[.98] transition-all duration-500"
                     >
                       <img
-                        src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                        src={item.image || `https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                         alt={item.title}
-                        className="rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]"
+                        className="object-cover object-right rounded-lg h-[190px] w-[130px] md:h-[240px] md:w-[170px] lg:h-[270px] lg:w-[220px]"
                       />
                     </div>
                   </SwiperSlide>
                 ))
               ) : (
-                <p className="text-white mx-auto pt-[120px]">Your list is empty.</p>
+                <p className="text-[#7c7c7cbd] mx-auto pt-[120px]">You haven't added any titles to your list yet.</p>
               )}
             </Swiper>
           </div>

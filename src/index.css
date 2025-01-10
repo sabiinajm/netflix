@@ -212,3 +212,19 @@
   position: absolute;
   animation: moveTopRight 1s ease-in-out forwards;
 }
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: red;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: red;
+  cursor: pointer;
+}

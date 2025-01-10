@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import { IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
+import { IoCloseOutline, IoPauseSharp, IoPlaySharp, IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -16,9 +16,10 @@ import ColorThief from 'colorthief'
 
 import { DATA, TOPMOVIES, TOPTV, TV } from '../../../context/DataContext'
 import MoreInfo from './MoreInfo'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Media from './Media'
 import { PROFILES } from '../../../context/ProfileContext'
+import { TbScreenShare } from 'react-icons/tb'
 
 function Home() {
   const { data } = useContext(DATA)
@@ -105,6 +106,17 @@ function Home() {
       setShowMoreInfo(!showMoreInfo)
     }
   }
+  const location = useLocation();
+  const [videoState, setVideoState] = useState(null)
+  useEffect(() => {
+    if (location.state) {
+      setVideoState(location.state);
+    }
+  }, [location.state]);
+  const handleClearState = () => {
+    navigate('/browse', { state: null })
+    setVideoState(false);
+  };
   return (
     <>
       <main>
@@ -195,8 +207,25 @@ function Home() {
             <Media type={"movies"} />
           </div>
         </div >
+        {
+          videoState &&
+          <div className='z-[999] bottom-[70px] right-[10px] xs:bottom-[30px] xs:right-[30px] w-[180px] xs:w-[250px] md:w-[320px] fixed shadow-xl'>
+            <video
+              className="object-cover peer rounded-md hover:brightness-50 transition-all duration-300"
+              src={BreakingBvideo}
+              onClick={openVideo}
+              muted
+              autoPlay
+              loop
+              playsInline
+              preload="auto"
+            />
+            <IoCloseOutline onClick={handleClearState} className='absolute text-white top-[5px] left-[5px] text-2xl' />
+            <TbScreenShare className='peer absolute hidden hover:flex peer-hover:flex top-[35%] items-center w-full text-white text-2xl' />
+          </div>
+        }
         {/* Mobile */}
-        <div div className='block xs:hidden w-[90%] mx-auto ' >
+        <div className='block xs:hidden w-[90%] mx-auto ' >
           <div className='w-full pt-4'>
             <div
               className="absolute -z-10 inset-0 pointer-events-none bg-[#141414]"

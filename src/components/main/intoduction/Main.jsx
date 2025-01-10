@@ -157,8 +157,8 @@ function Main() {
                 placeholder:text-transparent focus:pt-8 focus:pb-6 pl-4 py-2`}
             />
             <label
-              className=" absolute top-1 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
-        origin-[0_0] peer-focus:scale-90  peer-focus:-translate-y-4 peer-focus:text-gray-400 
+              className=" absolute top-0 left-0 p-3 pl-5 h-full text-white text-sm truncate pointer-events-none transition-all ease-in-out duration-100
+        origin-[0_0] peer-focus:scale-90 peer-focus:p-5  peer-focus:-translate-y-4 peer-focus:text-gray-400 
         peer-[:not(:placeholder-shown)]:scale-90   peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:text-gray-400"
             >Email address</label>
           </div>

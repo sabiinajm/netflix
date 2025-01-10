@@ -21,8 +21,9 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
     const handleClose = () => {
         if (setShowMoreInfo) {
             setShowMoreInfo(false);
+        } else if (setModal) {
+            setModal(false);
         }
-        setModal(false);
     };
     function truncateByWords(text, maxWords) {
         const words = text.split(' ');
@@ -167,11 +168,11 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                                 <div className='flex items-center gap-2'>
                                     <p className='border-[1px] border-white text-white text-xs text-center w-[30px] h-[17px]'>18+</p>
                                     <p className='text-[#fff] text-sm'>{
-                                        genres
+                                        (genres || [])
                                             .filter(id => genreMap[id])
                                             .map(id => genreMap[id])
-                                            .join(", ")}
-                                    </p>
+                                            .join(", ")
+                                    }</p>
                                 </div>
                                 <p className='text-white text-sm leading-5 py-4 max-w-[400px]'>{overview}</p>
                             </div>
@@ -218,7 +219,7 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                             </div>
                         }
                         <h2 className='text-white text-2xl font-semibold py-5 w-[90%] mx-auto'>More Like This</h2>
-                        <div className='grid xs:grid-cols-2 md:grid-cols-3 gap-4 w-[90%] mx-auto'>
+                        <div className='grid xs:grid-cols-2 md:grid-cols-3 gap-4 w-[90%] mx-auto pb-10'>
                             {data && data.map((item) => (
                                 <div onMouseEnter={() => setOnHover(item.id)}
                                     onClick={() => navigate(`/video`)}

@@ -1,6 +1,11 @@
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function Registration() {
+    useEffect(() => {
+        document.body.style.overflow = "auto";
+
+    }, []);
     return (
         <main className="px-4 flex flex-col max-w-[1100px] mx-auto justify-center items-center min-h-[700px]">
             <div className="max-w-[500px] min-w-[150px] mx-auto flex justify-center flex-col items-center py-8 text-center ">

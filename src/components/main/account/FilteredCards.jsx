@@ -21,8 +21,6 @@ function FilteredCards({ genreId, header, genreName }) {
             const filteredData = genreId
                 ? selectedData.filter(item => item.genre_ids.includes(genreId))
                 : selectedData
-
-            console.log('Filtered Data:', filteredData)
         }
     }, [selectedData, genreId])
     const [hoveredCard, setHoveredCard] = useState(null)
@@ -48,12 +46,11 @@ function FilteredCards({ genreId, header, genreName }) {
                     selectedData
                         .filter(item => genreId ? item.genre_ids.includes(parseInt(genreId)) : true)
                         .map(item => (
-                            <div>
+                            <div key={item.id}>
                                 <div className="hidden xs:flex" >
                                     <div
                                         onMouseEnter={() => handleMouseEnter(item.id)}
                                         onMouseLeave={handleMouseLeave}
-                                        key={item.id}
                                         className="text-white"
                                     >
                                         <Card
@@ -67,9 +64,7 @@ function FilteredCards({ genreId, header, genreName }) {
                                     </div>
                                 </div>
                                 <div
-                                    onClick={() =>
-                                        handleSlideMoreInfo(item.id)
-                                    }
+                                    onClick={() => handleSlideMoreInfo(item.id)}
                                     className="xs:hidden scale-[.94] hover:scale-[.98] transition-all duration-500"
                                 >
                                     <img

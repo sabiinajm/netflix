@@ -235,7 +235,7 @@ function AccHeader({ bgColor, showHeader }) {
                     </nav>
                     <nav className='block xs:hidden fixed bottom-0 bg-[#141414] text-[#888] w-full z-50'>
                         {categMenu && (
-                            <Genres selectedData={selectedData} toggleCateg={toggleCateg} header={header} />
+                            <Genres selectedData={selectedData}  header={header} />
                         )}
                         <div className='w-[90%] mx-auto flex justify-between items-center h-[60px]'>
                             <NavLink to={'/browse'} className={({ isActive }) =>
