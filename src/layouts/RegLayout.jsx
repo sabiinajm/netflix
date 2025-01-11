@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import RegHeader from "../components/header/RegHeader.jsx"
-import RegFooter from "../components/footer/RegFooter.jsx"
+import RegFooter from "../components/footer/RegFooter"
+import RegHeader from "../components/header/RegHeader"
 
 function RegLayout() {
     return (
