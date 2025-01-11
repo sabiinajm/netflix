@@ -10,27 +10,32 @@ import { BiDislike, BiSolidDislike } from "react-icons/bi"
 function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLeave, hoveredCard }) {
     const { myList, handleAddToList } = useContext(LIST)
     const navigate = useNavigate()
+    const location = useLocation()
+    const timeoutRef = useRef(null)
+
+    const [likeOpt, setLikeOpt] = useState(false)
+    const [like, setLike] = useState(false)
+    const [dislike, setDislike] = useState(false)
+
     function openVideo() {
         navigate('/video')
     }
-    const location = useLocation()
     const isSearched =
         location.pathname === "/searched" ||
         matchPath("/:header/genre/:genreName/:genreId", location.pathname) ||
         location.pathname === "/myList"
-    const timeoutRef = useRef(null);
-    const [likeOpt, setLikeOpt] = useState(false)
+
     const handleLikeOpt = () => {
         timeoutRef.current = setTimeout(() => {
             setLikeOpt((prev) => !prev)
         }, 1000)
-    };
+    }
+
     const cancelLikeOpt = () => {
         clearTimeout(timeoutRef.current)
         setLikeOpt(false)
-    };
-    const [like, setLike] = useState(false)
-    const [dislike, setDislike] = useState(false)
+    }
+
     function handleDislike() {
         setDislike(!dislike)
         setLike(false)

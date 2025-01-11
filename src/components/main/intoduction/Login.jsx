@@ -33,8 +33,6 @@ function Login() {
   }
   const isValid = !error && emailRegex.test(email) && password
 
-  const [selectedItem, setSelectedItem] = useState(null)
-
   return (
     <main>
       <div className='fixed top-0 -z-10 w-full h-full'>

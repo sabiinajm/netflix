@@ -241,15 +241,15 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
                                             </span>
                                         </label>
                                     </div>
-                                    <div onClick={handleAddNewProfile} className="w-[90%] mx-auto pt-4">
-                                        <a className="bg-[#fff] rounded-[.3rem] w-full xs:mx-0 h-[42px] lg:text-xl lg:font-semibold my-2 text-black font-semibold hover:bg-[#999] transition-all duration-300 flex justify-center items-center">
+                                    <div onClick={handleAddNewProfile} className="w-[90%] mx-auto pt-4 cursor-pointer">
+                                        <p className="bg-[#fff] rounded-[.3rem] w-full xs:mx-0 h-[42px] lg:text-xl lg:font-semibold my-2 text-black font-semibold hover:bg-[#999] transition-all duration-300 flex justify-center items-center">
                                             Save
-                                        </a>
+                                        </p>
                                     </div>
-                                    <div onClick={() => setAddProfile(false)} className="w-[90%] mx-auto">
-                                        <a className=" mb-6 rounded-[.3rem] w-full xs:mx-0 h-[42px] lg:text-xl lg:font-semibold my-2 text-white font-semibold hover:bg-[#ffffff34] transition-all duration-300 flex justify-center items-center">
+                                    <div onClick={() => setAddProfile(false)} className="w-[90%] mx-auto cursor-pointer">
+                                        <p className=" mb-6 rounded-[.3rem] w-full xs:mx-0 h-[42px] lg:text-xl lg:font-semibold my-2 text-white font-semibold hover:bg-[#ffffff34] transition-all duration-300 flex justify-center items-center">
                                             Cancel
-                                        </a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>

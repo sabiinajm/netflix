@@ -10,9 +10,15 @@ function Media({ type }) {
     const { topM } = useContext(TOPMOVIES)
     const { topTv } = useContext(TOPTV)
 
+    const location = useLocation();
+    const isHome = location.pathname === '/browse';
     const [isSwipedRight, setIsSwipedRight] = useState(false)
     const [isSwipedRight2, setIsSwipedRight2] = useState(false)
     const [isSwipedRight3, setIsSwipedRight3] = useState(false)
+    const [hoveredCard, setHoveredCard] = useState(null)
+    const [hoveredCard2, setHoveredCard2] = useState(null)
+    const [hoveredCard3, setHoveredCard3] = useState(null)
+
     const swipeRight = () => {
         setIsSwipedRight(true)
     }
@@ -22,10 +28,6 @@ function Media({ type }) {
     const swipeRight3 = () => {
         setIsSwipedRight3(true)
     }
-    const [hoveredCard, setHoveredCard] = useState(null)
-    const [hoveredCard2, setHoveredCard2] = useState(null)
-    const [hoveredCard3, setHoveredCard3] = useState(null)
-
     const handleMouseEnter = (id) => {
         setHoveredCard(id)
     }
@@ -35,7 +37,6 @@ function Media({ type }) {
     const handleMouseEnter3 = (id) => {
         setHoveredCard3(id)
     }
-
     const handleMouseLeave = () => {
         setHoveredCard(null)
     }
@@ -45,6 +46,7 @@ function Media({ type }) {
     const handleMouseLeave3 = () => {
         setHoveredCard3(null)
     }
+
     const [selectedItem, setSelectedItem] = useState(null)
     const [modal, setModal] = useState(false)
     const handleSlideMoreInfo = (id, source) => {
@@ -96,8 +98,6 @@ function Media({ type }) {
             swipeRight: swipeRight3,
         },
     ]
-    const location = useLocation()
-    const isHome = location.pathname === '/browse'
     return (
         <main>
             {modal  && (

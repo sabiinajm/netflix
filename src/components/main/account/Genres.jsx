@@ -11,6 +11,7 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
     const { topTv } = useContext(TOPTV)
 
     const navigate = useNavigate()
+
     let selectedData = []
     if (header === 'Movies') {
         selectedData = topM
@@ -46,6 +47,7 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
     function toggleCateg() {
         setCategMenu(!categMenu)
     }
+    
     useEffect(() => {
         const handleScroll = () => setScroll(window.scrollY)
         window.addEventListener('scroll', handleScroll)

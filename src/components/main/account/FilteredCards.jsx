@@ -23,6 +23,7 @@ function FilteredCards({ genreId, header, genreName }) {
                 : selectedData
         }
     }, [selectedData, genreId])
+    
     const [hoveredCard, setHoveredCard] = useState(null)
     const handleMouseEnter = (id) => setHoveredCard(id)
     const handleMouseLeave = () => setHoveredCard(null)

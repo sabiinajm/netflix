@@ -16,19 +16,24 @@ import { LIST } from "../../../context/MyListContext"
 import { IoMdCheckmark } from "react-icons/io"
 import { useLocation, useNavigate } from "react-router-dom"
 function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres }) {
-    const { myList, handleAddToList } = useContext(LIST);
+    const { myList, handleAddToList } = useContext(LIST)
     const { data } = useContext(DATA)
+    const [onHover, setOnHover] = useState(false)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [selectedSeason, setSelectedSeason] = useState(1)
+
     const handleClose = () => {
         if (setShowMoreInfo) {
-            setShowMoreInfo(false);
+            setShowMoreInfo(false)
         } else if (setModal) {
-            setModal(false);
+            setModal(false)
         }
-    };
+    }
     function truncateByWords(text, maxWords) {
-        const words = text.split(' ');
-        if (words.length <= maxWords) return text;
-        return words.slice(0, maxWords).join(' ') + ' ...';
+        const words = text.split(' ')
+        if (words.length <= maxWords) return text
+        return words.slice(0, maxWords).join(' ') + ' ...'
     }
     const [like, setLike] = useState(false)
     const genreMap = {
@@ -50,8 +55,6 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
         37: "Western",
     }
 
-    const [onHover, setOnHover] = useState(false)
-    const navigate = useNavigate();
     const episodesData = {
         1: [
             {
@@ -101,23 +104,21 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                 imgSrc: ep6,
             },
         ],
-    };
-    const [selectedSeason, setSelectedSeason] = useState(1);
+    }
 
     const handleSeasonChange = (e) => {
-        setSelectedSeason(parseInt(e.target.value));
-    };
+        setSelectedSeason(parseInt(e.target.value))
+    }
 
     const episodes = episodesData[selectedSeason] || []
 
-    const location = useLocation()
     const [showEpisodes, setShowEpisodes] = useState(false)
 
     useEffect(() => {
         if (decodeURIComponent(location.pathname).includes("TV Shows") || year === 2008) {
-            setShowEpisodes(true);
+            setShowEpisodes(true)
         } else {
-            setShowEpisodes(false);
+            setShowEpisodes(false)
         }
     }, [location])
 
@@ -245,8 +246,8 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                                                 <p className='text-[#999]'>{item.release_date?.slice(0, 4) || item.first_air_date?.slice(0, 4)}</p>
                                             </div>
                                             <button onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleAddToList(item);
+                                                e.stopPropagation()
+                                                handleAddToList(item)
                                             }} className="w-[30px] h-[30px] rounded-full flex justify-center items-center transition-all duration-200 hover:bg-[#99999946] text-[#f1f1f1] text-xl border-2 border-[#999] bg-[#222]">
                                                 {myList.includes(item) ? <IoMdCheckmark /> : <BsPlusLg />}
                                             </button>

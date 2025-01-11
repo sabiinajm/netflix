@@ -29,12 +29,20 @@ function Home() {
   const { loading, selectedProfile, timeRemaining } = useContext(PROFILES)
 
   const [dominantColor, setDominantColor] = useState('')
+  const [showImageBefore, setShowImageBefore] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
+  const [showMoreInfo, setShowMoreInfo] = useState(false)
+  const [randomImage, setRandomImage] = useState(null)
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [videoState, setVideoState] = useState(null)
+
   const imgRef = useRef()
+  const videoRef = useRef(null)
 
   useEffect(() => {
     if (imgRef.current) {
       const colorThief = new ColorThief()
-
       imgRef.current.onload = () => {
         const color = colorThief.getColor(imgRef.current)
         setDominantColor(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`)
@@ -42,14 +50,10 @@ function Home() {
     }
   }, [])
 
-  const videoRef = useRef(null)
-  const [showImageBefore, setShowImageBefore] = useState(true)
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowImageBefore(false)
     }, 3000)
-
     return () => clearTimeout(timer)
   }, [])
 
@@ -57,8 +61,6 @@ function Home() {
     setShowImageBefore(true)
   }
 
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [isMuted, setIsMuted] = useState(true)
   const stopVideo = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -75,7 +77,6 @@ function Home() {
       setIsMuted(!isMuted)
     }
   }
-  const [showMoreInfo, setShowMoreInfo] = useState(false)
 
   const handleShowMoreInfo = () => {
     setShowMoreInfo(!showMoreInfo)
@@ -85,14 +86,14 @@ function Home() {
   function openVideo() {
     navigate('/video')
   }
-  const [randomImage, setRandomImage] = useState(null)
+  
   useEffect(() => {
     if (data && data.length > 0) {
       const randomIndex = Math.floor(Math.random() * data.length)
       setRandomImage(data[randomIndex])
     }
   }, [data])
-  const [selectedItem, setSelectedItem] = useState(null)
+
   const handleSlideMoreInfo = (id, source) => {
     const sources = {
       data,
@@ -106,17 +107,18 @@ function Home() {
       setShowMoreInfo(!showMoreInfo)
     }
   }
-  const location = useLocation();
-  const [videoState, setVideoState] = useState(null)
+
+  const location = useLocation()
   useEffect(() => {
     if (location.state) {
-      setVideoState(location.state);
+      setVideoState(location.state)
     }
-  }, [location.state]);
+  }, [location.state])
+
   const handleClearState = () => {
     navigate('/browse', { state: null })
-    setVideoState(false);
-  };
+    setVideoState(false)
+  }
   return (
     <>
       <main>

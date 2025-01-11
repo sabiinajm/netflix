@@ -19,9 +19,20 @@ import { DATA, TOPMOVIES, TOPTV } from '../../context/DataContext'
 
 function AccHeader({ bgColor, showHeader }) {
     const { profiles, selectedProfile, setSelectedProfile } = useContext(PROFILES)
+    const { data } = useContext(DATA)
+    const { topM } = useContext(TOPMOVIES)
+    const { topTv } = useContext(TOPTV)
+
     const [scroll, setScroll] = useState(0)
     const [onRingBell, setOnRingBell] = useState(false)
     const [onProfile, setOnProfile] = useState(false)
+    const [menu, setMenu] = useState(false)
+    const [search, setSearch] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
+    const [categMenu, setCategMenu] = useState(false)
+
+    const navigate = useNavigate()
+
     useEffect(() => {
         const handleScroll = () => {
             setScroll(window.scrollY)
@@ -32,17 +43,13 @@ function AccHeader({ bgColor, showHeader }) {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
-    const [menu, setMenu] = useState(false)
+
     function openList() {
         setMenu(!menu)
     }
-    const [search, setSearch] = useState(false)
     function searchBar() {
         setSearch(!search)
     }
-    const [searchTerm, setSearchTerm] = useState('')
-
-    const navigate = useNavigate()
     function startSearch(e) {
         const val = e.target.value
         setSearchTerm(val)
@@ -59,16 +66,13 @@ function AccHeader({ bgColor, showHeader }) {
     const handleProfileClick = (imageUrl) => {
         setSelectedProfile(imageUrl)
     }
-    const [categMenu, setCategMenu] = useState(false)
+
     function toggleCateg() {
         setCategMenu(!categMenu)
     }
 
     const header = decodeURIComponent(window.location.pathname.split('/').filter(Boolean)[0])
 
-    const { data } = useContext(DATA)
-    const { topM } = useContext(TOPMOVIES)
-    const { topTv } = useContext(TOPTV)
     let selectedData = []
     if (header === 'Movies') {
         selectedData = topM
