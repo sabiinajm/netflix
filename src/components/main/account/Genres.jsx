@@ -5,7 +5,7 @@ import { RxTextAlignLeft } from "react-icons/rx"
 import { DATA, TOPMOVIES, TOPTV } from "../../../context/DataContext"
 import { Link, useNavigate } from "react-router-dom"
 
-function Genres({ header, setRandomImage, genreId, genreName }) {
+function Genres({ header, setRandomImage, genreId, genreName, setCategMenu }) {
     const { data } = useContext(DATA)
     const { topM } = useContext(TOPMOVIES)
     const { topTv } = useContext(TOPTV)
@@ -43,10 +43,6 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedGenre, setSelectedGenre] = useState(null)
     const [scroll, setScroll] = useState(0)
-    const [categMenu, setCategMenu] = useState(false)
-    function toggleCateg() {
-        setCategMenu(!categMenu)
-    }
     
     useEffect(() => {
         const handleScroll = () => setScroll(window.scrollY)
@@ -84,6 +80,7 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
         setSelectedGenre(genreMap[genreId])
         setIsOpen(false)
         setCategMenu(false)
+        
     }
 
     const handleRandomClick = () => {
@@ -149,7 +146,7 @@ function Genres({ header, setRandomImage, genreId, genreName }) {
 
             {/* Mobile View */}
             <div className="fixed top-0 left-0 h-screen w-full backdrop-blur-2xl xs:hidden z-[999]">
-                <IoMdClose onClick={toggleCateg} className="absolute right-4 top-4 text-2xl hover:text-white transition-none duration-150" />
+                <IoMdClose onClick={()=>setCategMenu(false)} className="absolute right-4 top-4 text-2xl hover:text-white transition-none duration-150" />
                 <ul className="flex flex-col justify-center w-full items-center h-full gap-5">
                     {availableGenres.map(([genreId, genreName]) => (
                         <Link

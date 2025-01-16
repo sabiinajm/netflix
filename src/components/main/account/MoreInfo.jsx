@@ -184,10 +184,10 @@ function MoreInfo({ setShowMoreInfo, image, setModal, year, overview, id, genres
                         </div>
                         {showEpisodes &&
                             <div className="w-[90%] mx-auto">
-                                <div className="flex items-center justify-between py-5 ">
+                                <div className="flex items-center justify-between py-5 gap-3 ">
                                     <h2 className='text-white text-2xl font-semibold py-5 w-[90%] mx-auto'>Episodes</h2>
                                     <select
-                                        className="bg-[#2a2a2a] text-white outline-none border border-[#969696] py-2 px-5"
+                                        className="bg-[#2a2a2a] text-white outline-none border border-[#969696] py-2 px-2 sm:px-5"
                                         onChange={handleSeasonChange}
                                         value={selectedSeason}
                                     >

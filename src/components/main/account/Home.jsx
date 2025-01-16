@@ -197,7 +197,7 @@ function Home() {
             </div>
           </div>
           <div className='h-[730px] flex items-end relative'>
-            <div className=' bg-gradient-to-b from-transparent absolute h-[150px] w-full bottom-[58px] to-[#141414]'></div>
+            <div className='bg-gradient-to-b from-transparent absolute h-[150px] w-full bottom-[58px] to-[#141414]'></div>
             <div className='w-full relative top-[760px] bg-[#141414]'>
               <Media type={"data"} />
             </div>

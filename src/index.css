@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 .custom-prev.swiper-button-disabled,
+.custom-prev1.swiper-button-disabled,
 .custom-prev2.swiper-button-disabled,
 .custom-prev3.swiper-button-disabled,
 .custom-prev4.swiper-button-disabled,
 .custom-prev5.swiper-button-disabled,
+.custom-prev6.swiper-button-disabled,
+.custom-prev7.swiper-button-disabled,
+.custom-prev8.swiper-button-disabled,
 .main-prev.swiper-button-disabled {
   transform: translateX(-5px);
   opacity: 0;
@@ -16,10 +20,14 @@
 
   
 .custom-next.swiper-button-disabled,
+.custom-next1.swiper-button-disabled,
 .custom-next2.swiper-button-disabled,
 .custom-next3.swiper-button-disabled,
 .custom-next4.swiper-button-disabled,
 .custom-next5.swiper-button-disabled,
+.custom-next6.swiper-button-disabled,
+.custom-next7.swiper-button-disabled,
+.custom-next8.swiper-button-disabled,
 .main-next.swiper-button-disabled {
   transform: translateX(5px);
   opacity: 0;

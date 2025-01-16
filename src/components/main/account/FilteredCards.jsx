@@ -23,7 +23,7 @@ function FilteredCards({ genreId, header, genreName }) {
                 : selectedData
         }
     }, [selectedData, genreId])
-    
+
     const [hoveredCard, setHoveredCard] = useState(null)
     const handleMouseEnter = (id) => setHoveredCard(id)
     const handleMouseLeave = () => setHoveredCard(null)
@@ -80,6 +80,7 @@ function FilteredCards({ genreId, header, genreName }) {
             </div >
             {modal && selectedItem && (
                 <MoreInfo
+                    id={selectedItem.id}
                     setModal={setModal}
                     image={`https://image.tmdb.org/t/p/original${selectedItem.backdrop_path}`}
                     year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}

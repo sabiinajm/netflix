@@ -12,13 +12,14 @@ function MyListContext({ children }) {
     }, [myList]);
 
     const handleAddToList = (item) => {
+        console.log("Adding/Removing Item:", item);
         setMyList((prevList) => {
             const updatedList = prevList.some((i) => i.id === item.id)
                 ? prevList.filter((i) => i.id !== item.id)
                 : [...prevList, item]
+                console.log("Updated List:", updatedList);
             return updatedList
         })
-        cookies.set("myList", myList);
     }
 
     return (

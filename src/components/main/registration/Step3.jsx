@@ -14,7 +14,7 @@ function Step3() {
                     Cancel easily online.</p>
                 <Link to={'/signup/creditoption'} className="flex items-center min-h-[60px] rounded-md w-[90%] mx-auto justify-between px-8 border-2 border-[#c5c5c5] my-8 ">
                     <div className="flex items-center flex-col sm:flex-row gap-3 py-2">
-                        <p>Credit or Denit Card</p>
+                        <p>Credit or Debit Card</p>
                         <div className="flex gap-3">
                         <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png" alt="visa" />
                         <img className="w-[25px] h-[15px] sm:w-[40px] sm:h-[25px]" src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png" alt="mastercard" />
