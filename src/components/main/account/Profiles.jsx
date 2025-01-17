@@ -46,7 +46,7 @@ function Profiles({ heading = "Who's watching?", buttonLabel = 'Manage Profiles'
                 )
             )
         } else {
-            setNewProfile((prev) => ({ ...prev, avatar }))
+            setNewProfile((item) => ({ ...item, avatar }))
         }
         setSelectedAvatar(avatar)
         setShowAvatarOptions(false)

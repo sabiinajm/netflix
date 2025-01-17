@@ -43,7 +43,7 @@ function Genres({ header, setRandomImage, genreId, genreName, setCategMenu }) {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedGenre, setSelectedGenre] = useState(null)
     const [scroll, setScroll] = useState(0)
-    
+
     useEffect(() => {
         const handleScroll = () => setScroll(window.scrollY)
         window.addEventListener('scroll', handleScroll)
@@ -74,13 +74,15 @@ function Genres({ header, setRandomImage, genreId, genreName, setCategMenu }) {
         selectedData?.some(item => item.genre_ids.includes(parseInt(genreId)))
     )
 
-    const toggleDropdown = () => setIsOpen(prev => !prev)
+    const toggleDropdown = () => setIsOpen(!isOpen)
 
     const handleSelect = (genreId) => {
         setSelectedGenre(genreMap[genreId])
         setIsOpen(false)
-        setCategMenu(false)
-        
+        if (setCategMenu) {
+            setCategMenu(false)
+        }
+
     }
 
     const handleRandomClick = () => {
@@ -146,7 +148,7 @@ function Genres({ header, setRandomImage, genreId, genreName, setCategMenu }) {
 
             {/* Mobile View */}
             <div className="fixed top-0 left-0 h-screen w-full backdrop-blur-2xl xs:hidden z-[999]">
-                <IoMdClose onClick={()=>setCategMenu(false)} className="absolute right-4 top-4 text-2xl hover:text-white transition-none duration-150" />
+                <IoMdClose onClick={() => setCategMenu(false)} className="absolute right-4 top-4 text-2xl hover:text-white transition-none duration-150" />
                 <ul className="flex flex-col justify-center w-full items-center h-full gap-5">
                     {availableGenres.map(([genreId, genreName]) => (
                         <Link

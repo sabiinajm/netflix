@@ -59,7 +59,7 @@ function RandomImage({ header, genreId, genreName }) {
     }
 
     const handleShowMoreInfo = () => {
-        setShowMoreInfo(prev => !prev)
+        setShowMoreInfo(!showMoreInfo)
     }
 
     return (

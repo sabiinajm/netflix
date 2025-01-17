@@ -27,7 +27,7 @@ function Card({ type, item, handleSlideMoreInfo, handleMouseEnter, handleMouseLe
 
     const handleLikeOpt = () => {
         timeoutRef.current = setTimeout(() => {
-            setLikeOpt((prev) => !prev)
+            setLikeOpt(!likeOpt)
         }, 1000)
     }
 

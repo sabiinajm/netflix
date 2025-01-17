@@ -19,8 +19,8 @@ function ProfileContext({ children }) {
 
     const handleProfileChange = (e) => {
         const { name, value } = e.target
-        setProfiles((prev) =>
-            prev.map((profile) =>
+        setProfiles((item) =>
+            item.map((profile) =>
                 profile.id === editingProfileId ? { ...profile, [name]: value } : profile
             )
         )
@@ -34,8 +34,8 @@ function ProfileContext({ children }) {
 
     const handleCancel = () => {
         if (originalProfile) {
-            setProfiles((prev) =>
-                prev.map((profile) =>
+            setProfiles((item) =>
+                item.map((profile) =>
                     profile.id === editingProfileId ? originalProfile : profile
                 )
             )
@@ -69,7 +69,7 @@ function ProfileContext({ children }) {
     const [selectedProfile, setSelectedProfile] = useState(profiles[0]?.avatar || null)
     const [selectedProfileName, setSelectedProfileName] = useState(profiles[0]?.name || null)
     const [loading, setLoading] = useState(false)
-    const [timeRemaining, setTimeRemaining] = useState(5);
+    const [timeRemaining, setTimeRemaining] = useState(5)
 
     const handleProfileImageClick = (profileId) => {
         const selectedProf = profiles.find(profile => profile.id === profileId)
@@ -80,21 +80,21 @@ function ProfileContext({ children }) {
         setEdit(true)
         setEditingProfileId(profileId)
 
-        setLoading(true);
-        setTimeRemaining(2);
+        setLoading(true)
+        setTimeRemaining(2)
     }
 
     useEffect(() => {
-        let timer;
+        let timer
         if (loading && timeRemaining > 0) {
             timer = setInterval(() => {
-                setTimeRemaining(prev => prev - 1);
-            }, 1000);
+                setTimeRemaining(item => item - 1)
+            }, 1000)
         } else if (timeRemaining === 0) {
-            setLoading(false);
+            setLoading(false)
         }
-        return () => clearInterval(timer);
-    }, [loading, timeRemaining]);
+        return () => clearInterval(timer)
+    }, [loading, timeRemaining])
     return (
         <PROFILES.Provider
             value={{

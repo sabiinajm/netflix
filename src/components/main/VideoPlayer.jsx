@@ -44,11 +44,17 @@ function VideoPlayer() {
         }
         setOpenVolume(!openVolume)
     }
-
+    const speedVals = [
+        { label: '0.5x', value: 0.5 },
+        { label: '0.75x', value: 0.75 },
+        { label: '1x', value: 1 },
+        { label: '1.25x', value: 1.25 },
+        { label: '1.5x', value: 1.5 },
+    ]
     const [showSpeedMenu, setShowSpeedMenu] = useState(false)
     const [playbackRate, setPlaybackRate] = useState(1)
     const toggleSpeedMenu = () => {
-        setShowSpeedMenu((prev) => !prev)
+        setShowSpeedMenu(!showSpeedMenu)
     }
     const changeSpeed = (rate) => {
         setPlaybackRate(rate)
@@ -121,16 +127,16 @@ function VideoPlayer() {
 
     const handleMouseMoveVideo = (e) => {
         if (isSeeking) {
-            const video = videoRef.current;
-            const progressBar = progressBarRef.current;
-            const rect = progressBar.getBoundingClientRect();
-            const offsetX = e.clientX - rect.left;
-            const newProgress = Math.min(Math.max((offsetX / rect.width) * 100, 0), 100);
+            const video = videoRef.current
+            const progressBar = progressBarRef.current
+            const rect = progressBar.getBoundingClientRect()
+            const offsetX = e.clientX - rect.left
+            const newProgress = Math.min(Math.max((offsetX / rect.width) * 100, 0), 100)
 
-            setProgress(newProgress);
-            video.currentTime = (newProgress / 100) * video.duration;
+            setProgress(newProgress)
+            video.currentTime = (newProgress / 100) * video.duration
         }
-    };
+    }
 
     const handleMouseUpVideo = () => {
         setIsSeeking(false)
@@ -162,11 +168,11 @@ function VideoPlayer() {
 
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value)
-        setVolume(newVolume);
+        setVolume(newVolume)
         if (videoRef.current) {
-            videoRef.current.volume = newVolume;
+            videoRef.current.volume = newVolume
         }
-    };
+    }
 
     const [showControls, setShowControls] = useState(true)
     const timerRef = useRef(null)
@@ -242,11 +248,11 @@ function VideoPlayer() {
                                 onMouseMove={handleMouseMoveVideo}
                                 onMouseUp={handleMouseUpVideo}
                                 onChange={(e) => {
-                                    const newProgress = parseFloat(e.target.value);
-                                    setProgress(newProgress);
+                                    const newProgress = parseFloat(e.target.value)
+                                    setProgress(newProgress)
 
                                     if (videoRef.current) {
-                                        videoRef.current.currentTime = (newProgress / 100) * videoRef.current.duration;
+                                        videoRef.current.currentTime = (newProgress / 100) * videoRef.current.duration
                                     }
                                 }}
                                 min="0"
@@ -407,13 +413,7 @@ function VideoPlayer() {
                                             <h1 className="font-[500] text-[16px] tabl:text-[27px]">Playback Speed</h1>
                                             <div className="grid w-full h-[50px] place-items-center mt-3 tabl:px-[20px]">
                                                 <div className="flex justify-between w-full h-[1px] bg-gray-200">
-                                                    {[
-                                                        { label: '0.5x', value: 0.5 },
-                                                        { label: '0.75x', value: 0.75 },
-                                                        { label: '1x', value: 1 },
-                                                        { label: '1.25x', value: 1.25 },
-                                                        { label: '1.5x', value: 1.5 },
-                                                    ].map((option, index) => (
+                                                    {speedVals.map((option, index) => (
                                                         <div key={index} className="flex flex-col items-center">
                                                             <div className="max-w-[min-content]">
                                                                 <input

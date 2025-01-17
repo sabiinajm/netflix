@@ -78,7 +78,7 @@ function Media({ type }) {
         {
             title: type === "movies" ? "Comedy Movies" : type === "tv shows" ? "Fantasy TV Shows" : "Worth the Wait",
             items: type === "movies" ? topM : type === "tv shows" ? topTv : type === "data" ? data : [],
-            genreId: type === "movies" ? 35 : type === "tv shows" ? 10765 : 16,
+            genreId: type === "movies" ? 35 : type === "tv shows" ? 16 : 16,
             isSwipedRight: isSwipedRight2,
             handleMouseEnter: handleMouseEnter2,
             handleMouseLeave: handleMouseLeave2,
@@ -89,7 +89,7 @@ function Media({ type }) {
         {
             title: type === "movies" ? "Thriller Movies" : type === "tv shows" ? "Adventure TV Shows" : "Coming Next Week",
             items: type === "movies" ? topM : type === "tv shows" ? topTv : type === "data" ? data : [],
-            genreId: type === "movies" ? 80 : type === "tv shows" ? 10765 : 16,
+            genreId: type === "movies" ? 80 : type === "tv shows" ? 10765 : 14,
             isSwipedRight: isSwipedRight3,
             handleMouseEnter: handleMouseEnter3,
             handleMouseLeave: handleMouseLeave3,

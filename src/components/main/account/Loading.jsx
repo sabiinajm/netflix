@@ -4,10 +4,12 @@ function Loading() {
             <div className="flex flex-col xs:flex-row gap-4 m-8 rounded absolute top-28 animate-pulse h-40 items-end">
                 <div className="flex flex-col gap-4">
                     <div className="h-6 w-32 rounded-t bg-[#313131]"></div>
-                    <div className="h-44 xs:h-28 w-60 sm:w-64  rounded-t bg-[#202020]"></div>
+                    <div className="flex flex-col xs:flex-row gap-4 ">
+                        <div className="h-44 xs:h-28 w-56 sm:w-64  rounded-t bg-[#202020]"></div>
+                        <div className="h-44 xs:h-28  w-56 sm:w-64 rounded-t bg-[#202020]"></div>
+                        <div className="h-44 xs:h-28  w-56 sm:w-64 rounded-t bg-[#202020]"></div>
+                    </div>
                 </div>
-                <div className="h-44 xs:h-28  w-60 sm:w-64 rounded-t bg-[#202020]"></div>
-                <div className="h-44 xs:h-28  w-60 sm:w-64 rounded-t bg-[#202020]"></div>
             </div>
         </div>
     )

@@ -23,6 +23,7 @@ import Searched from "./components/main/account/Searched"
 import GenrePage from "./components/main/account/GenrePage"
 import MyList from "./components/main/account/MyList"
 import News from "./components/main/account/News"
+import Error from "./components/main/Error"
 
 function App() {
   const { pathname } = useLocation()
@@ -57,6 +58,7 @@ function App() {
         <Route path="/latest" element={<Latest />} />
         <Route path="/myList" element={<MyList />} />
         <Route path="/video" element={<VideoPlayer />} />
+        <Route path="/*" element={<Error />} />
       </Route>
     </Routes>
   )

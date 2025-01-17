@@ -223,6 +223,10 @@ input[type="range"]::-moz-range-thumb {
   background: red;
   cursor: pointer;
 }
+.drop-shadow-custom{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
 
 @media screen and (min-width: 768px) {
   .swiper-slide-trend {
