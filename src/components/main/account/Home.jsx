@@ -23,7 +23,7 @@ import { TbScreenShare } from 'react-icons/tb'
 
 function Home() {
   const BreakingBvideo = "https://breakingb-videos.s3.eu-north-1.amazonaws.com/BreakingBvideo.mp4"
-  
+
   const { data } = useContext(DATA)
   const { tv } = useContext(TV)
   const { topM } = useContext(TOPMOVIES)
@@ -88,7 +88,7 @@ function Home() {
   function openVideo() {
     navigate('/video')
   }
-  
+
   useEffect(() => {
     if (data && data.length > 0) {
       const randomIndex = Math.floor(Math.random() * data.length)
@@ -126,6 +126,7 @@ function Home() {
       <main>
         {showMoreInfo && (
           <MoreInfo
+            id={selectedItem.id}
             setShowMoreInfo={setShowMoreInfo}
             overview={selectedItem?.overview || 'Bryan Cranston scored four Emmys for his portrayal of a father who sells meth to support his family in what Forbes calls the "Best. Show. Ever."'}
             image={selectedItem?.backdrop_path ? `https://image.tmdb.org/t/p/original${selectedItem?.backdrop_path}` : breakingB}

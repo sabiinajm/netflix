@@ -94,14 +94,15 @@ function Media({ type }) {
             handleMouseEnter: handleMouseEnter3,
             handleMouseLeave: handleMouseLeave3,
             hoveredCard: hoveredCard3,
-            customClass:  type === "movies" ? "6" : type === "tv shows" ? "7" : "8",
+            customClass: type === "movies" ? "6" : type === "tv shows" ? "7" : "8",
             swipeRight: swipeRight3,
         },
     ]
     return (
         <main>
-            {modal  && (
+            {modal && (
                 <MoreInfo
+                    id={selectedItem.id}
                     setModal={setModal}
                     image={`https://image.tmdb.org/t/p/original${selectedItem.backdrop_path}`}
                     year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
@@ -113,6 +114,7 @@ function Media({ type }) {
                 {
                     carouselsData.map((carousel, index) => (
                         <Carousel
+                            id={carousel.id}
                             key={index}
                             title={carousel.title}
                             items={carousel.items}

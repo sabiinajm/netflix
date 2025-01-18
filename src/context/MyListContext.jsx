@@ -16,6 +16,7 @@ function MyListContext({ children }) {
             const updatedList = prevList.some((i) => i.id === item.id)
                 ? prevList.filter((i) => i.id !== item.id)
                 : [...prevList, item]
+            console.log("Updated myList:", updatedList);
             return updatedList
         })
     }

@@ -17,7 +17,7 @@ function MyList() {
   const handleMouseLeave = () => setHoveredCard(null)
 
   const handleSlideMoreInfo = (itemId) => {
-   
+
     const selectedItem = myList.find((item) => item.id === itemId)
     if (selectedItem) {
       setSelectedItem(selectedItem)
@@ -33,8 +33,8 @@ function MyList() {
         >
           {myList.length > 0 ? (
             myList.map((item) => (
-              <div 
-              key={item.id || Math.random()} className="hidden xs:flex">
+              <div
+                key={item.id || Math.random()} className="hidden xs:flex">
                 <Card
                   type="myList"
                   item={item}
@@ -68,10 +68,10 @@ function MyList() {
               cssMode={true}
               modules={[Navigation, Keyboard]}
             >
-              
+
               {myList.length > 0 ? (
                 myList.map((item) => (
-                  <SwiperSlide key={item.id || Math.random()}  className="swiper-slide-trend cursor-pointer">
+                  <SwiperSlide key={item.id || Math.random()} className="swiper-slide-trend cursor-pointer">
                     <div
                       onClick={() =>
                         handleSlideMoreInfo(item.id)
@@ -94,6 +94,7 @@ function MyList() {
         </div>
         {modal && selectedItem && (
           <MoreInfo
+            id={selectedItem.id}
             setModal={setModal}
             image={selectedItem.image || `https://image.tmdb.org/t/p/original${selectedItem.backdrop_path}`}
             year={selectedItem.release_date?.slice(0, 4) || selectedItem.first_air_date?.slice(0, 4)}
