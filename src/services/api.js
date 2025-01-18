@@ -1,4 +1,3 @@
-import axios from "axios"
 import { axiosInstance } from "./instance"
 async function getData() {
     const res = await axiosInstance.get("/discover/movie?with_watch_providers=337&watch_region=US&language=en-US&sort_by=popularity.desc&api_key=35f3fea26d7c6bea37a8777ddbddbed3")
