@@ -6,7 +6,7 @@ import { IoIosInformationCircleOutline } from 'react-icons/io'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Keyboard, Navigation } from 'swiper/modules'
 import breakingB from '../../../assets/imgs/breakingb.webp'
-import BreakingBvideo from '../../../assets/imgs/BreakingBvideo.mp4'
+// import BreakingBvideo from '../../../assets/imgs/BreakingBvideo.mp4'
 import breakingBLogo from '../../../assets/imgs/breakingblogo.webp'
 import moneyH from '../../../assets/imgs/moneyH.jpg'
 import Spinner from '../../../assets/imgs/loadSpinner.png'
@@ -22,6 +22,8 @@ import { PROFILES } from '../../../context/ProfileContext'
 import { TbScreenShare } from 'react-icons/tb'
 
 function Home() {
+  const BreakingBvideo = "https://breakingb-videos.s3.eu-north-1.amazonaws.com/BreakingBvideo.mp4"
+  
   const { data } = useContext(DATA)
   const { tv } = useContext(TV)
   const { topM } = useContext(TOPMOVIES)

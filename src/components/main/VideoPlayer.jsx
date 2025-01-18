@@ -1,10 +1,11 @@
 import { MdOutlineArrowBack, MdOutlineEmojiFlags } from 'react-icons/md'
-import BreakingBvideo from '../../assets/imgs/BreakingBvideo.mp4'
+// import BreakingBvideo from '../../assets/imgs/BreakingBvideo.mp4'
 import BreakingBimg from '../../assets/imgs/Breakingb.webp'
 import Spinner from '../../assets/imgs/loadSpinner.png'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 function VideoPlayer() {
+    const BreakingBvideo = "https://breakingb-videos.s3.eu-north-1.amazonaws.com/BreakingBvideo.mp4"
     const navigate = useNavigate()
     function goBack() {
         navigate('/browse')
