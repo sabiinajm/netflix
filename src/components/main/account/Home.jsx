@@ -136,7 +136,7 @@ function Home() {
         )}
 
         <div className='hidden xs:block '>
-          {loading && <div className="absolute inset-0 flex flex-col gap-3 items-center justify-center bg-black z-[999]">
+          {loading && <div className="top-0 left-0 w-full h-full fixed inset-0 flex flex-col gap-3 items-center justify-center bg-black z-[9999]">
             <img
               className={`h-[85px] my-4 rounded-md transform transition-transform ${timeRemaining <= 1 ? 'animate-full-top-right' : ''
                 }`} src={selectedProfile}
